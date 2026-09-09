@@ -1,0 +1,446 @@
+import { useEffect, useState } from "react";
+import { Link, Route, Switch } from "wouter";
+import {
+  CalendarDays,
+  Check,
+  ChevronDown,
+  Clock3,
+  Gift,
+  Leaf,
+  MapPin,
+  Menu,
+  Phone,
+  ShieldCheck,
+  Sparkles,
+  X,
+} from "lucide-react";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { MapView } from "./components/Map";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import { services, type Service } from "./service-content";
+
+const BOOKING_URL = "https://www.massagebook.com/business/21948933/select-product/services";
+const GIFT_CERTIFICATE_URL = "https://www.massagebook.com/business/21948933/select-product/gift-certificates";
+const GOOGLE_REVIEWS_URL = "https://share.google/aUmBJQzV8F1xphb8B";
+const FACEBOOK_URL = "https://www.facebook.com/soulbalmmassagetherapy";
+const PHONE = "6603412202";
+const ADDRESS = "216 NE Barry Rd, Kansas City, MO 64155";
+const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=216+NE+Barry+Rd%2CKansas+City%2CMO+64155";
+const LOGO = "/images/soul-balm-logo_9b444d79.png";
+const HERO = "/images/hero-massage_c9f7da74.jpg";
+const STUDIO_LOBBY_IMAGE = "/images/studio-lobby_f9d9b0ad.jpg";
+const STOREFRONT_IMAGE = "/images/storefront_68489894.jpg";
+const PRACTITIONER_PORTRAIT = "/images/practitioner-portrait_19f24470.png";
+
+function PageMeta({ title, description }: { title: string; description?: string }) {
+  useEffect(() => {
+    document.title = `${title} | Soul Balm Massage Therapy`;
+    if (description) {
+      let meta = document.querySelector('meta[name="description"]');
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.setAttribute("name", "description");
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute("content", description);
+    }
+  }, [title, description]);
+  return null;
+}
+
+function BookingButton({ label = "Book your session", className = "" }: { label?: string; className?: string }) {
+  return (
+    <a className={`button button-primary rounded-btn ${className}`} href={BOOKING_URL} target="_blank" rel="noreferrer">
+      {label}
+    </a>
+  );
+}
+
+function Wordmark({ compact = false }: { compact?: boolean }) {
+  return <img className={compact ? "wordmark wordmark-compact" : "wordmark"} src={LOGO} alt="Soul Balm Massage Therapy" />;
+}
+
+function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const closeMenu = () => setIsOpen(false);
+
+  return (
+    <header className="site-header">
+      <div className="container nav-shell">
+        <Link href="/" onClick={closeMenu} className="brand-link" aria-label="Soul Balm Massage Therapy home">
+          <Wordmark compact />
+        </Link>
+        <nav className="desktop-nav" aria-label="Main navigation">
+          <Link href="/" className="nav-link">Home</Link>
+          <Link href="/about" className="nav-link">About</Link>
+          <div className="service-menu-wrap">
+            <button className="nav-link service-menu-button" onClick={() => setServicesOpen((value) => !value)} aria-expanded={servicesOpen}>
+              Services <ChevronDown size={15} className={servicesOpen ? "chevron-up" : ""} />
+            </button>
+            {servicesOpen && (
+              <div className="service-menu" onMouseLeave={() => setServicesOpen(false)}>
+                <div className="service-menu-label">Massage offerings</div>
+                {services.map((service) => (
+                  <Link key={service.slug} href={`/services/${service.slug}`} className="service-menu-item" onClick={() => setServicesOpen(false)}>
+                    <span>{service.name}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+          <Link href="/contact" className="nav-link">Contact</Link>
+        </nav>
+        <div className="desktop-booking"><BookingButton label="Book now" className="button-small" /></div>
+        <button className="menu-toggle" onClick={() => setIsOpen((value) => !value)} aria-label={isOpen ? "Close menu" : "Open menu"} aria-expanded={isOpen}>
+          {isOpen ? <X size={23} /> : <Menu size={24} />}
+        </button>
+      </div>
+      {isOpen && (
+        <div className="mobile-menu">
+          <div className="container mobile-menu-inner">
+            <Link href="/" onClick={closeMenu}>Home</Link>
+            <Link href="/about" onClick={closeMenu}>About</Link>
+            <span className="mobile-menu-heading">Services</span>
+            {services.map((service) => <Link key={service.slug} href={`/services/${service.slug}`} onClick={closeMenu}>{service.name}</Link>)}
+            <Link href="/contact" onClick={closeMenu}>Contact</Link>
+            <BookingButton label="Book your session" className="mobile-booking" />
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="container footer-top">
+        <div className="footer-brand">
+          <div className="footer-wordmark">Soul Balm<span>Massage Therapy</span></div>
+          <p>A dedicated table for one, with space to pause and reconnect with yourself.</p>
+          <a className="footer-phone" href={`tel:${PHONE}`}><Phone size={15} /> (660) 341-2202</a>
+        </div>
+        <div className="footer-links">
+          <p className="footer-kicker">Explore</p>
+          <Link href="/about">About Soul Balm</Link>
+          <Link href="/contact">Contact & location</Link>
+          <a href={BOOKING_URL} target="_blank" rel="noreferrer">Book online</a>
+          <a href={GIFT_CERTIFICATE_URL} target="_blank" rel="noreferrer">Gift certificates</a>
+          <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer">Google reviews</a>
+          <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">Facebook page</a>
+        </div>
+        <div className="footer-links">
+          <p className="footer-kicker">Services</p>
+          {services.map((service) => <Link key={service.slug} href={`/services/${service.slug}`}>{service.name}</Link>)}
+        </div>
+        <div className="footer-visit">
+          <p className="footer-kicker">Visit</p>
+          <a href={MAPS_URL} target="_blank" rel="noreferrer" className="selectable-address">
+            {ADDRESS}
+          </a>
+          <p>Monday–Friday<br />By appointment only</p>
+          <BookingButton label="Reserve your time" className="footer-cta" />
+        </div>
+      </div>
+      <div className="container footer-bottom">
+        <p>© {new Date().getFullYear()} Soul Balm Massage Therapy, LLC</p>
+        <div><Link href="/privacy-policy">Privacy Policy</Link><Link href="/terms-and-conditions">Terms & Conditions</Link></div>
+      </div>
+    </footer>
+  );
+}
+
+function PageLayout({ children }: { children: React.ReactNode }) {
+  return <><Header /><main>{children}</main><Footer /></>;
+}
+
+function SectionHeading({ eyebrow, title, body, center = false }: { eyebrow: string; title: React.ReactNode; body?: string; center?: boolean }) {
+  return (
+    <div className={`section-heading ${center ? "section-heading-center" : ""}`}>
+      <p className="eyebrow"><span></span>{eyebrow}</p>
+      <h2>{title}</h2>
+      {body && <p className="section-intro">{body}</p>}
+    </div>
+  );
+}
+
+function GiftCardCta({ className = "" }: { className?: string }) {
+  return (
+    <section className={`appointment-banner pause-cta-banner ${className}`.trim()}>
+      <div className="container compact-gift-cta">
+        <div className="compact-gift-cta-title">
+          <h2>A little time set aside<br /><em>can mean a lot.</em></h2>
+        </div>
+        <div className="compact-gift-cta-action">
+          <p>Gift Someone you care about the permission to pause.</p>
+          <a href={GIFT_CERTIFICATE_URL} target="_blank" rel="noreferrer" className="button button-primary rounded-btn"><Gift size={16} strokeWidth={1.8} aria-hidden="true" /> Buy a gift card</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LocationMap() {
+  const location = { lat: 39.2464, lng: -94.5772 };
+
+  return (
+    <MapView
+      className="soul-balm-map"
+      initialCenter={location}
+      initialZoom={15}
+      onMapReady={(map) => {
+        new google.maps.marker.AdvancedMarkerElement({
+          map,
+          position: location,
+          title: "Soul Balm Massage Therapy — 216 NE Barry Rd",
+        });
+      }}
+    />
+  );
+}
+
+function Home() {
+  return (
+    <PageLayout>
+      <PageMeta title="Massage Therapy in Kansas City" />
+      <section className="hero">
+        <img className="hero-image" src={HERO} alt="Massage therapist providing a shoulder massage in a calming treatment room" />
+        <div className="hero-scrim"></div>
+        <div className="container hero-content">
+          <p className="hero-kicker"><Leaf size={17} /> Kansas City massage therapy</p>
+          <h1>Make space<br />for <em>yourself.</em></h1>
+          <p className="hero-lede">Massage is a chance to pause, listen to your body, and make self-care part of your rhythm.</p>
+          <div className="hero-actions">
+            <BookingButton label="Book your session" />
+            <a className="button button-secondary rounded-btn" href="#services">Explore services</a>
+          </div>
+        </div>
+        <div className="hero-note"><span>Scroll to settle in</span><i></i></div>
+      </section>
+
+      <section className="intro-band">
+        <div className="container intro-grid">
+          <div className="intro-heading">
+            <p className="eyebrow"><span></span>A place to exhale</p>
+            <h2>Thoughtful touch.<br /><em>One table, just for you.</em></h2>
+          </div>
+          <div className="intro-copy">
+            <p>Soul Balm Massage Therapy is an invitation to step out of the hurry. Every session begins with a conversation about your goals and is shaped around the care you are looking for that day.</p>
+            <Link href="/about" className="button button-primary rounded-btn">Meet Soul Balm</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="services-section" id="services">
+        <div className="container">
+          <SectionHeading center eyebrow="Massage offerings" title={<>Choose the attention<br />your body is asking for.</>} body="Each service is an opportunity to begin with where you are and move at a pace that feels right." />
+          <div className="services-list">
+            {services.map((service) => (
+              <Link key={service.slug} href={`/services/${service.slug}`} className="service-row">
+                <div>
+                  <h3>{service.name}</h3>
+                  <p>{service.heroSummary}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="values-section">
+        <div className="container values-grid">
+          <div className="values-image-wrap">
+            <img src={STUDIO_LOBBY_IMAGE} alt="Soul Balm Massage Therapy’s welcoming treatment space" />
+          </div>
+          <div className="values-content">
+            <SectionHeading eyebrow="The Soul Balm approach" title={<>Your session<br />starts with <em>listening.</em></>} />
+            <div className="value-list">
+              <div><span><Sparkles size={17} /></span><div><h3>Your goals are the starting point</h3><p>We will talk through what you would like from your time before your session begins.</p></div></div>
+              <div><span><Clock3 size={17} /></span><div><h3>Time held just for you</h3><p>This is a private, one-on-one appointment in a calm, dedicated setting.</p></div></div>
+              <div><span><Leaf size={17} /></span><div><h3>Self-care without the rush</h3><p>Come as you are. Let your appointment be a pause in the middle of your day.</p></div></div>
+            </div>
+            <BookingButton label="Find a time that works" />
+          </div>
+        </div>
+      </section>
+
+      <section className="reviews-section">
+        <div className="container reviews-grid">
+          <div>
+            <p className="eyebrow"><span></span>Google reviews</p>
+            <h2>Kind words from the<br /><em>people we serve.</em></h2>
+          </div>
+          <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer" className="reviews-card">
+            <Sparkles size={22} />
+            <strong>5.0 ★★★★★</strong>
+            <span>Read Google Reviews</span>
+          </a>
+        </div>
+      </section>
+
+      <GiftCardCta />
+
+      <section className="location-map-section">
+        <div className="container location-grid">
+          <div className="location-info">
+            <SectionHeading 
+              eyebrow="Visit Soul Balm" 
+              title={<>Centrally located in<br /><em>Kansas City, MO.</em></>} 
+              body="Soul Balm is located inside the Cause Chiropractor office at 216 NE Barry Rd, conveniently accessible across Northland and the KC metro area."
+            />
+            <div className="location-details">
+              <p><MapPin size={18} /> <strong>Address:</strong><br /><a href={MAPS_URL} target="_blank" rel="noreferrer" className="selectable-address">{ADDRESS}</a></p>
+              <p><Phone size={18} /> <strong>Phone:</strong><br /><a href={`tel:${PHONE}`}>(660) 341-2202</a></p>
+              <div className="social-links">
+                <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="button button-primary button-small rounded-btn">
+                  Follow on Facebook
+                </a>
+              </div>
+            </div>
+          </div>
+          <figure className="location-signage">
+            <img src={STOREFRONT_IMAGE} alt="Soul Balm Massage Therapy signage in the window inside the Cause Chiropractor office" />
+            <figcaption>Look for the Soul Balm signage in the window when you arrive.</figcaption>
+          </figure>
+          <div className="map-embed-wrap">
+            <LocationMap />
+          </div>
+        </div>
+      </section>
+
+      <section className="faq-section">
+        <div className="container faq-layout">
+          <div className="faq-intro">
+            <p className="eyebrow"><span></span>Before your visit</p>
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to begin planning your time at Soul Balm.</p>
+          </div>
+          <div className="faq-list">
+            <details open>
+              <summary>How do I book a massage?<ChevronDown size={18} /></summary>
+              <p>Use the online booking link to explore current availability and schedule your appointment through MassageBook.</p>
+            </details>
+            <details>
+              <summary>Where is Soul Balm located?<ChevronDown size={18} /></summary>
+              <p>Soul Balm Massage Therapy is located at 216 NE Barry Rd in Kansas City, Missouri. Use the address link above for directions.</p>
+            </details>
+            <details>
+              <summary>What are your appointment hours?<ChevronDown size={18} /></summary>
+              <p>Appointments are available Monday through Friday, by appointment only. Soul Balm is closed Saturday and Sunday.</p>
+            </details>
+            <details>
+              <summary>What massage services do you offer?<ChevronDown size={18} /></summary>
+              <p>Soul Balm offers Deep Tissue, Swedish, Prenatal, Ashiatsu, and Lymphatic Massage. Visit the service pages or online booking for details.</p>
+            </details>
+            <details>
+              <summary>Can I purchase a gift certificate?<ChevronDown size={18} /></summary>
+              <p>Yes. Gift certificates are available through the secure MassageBook gift certificate page.</p>
+            </details>
+            <details>
+              <summary>Who should I contact with a question?<ChevronDown size={18} /></summary>
+              <p>Call Soul Balm Massage Therapy at (660) 341-2202 with questions about your visit or scheduling.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+    </PageLayout>
+  );
+}
+
+function About() {
+  return (
+    <PageLayout>
+      <PageMeta title="About" />
+      <section className="page-hero about-hero">
+        <div className="container page-hero-grid">
+          <div><p className="eyebrow"><span></span>Meet Teresa</p><h1>Care that honors<br /><em>the whole of you.</em></h1><p>At Soul Balm, massage is more than a scheduled appointment. It is permission to pause.</p></div>
+          <div className="about-hero-image about-practitioner-image"><img src={PRACTITIONER_PORTRAIT} alt="Teresa Nerem of Soul Balm Massage Therapy" /><div className="about-portrait-caption">Teresa Nerem<span>License: MO 2021007307</span></div></div>
+        </div>
+      </section>
+      <section className="about-story">
+        <div className="container about-story-grid">
+          <div className="story-side"><p>Kindness, intuition,<br />and dedicated care.</p><p className="about-signature">Massage therapist—because<br /><em>“bad ass miracle worker”</em><br />isn’t an official job title.</p></div>
+          <div className="story-copy"><p className="story-large">Teresa believes self-care begins by giving yourself permission to pause.</p><p>Life is full of ups and downs, and everyday activity, overuse, and emotional demands can leave us carrying tension in our bodies. Soul Balm is an invitation to step out of the hurry, share what you are looking for, and make room for yourself.</p><p>Before your session, Teresa will visit with you about your goals. She has created a relaxing ambience for your reservation at a table for one—dedicated to tending to the back, neck, shoulders, arms, glutes, legs, hands, and feet that carry you through your days.</p><p>Teresa has long appreciated the value of thoughtful touch. She began her helping-profession path in social work, then followed her intuition to massage school. She is grateful for the trust clients place in her as part of their self-care journey.</p><a href={BOOKING_URL} target="_blank" rel="noreferrer" className="button button-primary rounded-btn">Begin your self-care time</a></div>
+        </div>
+      </section>
+      <section className="about-background"><div className="container about-background-grid"><div><p className="eyebrow"><span></span>Professional background</p><h2>A career built around<br /><em>helping people.</em></h2></div><div className="about-background-card"><p className="about-background-kicker">Teresa’s confirmed experience</p><div><strong>Massage-school training</strong><span>Teresa followed her intuition into massage therapy after beginning her helping-profession journey in social work.</span></div><div><strong>Thoughtful, one-on-one care</strong><span>Every appointment begins with a conversation about your goals, comfort, and the kind of attention you are seeking that day.</span></div><div><strong>Modalities offered</strong><span>Swedish, Deep Tissue, Prenatal, Ashiatsu, Ashi/Thai, and Lymphatic Massage.</span></div></div></div></section>
+      <section className="about-beliefs"><div className="container"><SectionHeading center eyebrow="What to expect from Teresa" title={<>A session shaped by<br /><em>your needs.</em></>} body="Her philosophy is simple: slow down, listen first, and make the time at the table feel dedicated to you." /><div className="belief-grid"><article><h3>Your goals guide the session</h3><p>Teresa begins by asking what you would like to focus on and welcomes feedback throughout your appointment.</p></article><article><h3>A calm table for one</h3><p>Your time is reserved in a relaxing, private setting designed to help you step out of the hurry.</p></article><article><h3>Care without the rush</h3><p>Each visit is an opportunity to pause, reconnect with yourself, and receive thoughtful attention at a comfortable pace.</p></article></div></div></section>
+      <section className="about-reviews"><div className="container about-reviews-grid"><div><p className="eyebrow"><span></span>Google reviews</p><h2>Kind words from the<br /><em>people Teresa serves.</em></h2><p>Thoughtful care begins with listening—and clients have shared what their time at Soul Balm has meant to them.</p></div><a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer" className="about-reviews-card" aria-label="Read Soul Balm Massage Therapy's Google reviews"><Sparkles size={24} /><span className="about-reviews-stars" aria-hidden="true">★★★★★</span><strong>5.0</strong><span>Based on 163 Google reviews</span><b>Read Google Reviews →</b></a></div></section>
+      <section className="soft-cta"><div className="container"><div><p className="eyebrow"><span></span>Make time for you</p><h2>Your table is<br /><em>waiting.</em></h2></div><BookingButton label="Reserve your session" /></div></section>
+    </PageLayout>
+  );
+}
+
+function ServicePage({ service }: { service: Service }) {
+  return (
+    <PageLayout>
+      <PageMeta title={service.pageTitle} description={service.metaDescription} />
+      <section className={`service-hero service-hero-full service-hero-${service.accent}`}>
+        <img className="service-hero-image" src={service.image} alt={service.imageAlt} />
+        <div className="service-hero-scrim"></div>
+        <div className="container service-hero-full-content">
+          <div className="service-hero-copy"><Link href="/#services" className="back-link">← Explore all services</Link><p className="eyebrow"><span></span>{service.eyebrow}</p><h1>{service.pageTitle}</h1><p>{service.heroSummary}</p><BookingButton label={`Book ${service.name}`} /></div>
+        </div>
+      </section>
+      <section className="service-content"><div className="container service-content-grid"><div className="service-lead"><p className="eyebrow"><span></span>Thoughtful, one-on-one care</p><h2>{service.definitionTitle}</h2></div><div><p className="service-copy-large">{service.intro}</p>{service.definition.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div></section>
+      <section className="service-detail-section service-reasons"><div className="container service-detail-grid"><div><p className="eyebrow"><span></span>Is it right for you?</p><h2>{service.whyTitle}</h2>{service.whyIntro && <p className="section-intro">{service.whyIntro}</p>}</div><div className="service-points service-points-card">{service.points.map((point) => <div key={point}><Check size={18} />{point}</div>)}</div></div></section>
+      <section className="service-detail-section"><div className="container service-detail-grid service-detail-reverse"><div className="service-detail-copy"><p className="eyebrow"><span></span>Choosing your session</p><h2>{service.comparisonTitle}</h2>{service.comparison.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div><div className="service-expectation-card"><p className="eyebrow"><span></span>Before your appointment</p><h3>{service.expectationTitle}</h3>{service.expectations.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div></section>
+      <section className="service-pricing"><div className="container"><div className="service-pricing-heading"><p className="eyebrow"><span></span>Session lengths & pricing</p><h2>Choose the time<br />that feels <em>right.</em></h2><p>Current options are shown below. Live availability is confirmed through MassageBook when you book.</p></div><div className="pricing-table" role="table" aria-label={`${service.name} session lengths and prices`}><div className="pricing-header" role="row"><span role="columnheader">Session length</span><span role="columnheader">Price</span><span role="columnheader">A thoughtful fit when you want</span></div>{service.pricing.map((option) => <div className="pricing-row" role="row" key={option.duration}><strong role="cell">{option.duration}</strong><b role="cell">{option.price}</b><span role="cell">{option.detail}</span></div>)}</div><BookingButton label={`Book ${service.name}`} className="service-pricing-cta" /></div></section>
+      <section className="service-faq-section"><div className="container service-faq-grid"><div><p className="eyebrow"><span></span>Questions, answered simply</p><h2>Before you<br /><em>book.</em></h2><p className="section-intro">Every visit begins with a conversation. Here are a few helpful answers before your appointment.</p></div><div className="faq-list service-faq-list">{service.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<ChevronDown size={19} /></summary><p>{faq.answer}</p></details>)}</div></div></section>
+      <GiftCardCta className="service-gift-cta" />
+    </PageLayout>
+  );
+}
+
+function Contact() {
+  return (
+    <PageLayout>
+      <PageMeta title="Contact" />
+      <section className="contact-hero"><div className="container"><p className="eyebrow"><span></span>Contact & location</p><h1>Let’s make room<br />for <em>your time.</em></h1><p>Questions before booking? Call Soul Balm or use online booking to view available appointments.</p></div></section>
+      <section className="contact-grid-section"><div className="container contact-grid"><article className="contact-card contact-card-primary"><p className="card-kicker">Book online</p><CalendarDays size={30}/><h2>Find your<br />appointment time.</h2><p>Visit Soul Balm’s secure booking page to explore services and current availability.</p><BookingButton label="Book with MassageBook" className="button-cream" /></article><article className="contact-card"><p className="card-kicker">Call</p><Phone size={29}/><h2>Have a question?</h2><p>For questions about your visit, reach Soul Balm by phone.</p><a className="contact-card-link" href={`tel:${PHONE}`}>(660) 341-2202</a></article><article className="contact-card contact-card-visit"><p className="card-kicker">Visit</p><img className="contact-location-photo" src={STOREFRONT_IMAGE} alt="Soul Balm Massage Therapy sign at 216 NE Barry Road" /><h2>Kansas City<br />treatment space.</h2><p><a href={MAPS_URL} target="_blank" rel="noreferrer" className="selectable-address">{ADDRESS}</a></p><a className="button button-primary button-small rounded-btn" href={MAPS_URL} target="_blank" rel="noreferrer"><MapPin size={15} /> Get directions</a></article></div></section>
+      <section className="hours-section"><div className="container hours-grid"><div><p className="eyebrow"><span></span>Appointment hours</p><h2>Time reserved for<br /><em>your reset.</em></h2></div><div className="hours-list"><div><strong>Monday</strong><span>By appointment only</span></div><div><strong>Tuesday</strong><span>By appointment only</span></div><div><strong>Wednesday</strong><span>By appointment only</span></div><div><strong>Thursday</strong><span>By appointment only</span></div><div><strong>Friday</strong><span>By appointment only</span></div><div><strong>Saturday</strong><span>Closed</span></div><div><strong>Sunday</strong><span>Closed</span></div><p>For current availability, please book online through MassageBook.</p><a className="button button-primary button-small rounded-btn hours-directions-button" href={MAPS_URL} target="_blank" rel="noreferrer"><MapPin size={15} /> Get directions</a></div></div></section>
+    </PageLayout>
+  );
+}
+
+function LegalPage({ type }: { type: "privacy" | "terms" }) {
+  const isPrivacy = type === "privacy";
+  return (
+    <PageLayout>
+      <PageMeta title={isPrivacy ? "Privacy Policy" : "Terms & Conditions"} />
+      <section className="legal-hero"><div className="container"><p className="eyebrow"><span></span>Soul Balm Massage Therapy</p><h1>{isPrivacy ? "Privacy Policy" : "Terms & Conditions"}</h1><p>Last updated: September 2026</p></div></section>
+      <article className="legal-content container">
+        <div className="legal-notice"><ShieldCheck size={19}/><p><strong>Draft notice:</strong> This page is a launch-ready framework and must be reviewed by Soul Balm Massage Therapy before publication to reflect confirmed contact, booking, cancellation, and data-handling practices.</p></div>
+        {isPrivacy ? <PrivacyCopy /> : <TermsCopy />}
+      </article>
+    </PageLayout>
+  );
+}
+
+function PrivacyCopy() { return <><h2>Overview</h2><p>This policy explains how Soul Balm Massage Therapy may handle information provided through this website. The website is intended to help visitors learn about massage services, find the studio, and access the online booking platform.</p><h2>Information provided through booking</h2><p>Online booking is provided through MassageBook. When you follow a booking link, information you provide there is governed by MassageBook’s applicable policies and the service policies presented during the booking process.</p><h2>Website communications</h2><p>If you contact Soul Balm by phone or through an approved communication channel, the information you provide may be used to respond to your question or help with your appointment. Please do not send sensitive health information through unprotected channels.</p><h2>Updates to this policy</h2><p>This policy may be updated as business practices or website tools change. The effective date above will be updated when material changes are made.</p><h2>Questions</h2><p>For questions about this policy, please contact Soul Balm Massage Therapy by phone at <a href={`tel:${PHONE}`}>(660) 341-2202</a>.</p></> }
+function TermsCopy() { return <><h2>Website use</h2><p>This website provides general information about Soul Balm Massage Therapy and its massage services. It is not medical advice and is not a substitute for consultation with a qualified healthcare professional.</p><h2>Appointments and booking</h2><p>Appointments are scheduled through MassageBook. Available services, appointment times, pricing, policies, and any applicable intake requirements are presented in the booking process and are subject to confirmation there.</p><h2>Health considerations</h2><p>Please discuss questions about health conditions, medications, pregnancy, or whether massage is appropriate for you with your healthcare provider. Share relevant information requested through the approved intake process before your session.</p><h2>Changes to availability</h2><p>Service availability, appointment options, and studio information may change. The online booking page is the most current source for available appointments.</p><h2>Questions</h2><p>For questions about a planned visit, please call Soul Balm Massage Therapy at <a href={`tel:${PHONE}`}>(660) 341-2202</a>.</p></> }
+
+function NotFound() { return <PageLayout><PageMeta title="Page Not Found" /><section className="not-found"><div className="container"><p className="eyebrow"><span></span>Page not found</p><h1>Let’s find your way<br /><em>back to calm.</em></h1><Link href="/" className="button button-primary rounded-btn">Return home</Link></div></section></PageLayout> }
+
+function Router() {
+  return <Switch>
+    <Route path="/" component={Home} />
+    <Route path="/about" component={About} />
+    {services.flatMap((service) => [
+      <Route key={service.slug} path={`/services/${service.slug}`} component={() => <ServicePage service={service} />} />,
+      <Route key={service.legacySlug} path={`/services/${service.legacySlug}`} component={() => <ServicePage service={service} />} />,
+    ])}
+    <Route path="/contact" component={Contact} />
+    <Route path="/privacy-policy" component={() => <LegalPage type="privacy" />} />
+    <Route path="/terms-and-conditions" component={() => <LegalPage type="terms" />} />
+    <Route component={NotFound} />
+  </Switch>;
+}
+
+export default function App() {
+  return <ErrorBoundary><ThemeProvider defaultTheme="light"><TooltipProvider><Toaster /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>;
+}
