@@ -2278,3 +2278,85 @@
     line-height: 1.36;
   }
 }
+
+
+/* Reuse the approved Client Reviews presentation on the About page. */
+.client-reviews-section .eyebrow {
+  font-size: 10px;
+}
+
+.client-reviews-section .eyebrow span {
+  display: none;
+}
+
+.client-reviews-section .reviews-grid h2 {
+  font-size: clamp(44px, 4.6vw, 61px);
+}
+
+.client-reviews-section .reviews-card {
+  width: min(100%, 470px);
+  min-height: 0;
+  padding: 26px 32px 25px;
+  align-items: center;
+  color: #063d40;
+  cursor: default;
+  text-align: center;
+}
+
+.client-reviews-section .reviews-card:hover {
+  background: #00b5b8;
+  transform: none;
+}
+
+.client-reviews-section .reviews-card .review-stars {
+  margin-bottom: 21px;
+  color: #07595d;
+  font-size: 36px;
+  letter-spacing: .15em;
+  line-height: 1;
+}
+
+.client-reviews-section .reviews-card dl {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 0;
+  text-align: center;
+}
+
+.client-reviews-section .reviews-card dl > div {
+  display: grid;
+  gap: 3px;
+}
+
+.client-reviews-section .reviews-card dl > div + div {
+  padding-top: 16px;
+  border-top: 1px solid rgba(6, 61, 64, .24);
+}
+
+.client-reviews-section .reviews-card dt {
+  color: #07595d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.client-reviews-section .reviews-card dd {
+  margin: 0;
+  color: #063d40;
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 23px;
+  line-height: 1.15;
+}
+
+@media (max-width: 600px) {
+  .client-reviews-section .reviews-card {
+    padding: 23px 21px;
+  }
+
+  .client-reviews-section .reviews-card .review-stars {
+    font-size: 33px;
+  }
+}
