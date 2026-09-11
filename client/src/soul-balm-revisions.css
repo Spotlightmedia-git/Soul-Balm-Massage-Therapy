@@ -2397,9 +2397,9 @@
 
 .contact-simple-grid {
   display: grid;
-  grid-template-columns: minmax(280px, .78fr) minmax(420px, 1.22fr);
-  align-items: center;
-  gap: clamp(46px, 8vw, 122px);
+  grid-template-columns: minmax(185px, .7fr) minmax(260px, .92fr) minmax(360px, 1.2fr);
+  align-items: start;
+  gap: clamp(34px, 4vw, 64px);
 }
 
 .contact-phone-block h1 {
@@ -2431,12 +2431,52 @@
   color: #0f969a;
 }
 
+.contact-hours-block h2 {
+  margin: 0 0 28px;
+  color: #22535d;
+  font-size: clamp(38px, 3.8vw, 52px);
+  line-height: .95;
+}
+
+.contact-hours-block h2 em {
+  color: #00aeb1;
+}
+
+.contact-hours-list {
+  border-top: 1px solid #cfe4df;
+}
+
+.contact-hours-list > div {
+  display: grid;
+  grid-template-columns: minmax(84px, 1fr) auto;
+  gap: 4px 14px;
+  padding: 12px 0 11px;
+  border-bottom: 1px solid #cfe4df;
+  color: #315c63;
+  font-size: 13px;
+}
+
+.contact-hours-list strong {
+  font-weight: 700;
+}
+
+.contact-hours-list span {
+  color: #4f6966;
+  text-align: right;
+}
+
+.contact-hours-list small {
+  grid-column: 1 / -1;
+  color: #69807c;
+  font-size: 11px;
+}
+
 .contact-simple-map {
-  min-height: 380px;
+  min-height: 430px;
 }
 
 .contact-simple-map .soul-balm-map {
-  min-height: 380px;
+  min-height: 430px;
 }
 
 .contact-simple-map .button {
@@ -2445,7 +2485,7 @@
   margin: 18px auto 0;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .contact-simple-grid {
     grid-template-columns: 1fr;
     gap: 47px;
