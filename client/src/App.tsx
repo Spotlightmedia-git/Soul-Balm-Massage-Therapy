@@ -198,7 +198,7 @@ function GiftCardCta({ className = "" }: { className?: string }) {
           <h2>A little time set aside<br /><em>can mean a lot.</em></h2>
         </div>
         <div className="compact-gift-cta-action">
-          <p>Gift Someone you care about the permission to pause.</p>
+          <p>Gift someone you care about<br />the permission to pause.</p>
           <a href={GIFT_CERTIFICATE_URL} target="_blank" rel="noreferrer" className="button button-primary rounded-btn"><Gift size={16} strokeWidth={1.8} aria-hidden="true" /> Buy a gift card</a>
         </div>
       </div>
