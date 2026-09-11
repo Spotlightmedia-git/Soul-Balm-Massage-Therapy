@@ -248,7 +248,6 @@ function TestimonialCarousel() {
     <div className="testimonial-carousel" aria-roledescription="carousel" aria-label="Client testimonials" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} onFocus={() => setIsPaused(true)} onBlur={() => setIsPaused(false)}>
       <div className="testimonial-carousel-topline">
         <span>Client testimonial</span>
-        <span aria-live="polite">{activeIndex + 1} of {CLIENT_TESTIMONIALS.length}</span>
       </div>
       <article className="testimonial-slide" key={`${testimonial.reviewer}-${testimonial.date}`}>
         <div className="review-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
