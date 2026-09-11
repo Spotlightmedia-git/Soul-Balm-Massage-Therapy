@@ -2375,3 +2375,16 @@
 .soft-cta .eyebrow span {
   display: none;
 }
+
+
+/* Center the final About-page invitation and its booking action. */
+.soft-cta.about-soft-cta .container {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.soft-cta.about-soft-cta .eyebrow {
+  justify-content: center;
+}
