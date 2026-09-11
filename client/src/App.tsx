@@ -22,6 +22,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { services, type Service } from "./service-content";
 
 const BOOKING_URL = "https://www.massagebook.com/business/21948933/select-product/services";
+const DEEP_TISSUE_BOOKING_URL = "https://www.massagebook.com/therapists/SoulBalmMassageTherapy";
 const GIFT_CERTIFICATE_URL = "https://www.massagebook.com/business/21948933/select-product/gift-certificates";
 const GOOGLE_REVIEWS_URL = "https://share.google/aUmBJQzV8F1xphb8B";
 const FACEBOOK_URL = "https://www.facebook.com/soulbalmmassagetherapy";
@@ -34,9 +35,9 @@ const STUDIO_LOBBY_IMAGE = "/images/studio-lobby_f9d9b0ad.jpg";
 const STOREFRONT_IMAGE = "/images/storefront_68489894.jpg";
 const PRACTITIONER_PORTRAIT = "/images/practitioner-portrait_19f24470.png";
 
-function PageMeta({ title, description }: { title: string; description?: string }) {
+function PageMeta({ title, description, fullTitle }: { title?: string; description?: string; fullTitle?: string }) {
   useEffect(() => {
-    document.title = `${title} | Soul Balm Massage Therapy`;
+    document.title = fullTitle ?? `${title} | Soul Balm Massage Therapy`;
     if (description) {
       let meta = document.querySelector('meta[name="description"]');
       if (!meta) {
@@ -50,9 +51,9 @@ function PageMeta({ title, description }: { title: string; description?: string 
   return null;
 }
 
-function BookingButton({ label = "Book your session", className = "" }: { label?: string; className?: string }) {
+function BookingButton({ label = "Book your session", className = "", href = BOOKING_URL }: { label?: string; className?: string; href?: string }) {
   return (
-    <a className={`button button-primary rounded-btn ${className}`} href={BOOKING_URL} target="_blank" rel="noreferrer">
+    <a className={`button button-primary rounded-btn ${className}`} href={href} target="_blank" rel="noreferrer">
       {label}
     </a>
   );
@@ -375,7 +376,150 @@ function About() {
   );
 }
 
+const deepTissueFaqs = [
+  {
+    question: "What is deep tissue massage?",
+    answer: "Deep tissue massage is a massage modality that uses slower, focused strokes and intentional pressure to give extra attention to the areas you would like to prioritize.",
+  },
+  {
+    question: "Does deep tissue massage have to hurt?",
+    answer: "No. Pressure preferences differ from person to person. You are encouraged to share feedback during the session so your therapist can adjust the pressure and techniques to your comfort.",
+  },
+  {
+    question: "What should I expect during a deep tissue massage session?",
+    answer: "Before the session, you can discuss your wellness goals, the areas you would like to prioritize, and your pressure preferences. Communication is encouraged throughout the massage.",
+  },
+  {
+    question: "What areas can I ask to prioritize?",
+    answer: "You can discuss the areas you would like to focus on, such as the back, neck, shoulders, or other areas of concern. Your session is tailored around your preferences and comfort.",
+  },
+  {
+    question: "How is deep tissue massage different from Swedish massage?",
+    answer: "Deep tissue massage typically uses a slower, more focused approach and may involve more intentional pressure. The best fit depends on the type of massage experience, pressure, and areas of focus you prefer.",
+  },
+  {
+    question: "Can the pressure be adjusted during the massage?",
+    answer: "Yes. Let your therapist know at any time if you would like more or less pressure, a different technique, or extra attention in a particular area.",
+  },
+  {
+    question: "How do I book a deep tissue massage?",
+    answer: "Use the Book Your Session button on this page to view available appointment options through Soul Balm Massage Therapy's MassageBook booking page.",
+  },
+  {
+    question: "What if I have a medical condition, injury, or treatment-related question?",
+    answer: "If you have questions about whether massage is appropriate for a medical condition, injury, or treatment, seek guidance from a qualified healthcare professional before booking. Share relevant information with your massage therapist so you can discuss your comfort and session preferences.",
+  },
+];
+
+const deepTissuePricing = [
+  { duration: "30 minutes", price: "$45", detail: "A focused option when you would like to prioritize one area or have limited time. It allows for a brief conversation about your preferences and targeted attention during the session." },
+  { duration: "45 minutes", price: "$60", detail: "Offers additional time for a more unhurried, focused session. This can be a good fit when you would like attention in one primary area with time to check in about pressure and comfort." },
+  { duration: "60 minutes", price: "$85", detail: "Provides time for a more balanced session, including discussion of your preferences and focused attention across the areas you would like to prioritize." },
+  { duration: "75 minutes", price: "$100", detail: "Allows for a slower pace and more flexibility in how the session is structured, particularly if you would like to include more than one priority area." },
+  { duration: "90 minutes", price: "$125", detail: "Gives the most time for a relaxed pace, ongoing pressure check-ins, and attention across multiple areas you would like to prioritize." },
+];
+
+function DeepTissueVisual({ variant, label }: { variant: "hero" | "room" | "detail"; label: string }) {
+  return (
+    <div className={`deep-tissue-visual deep-tissue-visual-${variant}`} role="img" aria-label={label}>
+      <div className="deep-tissue-visual-orb deep-tissue-visual-orb-one" />
+      <div className="deep-tissue-visual-orb deep-tissue-visual-orb-two" />
+      <div className="deep-tissue-visual-card">
+        <Leaf size={24} strokeWidth={1.4} aria-hidden="true" />
+        <span>Visual placeholder</span>
+        <strong>{label}</strong>
+        <small>Approved treatment-room photography to be added.</small>
+      </div>
+    </div>
+  );
+}
+
+function DeepTissuePage() {
+  return (
+    <PageLayout>
+      <PageMeta
+        fullTitle="Deep Tissue Massage in Kansas City, MO | Soul Balm"
+        description="Deep tissue massage in Kansas City, MO, customized to your comfort, pressure preferences, and priority areas. Book your session with Soul Balm."
+      />
+      <section className="deep-tissue-hero">
+        <DeepTissueVisual variant="hero" label="Calm, professional massage therapy atmosphere" />
+        <div className="deep-tissue-hero-scrim" />
+        <div className="container deep-tissue-hero-content">
+          <div className="deep-tissue-hero-copy">
+            <Link href="/#services" className="back-link">← Explore all services</Link>
+            <p className="eyebrow"><span></span>Intentional, focused care</p>
+            <h1>Deep Tissue Massage in Kansas City, MO</h1>
+            <p>Targeted, therapeutic massage customized to your comfort, wellness goals, and pressure preferences.</p>
+            <BookingButton label="Book Your Session" href={DEEP_TISSUE_BOOKING_URL} />
+          </div>
+        </div>
+      </section>
+
+      <section className="deep-tissue-info-section">
+        <div className="container deep-tissue-info-grid">
+          <div className="deep-tissue-info-copy">
+            <p className="eyebrow"><span></span>Focused care, your way</p>
+            <h2>What Is Deep Tissue Massage?</h2>
+            <p>Deep tissue massage is a massage modality that uses slower, more focused strokes and intentional pressure to work with deeper layers of muscle and connective tissue, often called fascia. It is commonly chosen by people who prefer focused attention in areas that feel tight, overworked, or especially tense—such as the back, neck, and shoulders.</p>
+            <p>Your deep tissue massage can be tailored around the areas you would like to prioritize, your comfort level, and your preferred pressure. Deep pressure does not have to mean unbearable pressure. Open communication is encouraged throughout the session, so your therapist can adjust techniques and pressure based on your feedback.</p>
+          </div>
+          <DeepTissueVisual variant="room" label="Warm treatment room setting" />
+        </div>
+      </section>
+
+      <section className="deep-tissue-info-section deep-tissue-info-section-tint">
+        <div className="container deep-tissue-info-grid deep-tissue-info-grid-reverse">
+          <DeepTissueVisual variant="detail" label="Relaxing massage table setting" />
+          <div className="deep-tissue-info-copy">
+            <p className="eyebrow"><span></span>Is it right for you?</p>
+            <h2>Why Choose Deep Tissue Massage?</h2>
+            <p>A deep tissue massage may be a good option if you prefer a more focused, therapeutic-style massage experience. Before the session begins, you can discuss your wellness goals, the areas you would like to address, and the pressure that feels right for you.</p>
+            <p>People often choose deep tissue massage when they want extra attention for areas affected by long periods of sitting, repetitive movement, workouts, or everyday physical demands. Your session is designed around your feedback and comfort, with techniques and pressure adjusted as needed.</p>
+            <div className="deep-tissue-points">
+              <div><Check size={18} aria-hidden="true" /><div><strong>Focused attention</strong><span>Spend more time on the areas you want to prioritize, including the back, neck, shoulders, or other areas of concern.</span></div></div>
+              <div><Check size={18} aria-hidden="true" /><div><strong>Pressure tailored to you</strong><span>Share your preferred pressure level and communicate throughout the session if you would like an adjustment.</span></div></div>
+              <div><Check size={18} aria-hidden="true" /><div><strong>Support for active and everyday routines</strong><span>A deep tissue session can be a thoughtful addition to your self-care routine, whether you work at a desk, exercise regularly, or carry physical tension from daily activities.</span></div></div>
+              <div><Check size={18} aria-hidden="true" /><div><strong>A personalized massage experience</strong><span>Begin with a conversation about your goals, preferences, and comfort so the session can be shaped around you.</span></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="service-pricing deep-tissue-pricing">
+        <div className="container">
+          <div className="service-pricing-heading">
+            <p className="eyebrow"><span></span>Session lengths & pricing</p>
+            <h2>Choosing Your Deep Tissue<br /><em>Massage Session Length</em></h2>
+            <p>The amount of time you book helps shape the pace and focus of your session. A shorter appointment can allow for a focused conversation and attention to one priority area, while a longer appointment gives more time to discuss your preferences, move through more of the body, or spend additional time on the areas you would like to prioritize.</p>
+          </div>
+          <div className="pricing-table" role="table" aria-label="Deep Tissue Massage session lengths and prices">
+            <div className="pricing-header" role="row"><span role="columnheader">Session length</span><span role="columnheader">Displayed price</span><span role="columnheader">Why the time matters</span></div>
+            {deepTissuePricing.map((option) => <div className="pricing-row" role="row" key={option.duration}><strong role="cell">{option.duration}</strong><b role="cell">{option.price}</b><span role="cell">{option.detail}</span></div>)}
+          </div>
+          <p className="deep-tissue-pricing-note">Session duration does not guarantee a specific result. The best choice depends on your personal preferences, the areas you would like to discuss, your comfort with pressure, and the time you have available. If you are unsure, use the booking page or contact Soul Balm Massage Therapy to discuss the appointment options.</p>
+          <BookingButton label="Book Deep Tissue Massage on MassageBook" href={DEEP_TISSUE_BOOKING_URL} className="service-pricing-cta" />
+        </div>
+      </section>
+
+      <section className="service-faq-section">
+        <div className="container service-faq-grid">
+          <div>
+            <p className="eyebrow"><span></span>Questions, answered simply</p>
+            <h2>Deep Tissue Massage<br /><em>FAQs</em></h2>
+            <p className="section-intro">Every visit begins with a conversation. Here are a few helpful answers before your appointment.</p>
+          </div>
+          <div className="faq-list service-faq-list">
+            {deepTissueFaqs.map((faq) => <details key={faq.question}><summary>{faq.question}<ChevronDown size={19} /></summary><p>{faq.answer}</p></details>)}
+          </div>
+        </div>
+      </section>
+      <GiftCardCta className="service-gift-cta" />
+    </PageLayout>
+  );
+}
+
 function ServicePage({ service }: { service: Service }) {
+  if (service.slug === "deep-tissue-massage") return <DeepTissuePage />;
   return (
     <PageLayout>
       <PageMeta title={service.pageTitle} description={service.metaDescription} />

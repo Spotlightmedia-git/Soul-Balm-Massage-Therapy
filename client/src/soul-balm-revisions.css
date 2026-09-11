@@ -897,3 +897,362 @@
     justify-content: flex-start;
   }
 }
+
+
+/* Approved Deep Tissue Massage service page */
+.deep-tissue-hero {
+  position: relative;
+  min-height: min(680px, calc(100vh - 88px));
+  overflow: hidden;
+  isolation: isolate;
+  background: #174f58;
+}
+
+.deep-tissue-hero > .deep-tissue-visual {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+}
+
+.deep-tissue-hero-scrim {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7, 48, 55, .96) 0%, rgba(11, 69, 76, .91) 34%, rgba(18, 80, 86, .56) 57%, rgba(22, 91, 93, .18) 100%);
+}
+
+.deep-tissue-hero-content {
+  display: flex;
+  min-height: min(680px, calc(100vh - 88px));
+  align-items: center;
+}
+
+.deep-tissue-hero-copy {
+  max-width: 650px;
+  padding: 70px 0;
+}
+
+.deep-tissue-hero-copy .back-link,
+.deep-tissue-hero-copy .eyebrow,
+.deep-tissue-hero-copy > p:not(.eyebrow) {
+  color: #effffc !important;
+}
+
+.deep-tissue-hero-copy .eyebrow {
+  color: #d7f4ef !important;
+}
+
+.deep-tissue-hero-copy h1 {
+  max-width: 650px;
+  margin-bottom: 19px;
+  color: #fff;
+  font-size: clamp(53px, 6.25vw, 88px);
+}
+
+.deep-tissue-hero-copy > p:not(.eyebrow) {
+  max-width: 510px;
+  margin-bottom: 29px;
+  font-size: 18px;
+}
+
+.deep-tissue-visual {
+  position: relative;
+  display: grid;
+  min-height: 370px;
+  overflow: hidden;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(9, 68, 72, .15), rgba(205, 238, 229, .18)),
+    radial-gradient(circle at 24% 24%, rgba(239, 255, 250, .8) 0 4%, transparent 4.4%),
+    linear-gradient(128deg, #86bcb4 0%, #c3e5dd 40%, #73aaa5 100%);
+}
+
+.deep-tissue-visual::before {
+  position: absolute;
+  width: 130%;
+  height: 44%;
+  right: -20%;
+  bottom: -13%;
+  border: 40px solid rgba(246, 255, 251, .28);
+  border-radius: 50%;
+  content: "";
+  transform: rotate(-13deg);
+}
+
+.deep-tissue-visual::after {
+  position: absolute;
+  width: 58%;
+  height: 64%;
+  top: 12%;
+  left: -18%;
+  border: 1px solid rgba(255, 255, 255, .76);
+  border-radius: 50%;
+  content: "";
+}
+
+.deep-tissue-visual-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.deep-tissue-visual-orb-one {
+  width: 190px;
+  height: 190px;
+  top: -42px;
+  right: 10%;
+  background: rgba(255, 255, 255, .31);
+}
+
+.deep-tissue-visual-orb-two {
+  width: 120px;
+  height: 120px;
+  right: 25%;
+  bottom: 15%;
+  background: rgba(16, 91, 91, .16);
+}
+
+.deep-tissue-visual-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(76%, 315px);
+  padding: 27px 28px;
+  align-items: center;
+  flex-direction: column;
+  color: #154d52;
+  background: rgba(250, 255, 252, .86);
+  box-shadow: 13px 13px 0 rgba(8, 80, 82, .16);
+  text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+.deep-tissue-visual-card svg {
+  margin-bottom: 13px;
+  color: #078c91;
+}
+
+.deep-tissue-visual-card span {
+  margin-bottom: 8px;
+  color: #17666a;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.deep-tissue-visual-card strong {
+  color: #174c51;
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.04;
+}
+
+.deep-tissue-visual-card small {
+  margin-top: 12px;
+  color: #416f6c;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.deep-tissue-hero .deep-tissue-visual-card {
+  position: absolute;
+  width: min(31%, 315px);
+  right: 12%;
+  bottom: 14%;
+}
+
+.deep-tissue-hero .deep-tissue-visual-card strong {
+  font-size: 23px;
+}
+
+.deep-tissue-info-section {
+  padding: 118px 0;
+  background: #fbffff;
+}
+
+.deep-tissue-info-section-tint {
+  background: #e5f6f3;
+}
+
+.deep-tissue-info-grid {
+  display: grid;
+  grid-template-columns: minmax(310px, 1.08fr) minmax(280px, .92fr);
+  align-items: center;
+  gap: clamp(52px, 9vw, 132px);
+}
+
+.deep-tissue-info-grid-reverse {
+  grid-template-columns: minmax(280px, .92fr) minmax(310px, 1.08fr);
+}
+
+.deep-tissue-info-copy {
+  max-width: 610px;
+}
+
+.deep-tissue-info-copy h2 {
+  margin: 0 0 25px;
+  color: #1e4c56;
+  font-size: clamp(42px, 4.75vw, 62px);
+}
+
+.deep-tissue-info-copy > p:not(.eyebrow) {
+  margin-bottom: 20px;
+  color: #264643;
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.deep-tissue-info-copy > p:last-of-type {
+  margin-bottom: 0;
+}
+
+.deep-tissue-info-grid .deep-tissue-visual {
+  min-height: 440px;
+  box-shadow: 16px 16px 0 rgba(0, 181, 184, .17);
+}
+
+.deep-tissue-info-grid-reverse .deep-tissue-visual {
+  background:
+    linear-gradient(135deg, rgba(9, 68, 72, .12), rgba(205, 238, 229, .18)),
+    radial-gradient(circle at 72% 25%, rgba(239, 255, 250, .8) 0 4%, transparent 4.4%),
+    linear-gradient(128deg, #6b9f9c 0%, #bee4dc 48%, #8fc9bf 100%);
+}
+
+.deep-tissue-points {
+  display: grid;
+  gap: 17px;
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1px solid #b8e1dc;
+}
+
+.deep-tissue-points > div {
+  display: grid;
+  grid-template-columns: 27px 1fr;
+  gap: 11px;
+  align-items: start;
+}
+
+.deep-tissue-points svg {
+  margin-top: 3px;
+  color: #237f7f;
+}
+
+.deep-tissue-points strong,
+.deep-tissue-points span {
+  display: block;
+}
+
+.deep-tissue-points strong {
+  margin-bottom: 3px;
+  color: #1c5055;
+  font-size: 15px;
+}
+
+.deep-tissue-points span {
+  color: #264643;
+  font-size: 14px;
+  line-height: 1.58;
+}
+
+.deep-tissue-pricing .service-pricing-heading > p:last-child {
+  max-width: 650px;
+}
+
+.deep-tissue-pricing-note {
+  max-width: 810px;
+  margin: 30px auto 0;
+  color: #315c59;
+  font-size: 14px;
+  line-height: 1.62;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .deep-tissue-hero,
+  .deep-tissue-hero-content {
+    min-height: 610px;
+  }
+
+  .deep-tissue-info-grid,
+  .deep-tissue-info-grid-reverse {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .deep-tissue-info-grid-reverse .deep-tissue-visual {
+    order: 2;
+  }
+
+  .deep-tissue-info-grid .deep-tissue-visual {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 600px) {
+  .deep-tissue-hero,
+  .deep-tissue-hero-content {
+    min-height: 640px;
+  }
+
+  .deep-tissue-hero-copy {
+    padding: 64px 0;
+  }
+
+  .deep-tissue-hero-copy h1 {
+    font-size: clamp(50px, 14.4vw, 70px);
+  }
+
+  .deep-tissue-hero-scrim {
+    background: linear-gradient(90deg, rgba(7, 48, 55, .96) 0%, rgba(11, 69, 76, .9) 62%, rgba(18, 80, 86, .48) 100%);
+  }
+
+  .deep-tissue-hero .deep-tissue-visual-card {
+    width: 132px;
+    right: 7%;
+    bottom: 9%;
+    padding: 17px 12px;
+  }
+
+  .deep-tissue-hero .deep-tissue-visual-card svg,
+  .deep-tissue-hero .deep-tissue-visual-card small {
+    display: none;
+  }
+
+  .deep-tissue-hero .deep-tissue-visual-card span {
+    margin-bottom: 4px;
+    font-size: 7px;
+  }
+
+  .deep-tissue-hero .deep-tissue-visual-card strong {
+    font-size: 17px;
+  }
+
+  .deep-tissue-info-section {
+    padding: 76px 0;
+  }
+
+  .deep-tissue-info-copy h2 {
+    font-size: 43px;
+  }
+
+  .deep-tissue-info-grid .deep-tissue-visual {
+    min-height: 338px;
+    box-shadow: 10px 10px 0 rgba(0, 181, 184, .17);
+  }
+
+  .deep-tissue-visual-card {
+    padding: 23px 19px;
+  }
+
+  .deep-tissue-visual-card strong {
+    font-size: 23px;
+  }
+
+  .deep-tissue-pricing-note {
+    margin-top: 25px;
+    font-size: 13px;
+  }
+}
