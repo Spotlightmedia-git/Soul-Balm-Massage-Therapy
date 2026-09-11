@@ -1314,3 +1314,313 @@
     padding-left: 40px;
   }
 }
+
+
+/* Shared full-page format for Swedish, Ashiatsu, MLD, and Prenatal Massage */
+.standard-service-hero {
+  position: relative;
+  min-height: min(680px, calc(100vh - 88px));
+  overflow: hidden;
+  isolation: isolate;
+  background: #174f58;
+}
+
+.standard-service-hero > .deep-tissue-visual {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+}
+
+.standard-service-hero-scrim {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7, 48, 55, .96) 0%, rgba(11, 69, 76, .91) 34%, rgba(18, 80, 86, .56) 57%, rgba(22, 91, 93, .18) 100%);
+}
+
+.standard-service-hero-content {
+  display: flex;
+  min-height: min(680px, calc(100vh - 88px));
+  align-items: center;
+}
+
+.standard-service-hero-copy {
+  max-width: 650px;
+  padding: 70px 0;
+}
+
+.standard-service-hero-copy .eyebrow,
+.standard-service-hero-copy > p:not(.eyebrow) {
+  color: #effffc !important;
+}
+
+.standard-service-hero-copy .eyebrow {
+  color: #d7f4ef !important;
+}
+
+.standard-service-hero-copy h1 {
+  max-width: 680px;
+  margin-bottom: 19px;
+  color: #fff;
+  font-size: clamp(53px, 6.25vw, 88px);
+}
+
+.standard-service-hero-copy > p:not(.eyebrow) {
+  max-width: 510px;
+  margin-bottom: 29px;
+  font-size: 18px;
+}
+
+.standard-service-hero .deep-tissue-visual-card {
+  position: absolute;
+  width: min(31%, 315px);
+  right: 12%;
+  bottom: 14%;
+}
+
+.standard-service-hero .deep-tissue-visual-card strong {
+  font-size: 23px;
+}
+
+.standard-service-hero-ashiatsu .deep-tissue-visual {
+  background:
+    linear-gradient(135deg, rgba(11, 52, 68, .18), rgba(222, 245, 237, .18)),
+    radial-gradient(circle at 72% 20%, rgba(240, 255, 251, .79) 0 4%, transparent 4.4%),
+    linear-gradient(128deg, #769fa9 0%, #c7e1df 45%, #74aaa7 100%);
+}
+
+.standard-service-hero-lymphatic .deep-tissue-visual {
+  background:
+    linear-gradient(135deg, rgba(14, 72, 64, .12), rgba(219, 248, 231, .28)),
+    radial-gradient(circle at 28% 20%, rgba(247, 255, 250, .84) 0 4%, transparent 4.4%),
+    linear-gradient(128deg, #91c5af 0%, #d9f0d7 47%, #8abbad 100%);
+}
+
+.standard-service-hero-prenatal .deep-tissue-visual {
+  background:
+    linear-gradient(135deg, rgba(89, 67, 74, .12), rgba(249, 232, 224, .26)),
+    radial-gradient(circle at 74% 21%, rgba(255, 248, 246, .82) 0 4%, transparent 4.4%),
+    linear-gradient(128deg, #bdaaa4 0%, #ead6cf 47%, #9dbab2 100%);
+}
+
+.standard-service-info-section {
+  padding: 118px 0;
+  background: #fbffff;
+}
+
+.standard-service-info-section-tint {
+  background: #e5f6f3;
+}
+
+.standard-service-info-grid {
+  display: grid;
+  grid-template-columns: minmax(310px, 1.08fr) minmax(280px, .92fr);
+  align-items: center;
+  gap: clamp(52px, 9vw, 132px);
+}
+
+.standard-service-info-grid-reverse {
+  grid-template-columns: minmax(280px, .92fr) minmax(310px, 1.08fr);
+}
+
+.standard-service-info-copy {
+  max-width: 610px;
+}
+
+.standard-service-info-copy h2 {
+  margin: 0 0 25px;
+  color: #1e4c56;
+  font-size: clamp(42px, 4.75vw, 62px);
+}
+
+.standard-service-info-copy > p:not(.eyebrow) {
+  margin-bottom: 20px;
+  color: #264643;
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.standard-service-info-copy > p:last-of-type {
+  margin-bottom: 0;
+}
+
+.standard-service-info-grid .deep-tissue-visual {
+  min-height: 440px;
+  box-shadow: 16px 16px 0 rgba(0, 181, 184, .17);
+}
+
+.standard-service-info-grid-reverse .deep-tissue-visual {
+  background:
+    linear-gradient(135deg, rgba(9, 68, 72, .12), rgba(205, 238, 229, .18)),
+    radial-gradient(circle at 72% 25%, rgba(239, 255, 250, .8) 0 4%, transparent 4.4%),
+    linear-gradient(128deg, #6b9f9c 0%, #bee4dc 48%, #8fc9bf 100%);
+}
+
+.standard-service-points {
+  display: grid;
+  gap: 17px;
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1px solid #b8e1dc;
+}
+
+.standard-service-points > div {
+  display: grid;
+  grid-template-columns: 27px 1fr;
+  gap: 11px;
+  align-items: start;
+}
+
+.standard-service-points svg {
+  margin-top: 3px;
+  color: #237f7f;
+}
+
+.standard-service-points strong,
+.standard-service-points span {
+  display: block;
+}
+
+.standard-service-points strong {
+  margin-bottom: 3px;
+  color: #1c5055;
+  font-size: 15px;
+}
+
+.standard-service-points span {
+  color: #264643;
+  font-size: 14px;
+  line-height: 1.58;
+}
+
+.standard-service-pricing .service-pricing-heading > p:last-child {
+  max-width: 670px;
+}
+
+.standard-service-faq-section .service-faq-grid {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 42px;
+  max-width: 860px;
+}
+
+.standard-service-faq-section .service-faq-grid > div:first-child {
+  max-width: 620px;
+  text-align: center;
+}
+
+.standard-service-faq-section .eyebrow {
+  justify-content: center;
+}
+
+.standard-service-faq-section .section-intro {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.standard-service-faq-section .service-faq-list {
+  width: min(100%, 790px);
+}
+
+.standard-service-faq-section .service-faq-list summary {
+  position: relative;
+  justify-content: center;
+  padding-right: 50px;
+  padding-left: 50px;
+  text-align: center;
+}
+
+.standard-service-faq-section .service-faq-list summary svg {
+  position: absolute;
+  right: 14px;
+}
+
+.standard-service-faq-section .service-faq-list details p {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .standard-service-hero,
+  .standard-service-hero-content {
+    min-height: 610px;
+  }
+
+  .standard-service-info-grid,
+  .standard-service-info-grid-reverse {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .standard-service-info-grid-reverse .deep-tissue-visual {
+    order: 2;
+  }
+
+  .standard-service-info-grid .deep-tissue-visual {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 600px) {
+  .standard-service-hero,
+  .standard-service-hero-content {
+    min-height: 640px;
+  }
+
+  .standard-service-hero-copy {
+    padding: 64px 0;
+  }
+
+  .standard-service-hero-copy h1 {
+    font-size: clamp(50px, 14.4vw, 70px);
+  }
+
+  .standard-service-hero-scrim {
+    background: linear-gradient(90deg, rgba(7, 48, 55, .96) 0%, rgba(11, 69, 76, .9) 62%, rgba(18, 80, 86, .48) 100%);
+  }
+
+  .standard-service-hero .deep-tissue-visual-card {
+    width: 132px;
+    right: 7%;
+    bottom: 9%;
+    padding: 17px 12px;
+  }
+
+  .standard-service-hero .deep-tissue-visual-card svg,
+  .standard-service-hero .deep-tissue-visual-card small {
+    display: none;
+  }
+
+  .standard-service-hero .deep-tissue-visual-card span {
+    margin-bottom: 4px;
+    font-size: 7px;
+  }
+
+  .standard-service-hero .deep-tissue-visual-card strong {
+    font-size: 17px;
+  }
+
+  .standard-service-info-section {
+    padding: 76px 0;
+  }
+
+  .standard-service-info-copy h2 {
+    font-size: 43px;
+  }
+
+  .standard-service-info-grid .deep-tissue-visual {
+    min-height: 338px;
+    box-shadow: 10px 10px 0 rgba(0, 181, 184, .17);
+  }
+
+  .standard-service-faq-section .service-faq-grid {
+    gap: 32px;
+  }
+
+  .standard-service-faq-section .service-faq-list summary {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}

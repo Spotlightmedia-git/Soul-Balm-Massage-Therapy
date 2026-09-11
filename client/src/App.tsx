@@ -20,6 +20,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { MapView } from "./components/Map";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { services, type Service } from "./service-content";
+import { standardServiceContent, type StandardServiceContent } from "./standard-service-content";
 
 const BOOKING_URL = "https://www.massagebook.com/business/21948933/select-product/services";
 const DEEP_TISSUE_BOOKING_URL = "https://www.massagebook.com/therapists/SoulBalmMassageTherapy";
@@ -515,23 +516,68 @@ function DeepTissuePage() {
 
 function ServicePage({ service }: { service: Service }) {
   if (service.slug === "deep-tissue-massage") return <DeepTissuePage />;
+  const content = standardServiceContent[service.slug];
+  if (!content) return null;
+
   return (
     <PageLayout>
       <PageMeta title={service.pageTitle} description={service.metaDescription} />
-      <section className={`service-hero service-hero-full service-hero-${service.accent}`}>
-        <img className="service-hero-image" src={service.image} alt={service.imageAlt} />
-        <div className="service-hero-scrim"></div>
-        <div className="container service-hero-full-content">
-          <div className="service-hero-copy"><Link href="/#services" className="back-link">← Explore all services</Link><p className="eyebrow"><span></span>{service.eyebrow}</p><h1>{service.pageTitle}</h1><p>{service.heroSummary}</p><BookingButton label={`Book ${service.name}`} /></div>
+      <section className={`standard-service-hero standard-service-hero-${service.accent}`}>
+        <DeepTissueVisual variant="hero" label={content.hero.visualLabel} />
+        <div className="standard-service-hero-scrim" />
+        <div className="container standard-service-hero-content">
+          <div className="standard-service-hero-copy">
+            <p className="eyebrow"><span></span>{content.hero.eyebrow}</p>
+            <h1>{service.pageTitle}</h1>
+            <p>{content.hero.summary}</p>
+            <BookingButton label="Book Your Session" />
+          </div>
         </div>
       </section>
-      <section className="service-content"><div className="container service-content-grid"><div className="service-lead"><p className="eyebrow"><span></span>Thoughtful, one-on-one care</p><h2>{service.definitionTitle}</h2></div><div><p className="service-copy-large">{service.intro}</p>{service.definition.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div></section>
-      <section className="service-detail-section service-reasons"><div className="container service-detail-grid"><div><p className="eyebrow"><span></span>Is it right for you?</p><h2>{service.whyTitle}</h2>{service.whyIntro && <p className="section-intro">{service.whyIntro}</p>}</div><div className="service-points service-points-card">{service.points.map((point) => <div key={point}><Check size={18} />{point}</div>)}</div></div></section>
-      <section className="service-detail-section"><div className="container service-detail-grid service-detail-reverse"><div className="service-detail-copy"><p className="eyebrow"><span></span>Choosing your session</p><h2>{service.comparisonTitle}</h2>{service.comparison.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div><div className="service-expectation-card"><p className="eyebrow"><span></span>Before your appointment</p><h3>{service.expectationTitle}</h3>{service.expectations.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></div></section>
-      <section className="service-pricing"><div className="container"><div className="service-pricing-heading"><p className="eyebrow"><span></span>Session lengths & pricing</p><h2>Choose the time<br />that feels <em>right.</em></h2><p>Current options are shown below. Live availability is confirmed through MassageBook when you book.</p></div><div className="pricing-table" role="table" aria-label={`${service.name} session lengths and prices`}><div className="pricing-header" role="row"><span role="columnheader">Session length</span><span role="columnheader">Price</span><span role="columnheader">A thoughtful fit when you want</span></div>{service.pricing.map((option) => <div className="pricing-row" role="row" key={option.duration}><strong role="cell">{option.duration}</strong><b role="cell">{option.price}</b><span role="cell">{option.detail}</span></div>)}</div><BookingButton label={`Book ${service.name}`} className="service-pricing-cta" /></div></section>
-      <section className="service-faq-section"><div className="container service-faq-grid"><div><p className="eyebrow"><span></span>Questions, answered simply</p><h2>Before you<br /><em>book.</em></h2><p className="section-intro">Every visit begins with a conversation. Here are a few helpful answers before your appointment.</p></div><div className="faq-list service-faq-list">{service.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<ChevronDown size={19} /></summary><p>{faq.answer}</p></details>)}</div></div></section>
+      <StandardServiceInformation content={content} variant="definition" />
+      <StandardServiceInformation content={content} variant="why" />
+      <StandardServicePricing service={service} content={content} />
       <GiftCardCta className="service-gift-cta" />
+      <StandardServiceFaqs content={content} serviceName={service.name} />
     </PageLayout>
+  );
+}
+
+function StandardServiceInformation({ content, variant }: { content: StandardServiceContent; variant: "definition" | "why" }) {
+  const isWhy = variant === "why";
+  const section = isWhy ? content.why : content.definition;
+  return (
+    <section className={`standard-service-info-section ${isWhy ? "standard-service-info-section-tint" : ""}`}>
+      <div className={`container standard-service-info-grid ${isWhy ? "standard-service-info-grid-reverse" : ""}`}>
+        {!isWhy && <div className="standard-service-info-copy"><p className="eyebrow"><span></span>{section.eyebrow}</p><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>}
+        <DeepTissueVisual variant={isWhy ? "detail" : "room"} label={isWhy ? "Calm, focused massage treatment setting" : "Warm treatment room setting"} />
+        {isWhy && <div className="standard-service-info-copy"><p className="eyebrow"><span></span>{section.eyebrow}</p><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<div className="standard-service-points">{content.why.points.map((point) => <div key={point.title}><Check size={18} aria-hidden="true" /><div><strong>{point.title}</strong><span>{point.body}</span></div></div>)}</div></div>}
+      </div>
+    </section>
+  );
+}
+
+function StandardServicePricing({ service, content }: { service: Service; content: StandardServiceContent }) {
+  return (
+    <section className="service-pricing standard-service-pricing">
+      <div className="container">
+        <div className="service-pricing-heading"><p className="eyebrow"><span></span>Session lengths & pricing</p><h2>{content.pricing.titleLine1}<br /><em>{content.pricing.titleLine2}</em></h2><p>{content.pricing.introduction}</p></div>
+        <div className="pricing-table" role="table" aria-label={`${service.name} session lengths and prices`}><div className="pricing-header" role="row"><span role="columnheader">Session length</span><span role="columnheader">Displayed price</span><span role="columnheader">Why the time matters</span></div>{service.pricing.map((option) => <div className="pricing-row" role="row" key={option.duration}><strong role="cell">{option.duration}</strong><b role="cell">{option.price}</b><span role="cell">{content.pricing.details[option.duration] ?? option.detail}</span></div>)}</div>
+        <p className="deep-tissue-pricing-note">{content.pricing.note}</p>
+        <BookingButton label={`Book ${service.name} on MassageBook`} className="service-pricing-cta" />
+      </div>
+    </section>
+  );
+}
+
+function StandardServiceFaqs({ content, serviceName }: { content: StandardServiceContent; serviceName: string }) {
+  return (
+    <section className="service-faq-section standard-service-faq-section">
+      <div className="container service-faq-grid">
+        <div><p className="eyebrow"><span></span>Questions, answered simply</p><h2>{serviceName}<br /><em>FAQs</em></h2><p className="section-intro">Every visit begins with a conversation. Here are a few helpful answers before your appointment.</p></div>
+        <div className="faq-list service-faq-list">{content.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<ChevronDown size={19} /></summary><p>{faq.answer}</p></details>)}</div>
+      </div>
+    </section>
   );
 }
 
