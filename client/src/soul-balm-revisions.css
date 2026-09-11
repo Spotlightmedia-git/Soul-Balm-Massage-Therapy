@@ -2237,3 +2237,44 @@
     gap: 6px;
   }
 }
+
+
+/* Client review sizing refinement. */
+.home-page .reviews-card .review-stars {
+  margin-bottom: 21px;
+  font-size: 36px;
+  letter-spacing: .15em;
+}
+
+.home-page .reviews-card dl {
+  grid-template-columns: 1fr;
+  gap: 16px;
+  text-align: center;
+}
+
+.home-page .reviews-card dl > div + div {
+  padding-top: 16px;
+  padding-left: 0;
+  border-top: 1px solid rgba(6, 61, 64, .24);
+  border-left: 0;
+}
+
+.home-page .reviews-card dd {
+  font-size: 23px;
+}
+
+.testimonial-slide blockquote {
+  font-size: clamp(19px, 1.55vw, 22px);
+  line-height: 1.38;
+}
+
+@media (max-width: 600px) {
+  .home-page .reviews-card .review-stars {
+    font-size: 33px;
+  }
+
+  .testimonial-slide blockquote {
+    font-size: 19px;
+    line-height: 1.36;
+  }
+}
