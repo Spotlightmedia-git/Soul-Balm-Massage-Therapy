@@ -382,7 +382,7 @@ const deepTissueFaqs = [
     answer: "Deep tissue massage is a massage modality that uses slower, focused strokes and intentional pressure to give extra attention to the areas you would like to prioritize.",
   },
   {
-    question: "Does deep tissue massage have to hurt?",
+    question: "Does deep tissue massage hurt?",
     answer: "No. Pressure preferences differ from person to person. You are encouraged to share feedback during the session so your therapist can adjust the pressure and techniques to your comfort.",
   },
   {
@@ -400,10 +400,6 @@ const deepTissueFaqs = [
   {
     question: "Can the pressure be adjusted during the massage?",
     answer: "Yes. Let your therapist know at any time if you would like more or less pressure, a different technique, or extra attention in a particular area.",
-  },
-  {
-    question: "How do I book a deep tissue massage?",
-    answer: "Use the Book Your Session button on this page to view available appointment options through Soul Balm Massage Therapy's MassageBook booking page.",
   },
   {
     question: "What if I have a medical condition, injury, or treatment-related question?",
@@ -446,7 +442,6 @@ function DeepTissuePage() {
         <div className="deep-tissue-hero-scrim" />
         <div className="container deep-tissue-hero-content">
           <div className="deep-tissue-hero-copy">
-            <Link href="/#services" className="back-link">← Explore all services</Link>
             <p className="eyebrow"><span></span>Intentional, focused care</p>
             <h1>Deep Tissue Massage in Kansas City, MO</h1>
             <p>Targeted, therapeutic massage customized to your comfort, wellness goals, and pressure preferences.</p>
@@ -501,7 +496,8 @@ function DeepTissuePage() {
         </div>
       </section>
 
-      <section className="service-faq-section">
+      <GiftCardCta className="service-gift-cta" />
+      <section className="service-faq-section deep-tissue-faq-section">
         <div className="container service-faq-grid">
           <div>
             <p className="eyebrow"><span></span>Questions, answered simply</p>
@@ -513,7 +509,6 @@ function DeepTissuePage() {
           </div>
         </div>
       </section>
-      <GiftCardCta className="service-gift-cta" />
     </PageLayout>
   );
 }

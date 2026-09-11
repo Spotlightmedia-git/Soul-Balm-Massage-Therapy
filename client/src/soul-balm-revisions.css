@@ -1256,3 +1256,61 @@
     font-size: 13px;
   }
 }
+
+
+/* Centered Deep Tissue FAQ layout */
+.deep-tissue-faq-section .service-faq-grid {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 42px;
+  max-width: 860px;
+}
+
+.deep-tissue-faq-section .service-faq-grid > div:first-child {
+  max-width: 620px;
+  text-align: center;
+}
+
+.deep-tissue-faq-section .eyebrow {
+  justify-content: center;
+}
+
+.deep-tissue-faq-section .section-intro {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.deep-tissue-faq-section .service-faq-list {
+  width: min(100%, 790px);
+}
+
+.deep-tissue-faq-section .service-faq-list summary {
+  position: relative;
+  justify-content: center;
+  padding-right: 50px;
+  padding-left: 50px;
+  text-align: center;
+}
+
+.deep-tissue-faq-section .service-faq-list summary svg {
+  position: absolute;
+  right: 14px;
+}
+
+.deep-tissue-faq-section .service-faq-list details p {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .deep-tissue-faq-section .service-faq-grid {
+    gap: 32px;
+  }
+
+  .deep-tissue-faq-section .service-faq-list summary {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
