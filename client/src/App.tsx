@@ -4,6 +4,8 @@ import {
   CalendarDays,
   Check,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Clock3,
   Gift,
   Leaf,
@@ -40,6 +42,19 @@ const SERVICE_SEO_TITLES: Record<string, string> = {
   "lymphatic-massage": "Lymphatic Drainage Massage Kansas City, MO | Soul Balm",
   "prenatal-massage": "Prenatal Massage in Kansas City, MO | Soul Balm",
 };
+
+const CLIENT_TESTIMONIALS = [
+  { reviewer: "W.", date: "July 31, 2026", service: "Swedish", review: "Once again, absolutely phenomenal. Teresa is incredibly knowledgeable and skilled. I left a new person, thank you so much." },
+  { reviewer: "Anonymous", date: "August 11, 2026", service: "Swedish (with Teresa N.)", review: "Teresa listens to you and always take care to make your experience wonderful" },
+  { reviewer: "Amanda G.", date: "June 12, 2026", service: "Deep Tissue", review: "I booked with Teresa on a whim, and I’m so happy I did. I received a deep tissue massage that significantly helped my tension and aches in my back and neck. Teresa has a warm, caring energy that was just what my soul needed. She also did a wonderful job of talking through what I wanted, how she would approach the massage and areas of pain, and communication preferences." },
+  { reviewer: "Tony B.", date: "June 20, 2026", service: "Deep Tissue", review: "Best massage i have ever had. Very attentive to problem areas (sore back, muscles)" },
+  { reviewer: "Erin G.", date: "August 12, 2026", service: "Deep Tissue", review: "Always a great massage! Teresa is so great at communicating during the effort massage to make sure it’s just right for you!" },
+  { reviewer: "Aaron H.", date: "June 14, 2026", service: "Swedish with Teresa N.", review: "I had been experiencing pretty bad neck and upper back discomfort. Teresa removed the pain. There are many options when it comes to massage, but if you want to feel much better than when you showed up for your appointment, book one with Teresa. She clearly knows what to do when so many others give a standard service. This is true therapeutic massage by someone who cares about you and your well being." },
+  { reviewer: "Anonymous", date: "June 28, 2026", service: "Bodywork", review: "Very skilled practitioner. Able to assess and provide relief of long standing pain issues." },
+  { reviewer: "Diana R.", date: "June 27, 2026", service: "Bodywork", review: "Excellent experience at Soul Balm! Thank you, Teresa, for taking time with me to understand exactly what I needed. Looking forward to booking again." },
+  { reviewer: "Mandy H.", date: "July 11, 2026", service: "Bodywork", review: "Teresa is approachable, professional, and passionate about her work. The setting is wonderful. My 1st time receiving Ashiatsu and I am a big fan! Highly recommend." },
+  { reviewer: "Rudy H.", date: "August 8, 2026", service: "Swedish with Teresa N.", review: "Best massage I’ve ever had." },
+];
 
 function PageMeta({ title, description, fullTitle }: { title?: string; description?: string; fullTitle?: string }) {
   useEffect(() => {
@@ -213,6 +228,48 @@ function LocationMap() {
   );
 }
 
+function TestimonialCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = window.setInterval(() => {
+      setActiveIndex((index) => (index + 1) % CLIENT_TESTIMONIALS.length);
+    }, 7000);
+    return () => window.clearInterval(interval);
+  }, [isPaused]);
+
+  const showPrevious = () => setActiveIndex((index) => (index - 1 + CLIENT_TESTIMONIALS.length) % CLIENT_TESTIMONIALS.length);
+  const showNext = () => setActiveIndex((index) => (index + 1) % CLIENT_TESTIMONIALS.length);
+  const testimonial = CLIENT_TESTIMONIALS[activeIndex];
+
+  return (
+    <div className="testimonial-carousel" aria-roledescription="carousel" aria-label="Client testimonials" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} onFocus={() => setIsPaused(true)} onBlur={() => setIsPaused(false)}>
+      <div className="testimonial-carousel-topline">
+        <span>MassageBook client testimonial</span>
+        <span aria-live="polite">{activeIndex + 1} of {CLIENT_TESTIMONIALS.length}</span>
+      </div>
+      <article className="testimonial-slide" key={`${testimonial.reviewer}-${testimonial.date}`}>
+        <div className="review-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
+        <blockquote>“{testimonial.review}”</blockquote>
+        <footer>
+          <strong>{testimonial.reviewer}</strong>
+          <span>{testimonial.service}</span>
+          <time dateTime={new Date(testimonial.date).toISOString().slice(0, 10)}>{testimonial.date}</time>
+        </footer>
+      </article>
+      <div className="testimonial-carousel-controls">
+        <button type="button" onClick={showPrevious} aria-label="Show previous testimonial"><ChevronLeft size={20} aria-hidden="true" /></button>
+        <div className="testimonial-carousel-dots" role="tablist" aria-label="Choose a testimonial">
+          {CLIENT_TESTIMONIALS.map((item, index) => <button type="button" key={`${item.reviewer}-${item.date}`} role="tab" aria-selected={activeIndex === index} aria-label={`Show testimonial ${index + 1}`} onClick={() => setActiveIndex(index)} />)}
+        </div>
+        <button type="button" onClick={showNext} aria-label="Show next testimonial"><ChevronRight size={20} aria-hidden="true" /></button>
+      </div>
+    </div>
+  );
+}
+
 function Home() {
   return (
     <PageLayout>
@@ -281,14 +338,17 @@ function Home() {
       <section className="reviews-section">
         <div className="container reviews-grid">
           <div>
-            <p className="eyebrow"><span></span>Google Reviews</p>
+            <p className="eyebrow"><span></span>Client Reviews</p>
             <h2>Kind words from the<br /><em>people we serve.</em></h2>
           </div>
-          <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer" className="reviews-card">
-            <Sparkles size={22} />
-            <strong>5.0 ★★★★★</strong>
-            <span>Read Google Reviews</span>
-          </a>
+          <div className="reviews-card" aria-label="Client review summary">
+            <div className="review-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
+            <dl>
+              <div><dt>Rating</dt><dd>5 out of 5 stars</dd></div>
+              <div><dt>Total Reviews</dt><dd>163 reviews</dd></div>
+            </dl>
+          </div>
+          <TestimonialCarousel />
         </div>
       </section>
 
