@@ -35,6 +35,7 @@ const MAPS_SHARE_URL = "https://share.google/Rm6CNLfwqt1LrZTtQ";
 const MAPS_EMBED_URL = "https://www.google.com/maps?q=216+NE+Barry+Rd%2CKansas+City%2CMO+64155&output=embed";
 const LOGO = "/images/soul-balm-logo_9b444d79.png";
 const STOREFRONT_IMAGE = "/images/soul-balm-storefront.jpg";
+const TERESA_PORTRAIT = "/images/teresa-nerem-portrait.png";
 
 const SERVICE_SEO_TITLES: Record<string, string> = {
   "swedish-massage": "Swedish Massage in Kansas City, MO | Soul Balm",
@@ -429,7 +430,7 @@ function About() {
       <section className="page-hero about-hero">
         <div className="container page-hero-grid">
           <div><p className="eyebrow"><span></span>Meet Teresa</p><h1>Care that honors<br /><em>the whole of you.</em></h1><p>At Soul Balm, massage is more than a scheduled appointment. It is permission to pause.</p></div>
-          <div className="about-hero-image about-practitioner-image"><PhotoPlaceholder className="practitioner-photo-placeholder" label="Teresa Nerem portrait" /><div className="about-portrait-caption">Teresa Nerem<span>License: MO 2021007307</span></div></div>
+          <div className="about-hero-image about-practitioner-image"><img src={TERESA_PORTRAIT} alt="Teresa Nerem of Soul Balm Massage Therapy" /><div className="about-portrait-caption">Teresa Nerem<span>License: MO 2021007307</span></div></div>
         </div>
       </section>
       <section className="about-story">

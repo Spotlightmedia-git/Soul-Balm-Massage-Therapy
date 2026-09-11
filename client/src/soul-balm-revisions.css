@@ -2360,3 +2360,8 @@
     font-size: 33px;
   }
 }
+
+
+.about-practitioner-image img {
+  object-position: 42% center;
+}
