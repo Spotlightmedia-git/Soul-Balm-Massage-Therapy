@@ -17,7 +17,6 @@ import {
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ErrorBoundary from "./components/ErrorBoundary";
-import { MapView } from "./components/Map";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { services, type Service } from "./service-content";
 import { standardServiceContent, type StandardServiceContent } from "./standard-service-content";
@@ -30,11 +29,17 @@ const FACEBOOK_URL = "https://www.facebook.com/soulbalmmassagetherapy";
 const PHONE = "6603412202";
 const ADDRESS = "216 NE Barry Rd, Kansas City, MO 64155";
 const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=216+NE+Barry+Rd%2CKansas+City%2CMO+64155";
+const MAPS_SHARE_URL = "https://share.google/Rm6CNLfwqt1LrZTtQ";
+const MAPS_EMBED_URL = "https://www.google.com/maps?q=216+NE+Barry+Rd%2CKansas+City%2CMO+64155&output=embed";
 const LOGO = "/images/soul-balm-logo_9b444d79.png";
-const HERO = "/images/hero-massage_c9f7da74.jpg";
-const STUDIO_LOBBY_IMAGE = "/images/studio-lobby_f9d9b0ad.jpg";
-const STOREFRONT_IMAGE = "/images/storefront_68489894.jpg";
-const PRACTITIONER_PORTRAIT = "/images/practitioner-portrait_19f24470.png";
+const STOREFRONT_IMAGE = "/images/soul-balm-storefront.jpg";
+
+const SERVICE_SEO_TITLES: Record<string, string> = {
+  "swedish-massage": "Swedish Massage in Kansas City, MO | Soul Balm",
+  "ashiatsu-massage": "Ashiatsu Massage in Kansas City, MO | Soul Balm",
+  "lymphatic-massage": "Lymphatic Drainage Massage Kansas City, MO | Soul Balm",
+  "prenatal-massage": "Prenatal Massage in Kansas City, MO | Soul Balm",
+};
 
 function PageMeta({ title, description, fullTitle }: { title?: string; description?: string; fullTitle?: string }) {
   useEffect(() => {
@@ -48,7 +53,7 @@ function PageMeta({ title, description, fullTitle }: { title?: string; descripti
       }
       meta.setAttribute("content", description);
     }
-  }, [title, description]);
+  }, [title, description, fullTitle]);
   return null;
 }
 
@@ -185,21 +190,25 @@ function GiftCardCta({ className = "" }: { className?: string }) {
   );
 }
 
-function LocationMap() {
-  const location = { lat: 39.2464, lng: -94.5772 };
-
+function PhotoPlaceholder({ label, className = "" }: { label: string; className?: string }) {
   return (
-    <MapView
+    <div className={`photo-placeholder ${className}`.trim()} role="img" aria-label={label}>
+      <Leaf size={25} strokeWidth={1.4} aria-hidden="true" />
+      <span>Visual placeholder</span>
+      <strong>{label}</strong>
+      <small>Approved photography to be added.</small>
+    </div>
+  );
+}
+
+function LocationMap() {
+  return (
+    <iframe
       className="soul-balm-map"
-      initialCenter={location}
-      initialZoom={15}
-      onMapReady={(map) => {
-        new google.maps.marker.AdvancedMarkerElement({
-          map,
-          position: location,
-          title: "Soul Balm Massage Therapy — 216 NE Barry Rd",
-        });
-      }}
+      src={MAPS_EMBED_URL}
+      title="Map to Soul Balm Massage Therapy at 216 NE Barry Road, Kansas City, Missouri"
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
     />
   );
 }
@@ -207,9 +216,9 @@ function LocationMap() {
 function Home() {
   return (
     <PageLayout>
-      <PageMeta title="Massage Therapy in Kansas City" />
+      <PageMeta fullTitle="Massage Therapy in Kansas City, MO | Soul Balm" description="Thoughtful, client-centered massage therapy in Kansas City, MO. Explore Soul Balm's massage services and book your session online." />
       <section className="hero">
-        <img className="hero-image" src={HERO} alt="Massage therapist providing a shoulder massage in a calming treatment room" />
+        <PhotoPlaceholder className="hero-image-placeholder" label="Calm, professional massage therapy atmosphere" />
         <div className="hero-scrim"></div>
         <div className="container hero-content">
           <p className="hero-kicker"><Leaf size={17} /> Kansas City massage therapy</p>
@@ -225,14 +234,13 @@ function Home() {
 
       <section className="intro-band">
         <div className="container intro-grid">
-          <div className="intro-heading">
+          <div className="intro-copy">
             <p className="eyebrow"><span></span>A place to exhale</p>
             <h2>Thoughtful touch.<br /><em>One table, just for you.</em></h2>
-          </div>
-          <div className="intro-copy">
             <p>Soul Balm Massage Therapy is an invitation to step out of the hurry. Every session begins with a conversation about your goals and is shaped around the care you are looking for that day.</p>
             <Link href="/about" className="button button-primary rounded-btn">Meet Soul Balm</Link>
           </div>
+          <PhotoPlaceholder className="intro-photo-placeholder" label="Soul Balm treatment-room image" />
         </div>
       </section>
 
@@ -254,9 +262,7 @@ function Home() {
 
       <section className="values-section">
         <div className="container values-grid">
-          <div className="values-image-wrap">
-            <img src={STUDIO_LOBBY_IMAGE} alt="Soul Balm Massage Therapy’s welcoming treatment space" />
-          </div>
+          <PhotoPlaceholder className="values-photo-placeholder" label="Soul Balm welcoming treatment space" />
           <div className="values-content">
             <SectionHeading eyebrow="The Soul Balm approach" title={<>Your session<br />starts with <em>listening.</em></>} />
             <div className="value-list">
@@ -309,6 +315,7 @@ function Home() {
           </figure>
           <div className="map-embed-wrap">
             <LocationMap />
+            <a href={MAPS_SHARE_URL} target="_blank" rel="noreferrer" className="map-open-link">Open the interactive map</a>
           </div>
         </div>
       </section>
@@ -356,11 +363,11 @@ function Home() {
 function About() {
   return (
     <PageLayout>
-      <PageMeta title="About" />
+      <PageMeta fullTitle="About Soul Balm Massage Therapy | Kansas City, MO" description="Meet Teresa Nerem and learn about Soul Balm Massage Therapy's thoughtful, one-on-one approach in Kansas City, Missouri." />
       <section className="page-hero about-hero">
         <div className="container page-hero-grid">
           <div><p className="eyebrow"><span></span>Meet Teresa</p><h1>Care that honors<br /><em>the whole of you.</em></h1><p>At Soul Balm, massage is more than a scheduled appointment. It is permission to pause.</p></div>
-          <div className="about-hero-image about-practitioner-image"><img src={PRACTITIONER_PORTRAIT} alt="Teresa Nerem of Soul Balm Massage Therapy" /><div className="about-portrait-caption">Teresa Nerem<span>License: MO 2021007307</span></div></div>
+          <div className="about-hero-image about-practitioner-image"><PhotoPlaceholder className="practitioner-photo-placeholder" label="Teresa Nerem portrait" /><div className="about-portrait-caption">Teresa Nerem<span>License: MO 2021007307</span></div></div>
         </div>
       </section>
       <section className="about-story">
@@ -521,7 +528,7 @@ function ServicePage({ service }: { service: Service }) {
 
   return (
     <PageLayout>
-      <PageMeta title={service.pageTitle} description={service.metaDescription} />
+      <PageMeta fullTitle={SERVICE_SEO_TITLES[service.slug]} description={service.metaDescription} />
       <section className={`standard-service-hero standard-service-hero-${service.accent}`}>
         <DeepTissueVisual variant="hero" label={content.hero.visualLabel} />
         <div className="standard-service-hero-scrim" />
@@ -584,7 +591,7 @@ function StandardServiceFaqs({ content, serviceName }: { content: StandardServic
 function Contact() {
   return (
     <PageLayout>
-      <PageMeta title="Contact" />
+      <PageMeta fullTitle="Contact Soul Balm Massage Therapy | Kansas City, MO" description="Contact Soul Balm Massage Therapy in Kansas City, MO for appointment questions, directions, and online booking information." />
       <section className="contact-hero"><div className="container"><p className="eyebrow"><span></span>Contact & location</p><h1>Let’s make room<br />for <em>your time.</em></h1><p>Questions before booking? Call Soul Balm or use online booking to view available appointments.</p></div></section>
       <section className="contact-grid-section"><div className="container contact-grid"><article className="contact-card contact-card-primary"><p className="card-kicker">Book online</p><CalendarDays size={30}/><h2>Find your<br />appointment time.</h2><p>Visit Soul Balm’s secure booking page to explore services and current availability.</p><BookingButton label="Book with MassageBook" className="button-cream" /></article><article className="contact-card"><p className="card-kicker">Call</p><Phone size={29}/><h2>Have a question?</h2><p>For questions about your visit, reach Soul Balm by phone.</p><a className="contact-card-link" href={`tel:${PHONE}`}>(660) 341-2202</a></article><article className="contact-card contact-card-visit"><p className="card-kicker">Visit</p><img className="contact-location-photo" src={STOREFRONT_IMAGE} alt="Soul Balm Massage Therapy sign at 216 NE Barry Road" /><h2>Kansas City<br />treatment space.</h2><p><a href={MAPS_URL} target="_blank" rel="noreferrer" className="selectable-address">{ADDRESS}</a></p><a className="button button-primary button-small rounded-btn" href={MAPS_URL} target="_blank" rel="noreferrer"><MapPin size={15} /> Get directions</a></article></div></section>
       <section className="hours-section"><div className="container hours-grid"><div><p className="eyebrow"><span></span>Appointment hours</p><h2>Time reserved for<br /><em>your reset.</em></h2></div><div className="hours-list"><div><strong>Monday</strong><span>By appointment only</span></div><div><strong>Tuesday</strong><span>By appointment only</span></div><div><strong>Wednesday</strong><span>By appointment only</span></div><div><strong>Thursday</strong><span>By appointment only</span></div><div><strong>Friday</strong><span>By appointment only</span></div><div><strong>Saturday</strong><span>Closed</span></div><div><strong>Sunday</strong><span>Closed</span></div><p>For current availability, please book online through MassageBook.</p><a className="button button-primary button-small rounded-btn hours-directions-button" href={MAPS_URL} target="_blank" rel="noreferrer"><MapPin size={15} /> Get directions</a></div></div></section>

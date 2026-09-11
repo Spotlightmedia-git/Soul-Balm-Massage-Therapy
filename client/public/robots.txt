@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://soul-balm-massage-therapy-spotlight-s-projects.vercel.app/sitemap.xml

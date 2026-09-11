@@ -1624,3 +1624,299 @@
     padding-left: 40px;
   }
 }
+
+
+/* Honest photography placeholders prevent broken assets while media is collected. */
+.photo-placeholder {
+  position: relative;
+  display: flex;
+  min-height: 320px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #164d53;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, .76) 0 4%, transparent 4.5%),
+    linear-gradient(138deg, rgba(8, 78, 82, .13), rgba(216, 242, 232, .24)),
+    linear-gradient(128deg, #82b8b0 0%, #c8e7df 46%, #7cabaa 100%);
+  text-align: center;
+}
+
+.photo-placeholder::before {
+  position: absolute;
+  width: 128%;
+  height: 47%;
+  right: -22%;
+  bottom: -14%;
+  border: 38px solid rgba(247, 255, 252, .3);
+  border-radius: 50%;
+  content: "";
+  transform: rotate(-14deg);
+}
+
+.photo-placeholder::after {
+  position: absolute;
+  width: 57%;
+  height: 68%;
+  top: 11%;
+  left: -17%;
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: 50%;
+  content: "";
+}
+
+.photo-placeholder svg,
+.photo-placeholder span,
+.photo-placeholder strong,
+.photo-placeholder small {
+  position: relative;
+  z-index: 1;
+}
+
+.photo-placeholder svg {
+  margin-bottom: 12px;
+  color: #087f86;
+}
+
+.photo-placeholder span {
+  margin-bottom: 7px;
+  color: #155e64;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.photo-placeholder strong {
+  max-width: 255px;
+  color: #174c51;
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: clamp(24px, 2.4vw, 33px);
+  font-weight: 400;
+  line-height: 1.03;
+}
+
+.photo-placeholder small {
+  max-width: 210px;
+  margin-top: 11px;
+  color: #416f6c;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.hero .hero-image-placeholder {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  inset: 0;
+}
+
+.hero .hero-image-placeholder::before {
+  width: 90%;
+  height: 56%;
+  right: -10%;
+  bottom: -7%;
+}
+
+.hero .hero-image-placeholder .photo-placeholder {
+  display: none;
+}
+
+.hero .hero-image-placeholder svg,
+.hero .hero-image-placeholder span,
+.hero .hero-image-placeholder strong,
+.hero .hero-image-placeholder small {
+  position: absolute;
+  z-index: 1;
+  right: 12%;
+  bottom: 14%;
+}
+
+.hero .hero-image-placeholder svg {
+  right: calc(12% + 130px);
+  bottom: calc(14% + 68px);
+}
+
+.hero .hero-image-placeholder span {
+  right: calc(12% + 45px);
+  bottom: calc(14% + 52px);
+}
+
+.hero .hero-image-placeholder strong {
+  max-width: 210px;
+  padding: 18px 17px;
+  color: #174c51;
+  background: rgba(250, 255, 252, .88);
+  box-shadow: 11px 11px 0 rgba(7, 63, 67, .16);
+}
+
+.hero .hero-image-placeholder small {
+  right: calc(12% + 24px);
+  bottom: calc(14% - 31px);
+  max-width: 210px;
+  padding: 8px 12px;
+  color: #315d5a;
+  background: rgba(250, 255, 252, .78);
+}
+
+/* Home introduction: copy on the left, visual placeholder on the right. */
+.intro-band .container.intro-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(270px, .83fr) !important;
+  align-items: center !important;
+  gap: clamp(38px, 8vw, 118px) !important;
+}
+
+.intro-band .intro-copy {
+  max-width: 575px;
+  padding-top: 0 !important;
+}
+
+.intro-band .intro-copy h2 {
+  margin: 0 0 21px !important;
+  color: #214f59;
+  font-size: clamp(42px, 4.8vw, 62px);
+  text-align: left !important;
+}
+
+.intro-band .intro-copy > p:not(.eyebrow) {
+  max-width: 490px;
+  margin-bottom: 25px !important;
+  color: #264643;
+  font-size: 16px;
+  text-align: left !important;
+}
+
+.intro-band .intro-copy .button {
+  align-self: flex-end !important;
+  margin-left: 0 !important;
+}
+
+.intro-photo-placeholder {
+  min-height: 355px;
+  box-shadow: 15px 15px 0 rgba(0, 181, 184, .16);
+}
+
+.intro-photo-placeholder strong {
+  max-width: 210px;
+}
+
+.values-photo-placeholder {
+  min-height: 500px;
+  max-width: 514px;
+  box-shadow: 19px 20px 0 rgba(124, 207, 201, .26);
+}
+
+.values-photo-placeholder::after {
+  width: 64%;
+  height: 71%;
+}
+
+.practitioner-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 540px;
+}
+
+/* Map placement and direct access to the user-supplied Google Maps destination. */
+.location-grid .map-embed-wrap {
+  position: relative;
+  display: block;
+  min-height: 350px;
+}
+
+.location-grid .map-embed-wrap .soul-balm-map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  border: 0;
+}
+
+.map-open-link {
+  position: absolute;
+  z-index: 2;
+  right: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  min-height: 37px;
+  padding: 0 13px;
+  align-items: center;
+  color: #063d40;
+  background: #faffff;
+  box-shadow: 0 5px 14px rgba(0, 54, 57, .16);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.map-open-link:hover {
+  background: #00b5b8;
+}
+
+@media (max-width: 900px) {
+  .intro-band .container.intro-grid {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+
+  .intro-band .intro-copy .button {
+    align-self: flex-start !important;
+  }
+
+  .intro-photo-placeholder {
+    max-width: 590px;
+    min-height: 350px;
+  }
+
+  .values-photo-placeholder {
+    max-width: 530px;
+  }
+
+  .location-grid .map-embed-wrap,
+  .location-grid .map-embed-wrap .soul-balm-map {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero .hero-image-placeholder strong {
+    right: 7%;
+    bottom: 11%;
+    max-width: 155px;
+    padding: 13px 11px;
+    font-size: 21px;
+  }
+
+  .hero .hero-image-placeholder svg,
+  .hero .hero-image-placeholder span,
+  .hero .hero-image-placeholder small {
+    display: none;
+  }
+
+  .intro-band .intro-copy h2 {
+    font-size: 44px;
+  }
+
+  .intro-photo-placeholder {
+    min-height: 308px;
+    box-shadow: 11px 11px 0 rgba(0, 181, 184, .16);
+  }
+
+  .values-photo-placeholder {
+    min-height: 390px;
+    box-shadow: 12px 13px 0 rgba(124, 207, 201, .26);
+  }
+
+  .practitioner-photo-placeholder {
+    min-height: 390px;
+  }
+
+  .location-grid .map-embed-wrap,
+  .location-grid .map-embed-wrap .soul-balm-map {
+    min-height: 300px;
+  }
+}
