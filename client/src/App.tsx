@@ -141,7 +141,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="container footer-top">
         <div className="footer-brand">
-          <div className="footer-wordmark">Soul Balm<span>Massage Therapy</span></div>
+          <div className="footer-logo-panel"><img src={LOGO} alt="Soul Balm Massage Therapy" /></div>
           <p>A dedicated table for one, with space to pause and reconnect with yourself.</p>
           <a className="footer-phone" href={`tel:${PHONE}`}><Phone size={15} /> (660) 341-2202</a>
         </div>
@@ -156,15 +156,14 @@ function Footer() {
         </div>
         <div className="footer-links">
           <p className="footer-kicker">Services</p>
-          {services.map((service) => <Link key={service.slug} href={`/services/${service.slug}`}>{service.name}</Link>)}
+          {services.map((service) => <Link className={`footer-service-link${service.slug === "lymphatic-massage" ? " footer-service-link-lymphatic" : ""}`} key={service.slug} href={`/services/${service.slug}`}>{service.slug === "lymphatic-massage" ? <>Manual Lymphatic<br />Drainage Massage</> : service.name}</Link>)}
         </div>
         <div className="footer-visit">
           <p className="footer-kicker">Visit</p>
+          <p className="footer-hours"><strong>Monday–Friday</strong><span>By appointment only</span></p>
           <a href={MAPS_URL} target="_blank" rel="noreferrer" className="selectable-address">
             {ADDRESS}
           </a>
-          <p>Monday–Friday<br />By appointment only</p>
-          <BookingButton label="Reserve your time" className="footer-cta" />
         </div>
       </div>
       <div className="container footer-bottom">
@@ -654,7 +653,7 @@ function Contact() {
   return (
     <PageLayout>
       <PageMeta fullTitle="Contact Soul Balm Massage Therapy | Kansas City, MO" description="Contact Soul Balm Massage Therapy in Kansas City, MO for appointment questions, directions, and online booking information." />
-      <section className="contact-simple-section"><div className="container contact-simple-grid"><div className="contact-phone-block"><p className="eyebrow"><span></span>Contact Soul Balm</p><h1>Call Soul<br /><em>Balm.</em></h1><p className="contact-phone-label">Phone</p><a className="contact-simple-phone" href={`tel:${PHONE}`}><Phone size={21} />(660) 341-2202</a></div><div className="contact-hours-block"><p className="eyebrow"><span></span>Appointment hours</p><h2>Time for<br /><em>your reset.</em></h2><div className="contact-hours-list"><div><strong>Monday</strong><span>9:00 AM–4:00 PM</span><small>By appointment only</small></div><div><strong>Tuesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Wednesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Thursday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Friday</strong><span>9:00 AM–4:00 PM</span><small>By appointment only</small></div><div><strong>Saturday</strong><span>Closed</span></div><div><strong>Sunday</strong><span>Closed</span></div></div></div><div className="map-embed-wrap contact-simple-map"><LocationMap /><a className="button button-primary button-small rounded-btn" href={MAPS_URL} target="_blank" rel="noreferrer"><MapPin size={15} /> Get directions</a></div></div></section>
+      <section className="contact-simple-section"><div className="container contact-simple-grid"><div className="contact-phone-block"><p className="eyebrow"><span></span>Contact Soul Balm</p><h1>Call Soul<br /><em>Balm.</em></h1><p className="contact-phone-label">Phone</p><a className="contact-simple-phone" href={`tel:${PHONE}`}><Phone size={18} />(660) 341-2202</a></div><div className="contact-hours-block"><p className="eyebrow"><span></span>Appointment hours</p><h2>Time for<br /><em>your reset.</em></h2><div className="contact-hours-list"><div><strong>Monday</strong><span>9:00 AM–4:00 PM</span><small>By appointment only</small></div><div><strong>Tuesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Wednesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Thursday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Friday</strong><span>9:00 AM–4:00 PM</span><small>By appointment only</small></div><div><strong>Saturday</strong><span>Closed</span></div><div><strong>Sunday</strong><span>Closed</span></div></div></div><div className="map-embed-wrap contact-simple-map"><LocationMap /><a className="button button-primary button-small rounded-btn" href={MAPS_URL} target="_blank" rel="noreferrer"><MapPin size={15} /> Get directions</a></div></div></section>
     </PageLayout>
   );
 }
