@@ -216,6 +216,7 @@ function LocationMap() {
 function Home() {
   return (
     <PageLayout>
+      <div className="home-page">
       <PageMeta fullTitle="Massage Therapy in Kansas City, MO | Soul Balm" description="Thoughtful, client-centered massage therapy in Kansas City, MO. Explore Soul Balm's massage services and book your session online." />
       <section className="hero">
         <PhotoPlaceholder className="hero-image-placeholder" label="Calm, professional massage therapy atmosphere" />
@@ -237,8 +238,10 @@ function Home() {
           <div className="intro-copy">
             <p className="eyebrow"><span></span>A place to exhale</p>
             <h2>Thoughtful touch.<br /><em>One table, just for you.</em></h2>
-            <p>Soul Balm Massage Therapy is an invitation to step out of the hurry. Every session begins with a conversation about your goals and is shaped around the care you are looking for that day.</p>
-            <Link href="/about" className="button button-primary rounded-btn">Meet Soul Balm</Link>
+            <div className="home-intro-body">
+              <p>Soul Balm Massage Therapy is an invitation to step out of the hurry. Every session begins with a conversation about your goals and is shaped around the care you are looking for that day.</p>
+              <Link href="/about" className="button button-primary rounded-btn">Meet Soul Balm</Link>
+            </div>
           </div>
           <PhotoPlaceholder className="intro-photo-placeholder" label="Soul Balm treatment-room image" />
         </div>
@@ -278,7 +281,7 @@ function Home() {
       <section className="reviews-section">
         <div className="container reviews-grid">
           <div>
-            <p className="eyebrow"><span></span>Google reviews</p>
+            <p className="eyebrow"><span></span>Google Reviews</p>
             <h2>Kind words from the<br /><em>people we serve.</em></h2>
           </div>
           <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer" className="reviews-card">
@@ -323,7 +326,6 @@ function Home() {
       <section className="faq-section">
         <div className="container faq-layout">
           <div className="faq-intro">
-            <p className="eyebrow"><span></span>Before your visit</p>
             <h2>Frequently Asked Questions</h2>
             <p>Everything you need to begin planning your time at Soul Balm.</p>
           </div>
@@ -356,6 +358,7 @@ function Home() {
         </div>
       </section>
 
+      </div>
     </PageLayout>
   );
 }
