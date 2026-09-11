@@ -2365,3 +2365,13 @@
 .about-practitioner-image img {
   object-position: 42% center;
 }
+
+
+/* About-page title labels use text only, without decorative leading rules. */
+.about-hero .eyebrow span,
+.about-background .eyebrow span,
+.about-beliefs .eyebrow span,
+.about-client-reviews .eyebrow span,
+.soft-cta .eyebrow span {
+  display: none;
+}
