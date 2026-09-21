@@ -13,19 +13,22 @@ def ratio(foreground: str, background: str) -> float:
 
 
 pairs = {
-    "Body text on light cyan": ("#264643", "#e7f8f6"),
-    "Body text on white": ("#264643", "#ffffff"),
-    "Eyebrow on light cyan": ("#0d4b4e", "#e7f8f6"),
-    "Address link on light cyan": ("#1a4d52", "#eaf8f6"),
-    "Primary button dark text": ("#063d40", "#00b5b8"),
-    "Review card dark text": ("#063d40", "#00b5b8"),
-    "Bright service panel dark text": ("#063d40", "#00b5b8"),
-    "Footer body on deep teal": ("#c9dfda", "#204e58"),
-    "Hero body on dark image overlay": ("#edf5f0", "#2b636e"),
-    "Appointment white body on deep teal": ("#ffffff", "#087f89"),
+    "Body text on cream section bg": ("#28302d", "#f3ede3"),
+    "Body text on white card": ("#2d3333", "#fbf8f3"),
+    "Eyebrow on cream section bg": ("#2b3028", "#f3ede3"),
+    "Address link on cream section bg": ("#2d3939", "#f3ede3"),
+    "Primary button light text (cream-on-cognac)": ("#f5f4ee", "#7a4e2e"),
+    "Footer body on deep forest panel": ("#bac9c6", "#31402e"),
+    "Hero body on dark image overlay": ("#edf5f0", "#465946"),
+    "Appointment banner white body on cognac": ("#ffffff", "#70482d"),
+    "Main body/heading text on cream": ("#3f4d42", "#f3ede3"),
+    "Muted/secondary text on cream": ("#5f695f", "#f3ede3"),
+    "Cognac focus ring on cream": ("#7a4e2e", "#f3ede3"),
+    "Dark text on soft-gold badge": ("#3f4d42", "#e6c681"),
+    "Star-rating gold on cognac card": ("#ead0a0", "#7a4e2e"),
 }
 
 for label, (foreground, background) in pairs.items():
     value = ratio(foreground, background)
-    status = "PASS AA normal text" if value >= 4.5 else "FAIL AA normal text"
+    status = "PASS" if value >= 4.5 else "FAIL"
     print(f"{label}: {value:.2f}:1 — {status}")
