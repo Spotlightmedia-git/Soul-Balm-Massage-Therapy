@@ -11,7 +11,6 @@ import {
   MapPin,
   Menu,
   Phone,
-  ShieldCheck,
   Sparkles,
   X,
 } from "lucide-react";
@@ -21,9 +20,9 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { services, type Service } from "./service-content";
 import { standardServiceContent, type StandardServiceContent } from "./standard-service-content";
+import { photoFor, positionFor, altFor } from "./photos";
 
 const BOOKING_URL = "https://www.massagebook.com/business/21948933/select-product/services";
-const DEEP_TISSUE_BOOKING_URL = "https://www.massagebook.com/therapists/SoulBalmMassageTherapy";
 const GIFT_CERTIFICATE_URL = "https://www.massagebook.com/business/21948933/select-product/gift-certificates";
 const GOOGLE_REVIEWS_URL = "https://share.google/aUmBJQzV8F1xphb8B";
 const FACEBOOK_URL = "https://www.facebook.com/soulbalmmassagetherapy";
@@ -34,7 +33,7 @@ const MAPS_SHARE_URL = "https://share.google/Rm6CNLfwqt1LrZTtQ";
 const MAPS_EMBED_URL = "https://www.google.com/maps?q=216+NE+Barry+Rd%2CKansas+City%2CMO+64155&output=embed";
 const LOGO = "/images/soul-balm-logo_9b444d79.png";
 const STOREFRONT_IMAGE = "/images/soul-balm-storefront.jpg";
-const TERESA_PORTRAIT = "/images/teresa-nerem-portrait.png";
+const TERESA_PORTRAIT = "/images/teresa-nerem-licensed-massage-therapist-kansas-city.webp";
 
 const SERVICE_SEO_TITLES: Record<string, string> = {
   "swedish-massage": "Swedish Massage in Kansas City, MO | Soul Balm",
@@ -70,6 +69,39 @@ function PageMeta({ title, description, fullTitle }: { title?: string; descripti
     }
   }, [title, description, fullTitle]);
   return null;
+}
+
+type GoogleRating = { rating: number; userRatingCount: number; url?: string };
+
+function GoogleRatingCard() {
+  const [data, setData] = useState<GoogleRating | null>(null);
+  useEffect(() => {
+    let alive = true;
+    fetch("/api/google-rating")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (alive && d && typeof d.rating === "number" && typeof d.userRatingCount === "number") setData(d); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+  const href = data?.url || GOOGLE_REVIEWS_URL;
+  if (!data) {
+    return (
+      <a className="reviews-card reviews-card-link" href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer" aria-label="Read Soul Balm reviews on Google">
+        <div className="review-stars"><span aria-hidden="true">★★★★★</span></div>
+        <dl><div><dt>Google Reviews</dt><dd>Read our reviews on Google</dd></div></dl>
+      </a>
+    );
+  }
+  const full = Math.round(data.rating);
+  return (
+    <a className="reviews-card reviews-card-link" href={href} target="_blank" rel="noreferrer" aria-label={`${data.rating.toFixed(1)} out of 5 stars from ${data.userRatingCount} Google reviews`}>
+      <div className="review-stars"><span aria-hidden="true">{"★".repeat(full)}{"☆".repeat(5 - full)}</span></div>
+      <dl>
+        <div><dt>Google Rating</dt><dd>{data.rating.toFixed(1)} out of 5 stars</dd></div>
+        <div><dt>Total Reviews</dt><dd>{data.userRatingCount} Google reviews</dd></div>
+      </dl>
+    </a>
+  );
 }
 
 function BookingButton({ label = "Book your session", className = "", href = BOOKING_URL }: { label?: string; className?: string; href?: string }) {
@@ -136,6 +168,15 @@ function Header() {
   );
 }
 
+function MobileActionBar() {
+  return (
+    <div className="mobile-action-bar" role="region" aria-label="Quick booking">
+      <a className="mobile-action-call" href={`tel:${PHONE}`}><Phone size={17} /> Call</a>
+      <a className="mobile-action-book" href={BOOKING_URL} target="_blank" rel="noreferrer">Book Your Session</a>
+    </div>
+  );
+}
+
 function Footer() {
   return (
     <footer className="site-footer">
@@ -160,7 +201,7 @@ function Footer() {
         </div>
         <div className="footer-visit">
           <p className="footer-kicker">Visit</p>
-          <p className="footer-hours"><strong>Monday–Friday</strong><span>By appointment only</span></p>
+          <p className="footer-hours"><strong>Mon &amp; Fri 9–4 · Tue–Thu 9–5</strong><span>By appointment only</span></p>
           <a href={MAPS_URL} target="_blank" rel="noreferrer" className="selectable-address">
             {ADDRESS}
           </a>
@@ -175,7 +216,7 @@ function Footer() {
 }
 
 function PageLayout({ children }: { children: React.ReactNode }) {
-  return <><Header /><main>{children}</main><Footer /></>;
+  return <><Header /><main>{children}</main><Footer /><MobileActionBar /></>;
 }
 
 function SectionHeading({ eyebrow, title, body, center = false }: { eyebrow: string; title: React.ReactNode; body?: string; center?: boolean }) {
@@ -204,7 +245,14 @@ function GiftCardCta({ className = "" }: { className?: string }) {
   );
 }
 
-function PhotoPlaceholder({ label, className = "" }: { label: string; className?: string }) {
+function PhotoPlaceholder({ label, className = "", src, position, alt }: { label: string; className?: string; src?: string; position?: string; alt?: string }) {
+  if (src) {
+    return (
+      <div className={`photo-placeholder has-photo ${className}`.trim()}>
+        <img className="slot-photo" src={src} alt={alt || label} style={position ? { objectPosition: position } : undefined} loading={className.includes("hero") ? "eager" : "lazy"} />
+      </div>
+    );
+  }
   return (
     <div className={`photo-placeholder ${className}`.trim()} role="img" aria-label={label}>
       <Leaf size={25} strokeWidth={1.4} aria-hidden="true" />
@@ -274,7 +322,7 @@ function Home() {
       <div className="home-page">
       <PageMeta fullTitle="Massage Therapy in Kansas City, MO | Soul Balm" description="Thoughtful, client-centered massage therapy in Kansas City, MO. Explore Soul Balm's massage services and book your session online." />
       <section className="hero">
-        <PhotoPlaceholder className="hero-image-placeholder" label="Calm, professional massage therapy atmosphere" />
+        <PhotoPlaceholder className="hero-image-placeholder" label="Calm, professional massage therapy atmosphere" src={photoFor("home-hero")} position={positionFor("home-hero")} alt={altFor("home-hero")} />
         <div className="hero-scrim"></div>
         <div className="container hero-content">
           <p className="hero-kicker"><Leaf size={17} /> Kansas City massage therapy</p>
@@ -298,7 +346,7 @@ function Home() {
               <Link href="/about" className="button button-primary rounded-btn">Meet Soul Balm</Link>
             </div>
           </div>
-          <PhotoPlaceholder className="intro-photo-placeholder" label="Soul Balm treatment-room image" />
+          <PhotoPlaceholder className="intro-photo-placeholder" label="Soul Balm treatment-room image" src={photoFor("home-intro")} position={positionFor("home-intro")} alt={altFor("home-intro")} />
         </div>
       </section>
 
@@ -320,7 +368,7 @@ function Home() {
 
       <section className="values-section">
         <div className="container values-grid">
-          <PhotoPlaceholder className="values-photo-placeholder" label="Soul Balm welcoming treatment space" />
+          <PhotoPlaceholder className="values-photo-placeholder" label="Soul Balm welcoming treatment space" src={photoFor("home-values")} position={positionFor("home-values")} alt={altFor("home-values")} />
           <div className="values-content">
             <SectionHeading eyebrow="The Soul Balm approach" title={<>Your session<br />starts with <em>listening.</em></>} />
             <div className="value-list">
@@ -339,13 +387,7 @@ function Home() {
             <p className="eyebrow"><span></span>Client Reviews</p>
             <h2>Kind words from the<br /><em>people we serve.</em></h2>
           </div>
-          <div className="reviews-card" aria-label="Client review summary">
-            <div className="review-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div>
-            <dl>
-              <div><dt>Rating</dt><dd>5 out of 5 stars</dd></div>
-              <div><dt>Total Reviews</dt><dd>163 reviews</dd></div>
-            </dl>
-          </div>
+          <GoogleRatingCard />
           <TestimonialCarousel />
         </div>
       </section>
@@ -398,7 +440,7 @@ function Home() {
             </details>
             <details>
               <summary>What are your appointment hours?<ChevronDown size={18} /></summary>
-              <p>Appointments are available Monday through Friday, by appointment only. Soul Balm is closed Saturday and Sunday.</p>
+              <p>Soul Balm is open Monday and Friday 9:00 AM–4:00 PM and Tuesday through Thursday 9:00 AM–5:00 PM, by appointment only. Closed Saturday and Sunday.</p>
             </details>
             <details>
               <summary>What massage services do you offer?<ChevronDown size={18} /></summary>
@@ -439,7 +481,7 @@ function About() {
       </section>
       <section className="about-background"><div className="container about-background-grid"><div><p className="eyebrow"><span></span>Professional background</p><h2>A career built around<br /><em>helping people.</em></h2></div><div className="about-background-card"><p className="about-background-kicker">Teresa’s confirmed experience</p><div><strong>Massage-school training</strong><span>Teresa followed her intuition into massage therapy after beginning her helping-profession journey in social work.</span></div><div><strong>Thoughtful, one-on-one care</strong><span>Every appointment begins with a conversation about your goals, comfort, and the kind of attention you are seeking that day.</span></div><div><strong>Modalities offered</strong><span>Swedish, Deep Tissue, Prenatal, Ashiatsu, Ashi/Thai, and Lymphatic Massage.</span></div></div></div></section>
       <section className="about-beliefs"><div className="container"><SectionHeading center eyebrow="What to expect from Teresa" title={<>A session shaped by<br /><em>your needs.</em></>} body="Her philosophy is simple: slow down, listen first, and make the time at the table feel dedicated to you." /><div className="belief-grid"><article><h3>Your goals guide the session</h3><p>Teresa begins by asking what you would like to focus on and welcomes feedback throughout your appointment.</p></article><article><h3>A calm table for one</h3><p>Your time is reserved in a relaxing, private setting designed to help you step out of the hurry.</p></article><article><h3>Care without the rush</h3><p>Each visit is an opportunity to pause, reconnect with yourself, and receive thoughtful attention at a comfortable pace.</p></article></div></div></section>
-      <section className="reviews-section client-reviews-section about-client-reviews"><div className="container reviews-grid"><div><p className="eyebrow"><span></span>Client Reviews</p><h2>Kind words from the<br /><em>people Teresa serves.</em></h2></div><div className="reviews-card" aria-label="Client review summary"><div className="review-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">★★★★★</span></div><dl><div><dt>Rating</dt><dd>5 out of 5 stars</dd></div><div><dt>Total Reviews</dt><dd>163 reviews</dd></div></dl></div><TestimonialCarousel /></div></section>
+      <section className="reviews-section client-reviews-section about-client-reviews"><div className="container reviews-grid"><div><p className="eyebrow"><span></span>Client Reviews</p><h2>Kind words from the<br /><em>people Teresa serves.</em></h2></div><GoogleRatingCard /><TestimonialCarousel /></div></section>
       <section className="soft-cta about-soft-cta"><div className="container"><div><p className="eyebrow"><span></span>Make time for you</p><h2>Your table is<br /><em>waiting.</em></h2></div><BookingButton label="Reserve your session" /></div></section>
     </PageLayout>
   );
@@ -484,7 +526,14 @@ const deepTissuePricing = [
   { duration: "90 minutes", price: "$125", detail: "Gives the most time for a relaxed pace, ongoing pressure check-ins, and attention across multiple areas you would like to prioritize." },
 ];
 
-function DeepTissueVisual({ variant, label }: { variant: "hero" | "room" | "detail"; label: string }) {
+function DeepTissueVisual({ variant, label, src, position, alt }: { variant: "hero" | "room" | "detail"; label: string; src?: string; position?: string; alt?: string }) {
+  if (src) {
+    return (
+      <div className={`deep-tissue-visual deep-tissue-visual-${variant} has-photo`}>
+        <img className="slot-photo" src={src} alt={alt || label} style={position ? { objectPosition: position } : undefined} loading={variant === "hero" ? "eager" : "lazy"} />
+      </div>
+    );
+  }
   return (
     <div className={`deep-tissue-visual deep-tissue-visual-${variant}`} role="img" aria-label={label}>
       <div className="deep-tissue-visual-orb deep-tissue-visual-orb-one" />
@@ -507,14 +556,14 @@ function DeepTissuePage() {
         description="Deep tissue massage in Kansas City, MO, customized to your comfort, pressure preferences, and priority areas. Book your session with Soul Balm."
       />
       <section className="deep-tissue-hero">
-        <DeepTissueVisual variant="hero" label="Calm, professional massage therapy atmosphere" />
+        <DeepTissueVisual variant="hero" label="Calm, professional massage therapy atmosphere" src={photoFor("deep-tissue-massage-hero")} position={positionFor("deep-tissue-massage-hero")} alt={altFor("deep-tissue-massage-hero")} />
         <div className="deep-tissue-hero-scrim" />
         <div className="container deep-tissue-hero-content">
           <div className="deep-tissue-hero-copy">
             <p className="eyebrow"><span></span>Intentional, focused care</p>
             <h1>Deep Tissue Massage in Kansas City, MO</h1>
             <p>Targeted, therapeutic massage customized to your comfort, wellness goals, and pressure preferences.</p>
-            <BookingButton label="Book Your Session" href={DEEP_TISSUE_BOOKING_URL} />
+            <BookingButton label="Book Your Session" />
           </div>
         </div>
       </section>
@@ -527,13 +576,13 @@ function DeepTissuePage() {
             <p>Deep tissue massage is a massage modality that uses slower, more focused strokes and intentional pressure to work with deeper layers of muscle and connective tissue, often called fascia. It is commonly chosen by people who prefer focused attention in areas that feel tight, overworked, or especially tense—such as the back, neck, and shoulders.</p>
             <p>Your deep tissue massage can be tailored around the areas you would like to prioritize, your comfort level, and your preferred pressure. Deep pressure does not have to mean unbearable pressure. Open communication is encouraged throughout the session, so your therapist can adjust techniques and pressure based on your feedback.</p>
           </div>
-          <DeepTissueVisual variant="room" label="Warm treatment room setting" />
+          <DeepTissueVisual variant="room" label="Warm treatment room setting" src={photoFor("deep-tissue-massage-room")} position={positionFor("deep-tissue-massage-room")} alt={altFor("deep-tissue-massage-room")} />
         </div>
       </section>
 
       <section className="deep-tissue-info-section deep-tissue-info-section-tint">
         <div className="container deep-tissue-info-grid deep-tissue-info-grid-reverse">
-          <DeepTissueVisual variant="detail" label="Relaxing massage table setting" />
+          <DeepTissueVisual variant="detail" label="Relaxing massage table setting" src={photoFor("deep-tissue-massage-detail")} position={positionFor("deep-tissue-massage-detail")} alt={altFor("deep-tissue-massage-detail")} />
           <div className="deep-tissue-info-copy">
             <p className="eyebrow"><span></span>Is it right for you?</p>
             <h2>Why Choose Deep Tissue Massage?</h2>
@@ -561,7 +610,7 @@ function DeepTissuePage() {
             {deepTissuePricing.map((option) => <div className="pricing-row" role="row" key={option.duration}><strong role="cell">{option.duration}</strong><b role="cell">{option.price}</b><span role="cell">{option.detail}</span></div>)}
           </div>
           <p className="deep-tissue-pricing-note">Session duration does not guarantee a specific result. The best choice depends on your personal preferences, the areas you would like to discuss, your comfort with pressure, and the time you have available. If you are unsure, use the booking page or contact Soul Balm Massage Therapy to discuss the appointment options.</p>
-          <BookingButton label="Book Deep Tissue Massage on MassageBook" href={DEEP_TISSUE_BOOKING_URL} className="service-pricing-cta" />
+          <BookingButton label="Book Deep Tissue Massage on MassageBook" className="service-pricing-cta" />
         </div>
       </section>
 
@@ -591,7 +640,7 @@ function ServicePage({ service }: { service: Service }) {
     <PageLayout>
       <PageMeta fullTitle={SERVICE_SEO_TITLES[service.slug]} description={service.metaDescription} />
       <section className={`standard-service-hero standard-service-hero-${service.accent}`}>
-        <DeepTissueVisual variant="hero" label={content.hero.visualLabel} />
+        <DeepTissueVisual variant="hero" label={content.hero.visualLabel} src={photoFor(`${service.slug}-hero`)} position={positionFor(`${service.slug}-hero`)} alt={altFor(`${service.slug}-hero`)} />
         <div className="standard-service-hero-scrim" />
         <div className="container standard-service-hero-content">
           <div className="standard-service-hero-copy">
@@ -602,8 +651,8 @@ function ServicePage({ service }: { service: Service }) {
           </div>
         </div>
       </section>
-      <StandardServiceInformation content={content} variant="definition" />
-      <StandardServiceInformation content={content} variant="why" />
+      <StandardServiceInformation content={content} variant="definition" serviceSlug={service.slug} />
+      <StandardServiceInformation content={content} variant="why" serviceSlug={service.slug} />
       <StandardServicePricing service={service} content={content} />
       <GiftCardCta className="service-gift-cta" />
       <StandardServiceFaqs content={content} serviceName={service.name} />
@@ -611,14 +660,14 @@ function ServicePage({ service }: { service: Service }) {
   );
 }
 
-function StandardServiceInformation({ content, variant }: { content: StandardServiceContent; variant: "definition" | "why" }) {
+function StandardServiceInformation({ content, variant, serviceSlug }: { content: StandardServiceContent; variant: "definition" | "why"; serviceSlug: string }) {
   const isWhy = variant === "why";
   const section = isWhy ? content.why : content.definition;
   return (
     <section className={`standard-service-info-section ${isWhy ? "standard-service-info-section-tint" : ""}`}>
       <div className={`container standard-service-info-grid ${isWhy ? "standard-service-info-grid-reverse" : ""}`}>
         {!isWhy && <div className="standard-service-info-copy"><p className="eyebrow"><span></span>{section.eyebrow}</p><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>}
-        <DeepTissueVisual variant={isWhy ? "detail" : "room"} label={isWhy ? "Calm, focused massage treatment setting" : "Warm treatment room setting"} />
+        <DeepTissueVisual variant={isWhy ? "detail" : "room"} label={isWhy ? "Calm, focused massage treatment setting" : "Warm treatment room setting"} src={photoFor(`${serviceSlug}-${isWhy ? "detail" : "room"}`)} position={positionFor(`${serviceSlug}-${isWhy ? "detail" : "room"}`)} alt={altFor(`${serviceSlug}-${isWhy ? "detail" : "room"}`)} />
         {isWhy && <div className="standard-service-info-copy"><p className="eyebrow"><span></span>{section.eyebrow}</p><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<div className="standard-service-points">{content.why.points.map((point) => <div key={point.title}><Check size={18} aria-hidden="true" /><div><strong>{point.title}</strong><span>{point.body}</span></div></div>)}</div></div>}
       </div>
     </section>
@@ -665,7 +714,7 @@ function LegalPage({ type }: { type: "privacy" | "terms" }) {
       <PageMeta title={isPrivacy ? "Privacy Policy" : "Terms & Conditions"} />
       <section className="legal-hero"><div className="container"><p className="eyebrow"><span></span>Soul Balm Massage Therapy</p><h1>{isPrivacy ? "Privacy Policy" : "Terms & Conditions"}</h1><p>Last updated: September 2026</p></div></section>
       <article className="legal-content container">
-        <div className="legal-notice"><ShieldCheck size={19}/><p><strong>Draft notice:</strong> This page is a launch-ready framework and must be reviewed by Soul Balm Massage Therapy before publication to reflect confirmed contact, booking, cancellation, and data-handling practices.</p></div>
+        
         {isPrivacy ? <PrivacyCopy /> : <TermsCopy />}
       </article>
     </PageLayout>

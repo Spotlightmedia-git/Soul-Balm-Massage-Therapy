@@ -2576,3 +2576,50 @@
 .site-footer .footer-visit .selectable-address {
   color: #BAC9C6 !important;
 }
+
+/* 📸 Real photos in placeholder slots (see client/src/photos.ts) */
+.photo-placeholder.has-photo,
+.deep-tissue-visual.has-photo {
+  background: #31402E;
+}
+.photo-placeholder.has-photo::before,
+.photo-placeholder.has-photo::after,
+.deep-tissue-visual.has-photo::before,
+.deep-tissue-visual.has-photo::after {
+  display: none;
+}
+.slot-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ⭐ Google rating card is a link to her Google reviews */
+a.reviews-card-link { display: block; color: inherit; text-decoration: none; transition: transform .2s ease; }
+a.reviews-card-link:hover { transform: translateY(-2px); }
+
+/* 📱 Sticky Book / Call bar — phones & small tablets only */
+.mobile-action-bar { display: none; }
+@media (max-width: 900px) {
+  .mobile-action-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 10px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(243, 237, 227, .97);
+    border-top: 1px solid #DDD5C7;
+    box-shadow: 0 -8px 24px rgba(63, 77, 66, .12);
+  }
+  .mobile-action-bar a {
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    min-height: 48px; border-radius: 6px;
+    font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+  }
+  .mobile-action-call { border: 1px solid #3F4D42; color: #3F4D42; background: transparent; }
+  .mobile-action-book { background: #7A4E2E; color: #F5F4EE; border: 1px solid #E6C681; }
+  body { padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
+}
