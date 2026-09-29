@@ -19,6 +19,11 @@ const pages = [
     description: "Contact Soul Balm Massage Therapy in Kansas City, MO for appointment questions, directions, and online booking information.",
   },
   {
+    route: "/services",
+    title: "Massage Services in Kansas City, MO | Soul Balm",
+    description: "Explore Soul Balm Massage Therapy's massage services in Kansas City, MO: Swedish, deep tissue, Ashiatsu, prenatal, and manual lymphatic drainage massage.",
+  },
+  {
     route: "/services/deep-tissue-massage",
     title: "Deep Tissue Massage in Kansas City, MO | Soul Balm",
     description: "Deep tissue massage in Kansas City, MO, customized to your comfort, pressure preferences, and priority areas. Book your session with Soul Balm.",

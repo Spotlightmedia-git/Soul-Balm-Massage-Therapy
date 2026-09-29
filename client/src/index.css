@@ -987,3 +987,86 @@ p,
     box-shadow: 9px 9px 0 #DDD5C7;
   }
 }
+
+/* ⭕ Global rounding — buttons read as pills, framed photos get soft corners.
+   The .rounded-btn class (999px) was being defeated: it lives in the imported
+   revisions file, which loads before this one, so the later .button rule (3px)
+   won the tie. Declaring it here, last, makes the intended pill shape stick. */
+.button,
+.rounded-btn,
+.button-small,
+.map-open-link,
+.mobile-action-bar a {
+  border-radius: 999px;
+}
+
+/* Framed photos. Full-bleed background heroes stay square on purpose — they run to
+   the viewport edges, so there is no visible corner to round. */
+.photo-placeholder:not(.hero-image-placeholder),
+.deep-tissue-visual:not(.deep-tissue-visual-hero),
+.values-image-wrap img,
+.service-art img,
+.about-hero-image img,
+.location-signage,
+.map-embed-wrap .soul-balm-map,
+.map-embed-wrap::before,
+.site-footer .footer-logo-panel {
+  border-radius: 14px;
+}
+
+/* Small caption cards sitting on a rounded photo follow its curve. */
+.about-portrait-caption,
+.location-signage figcaption {
+  border-radius: 8px;
+}
+.location-signage::before {
+  border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+  .photo-placeholder:not(.hero-image-placeholder),
+  .deep-tissue-visual:not(.deep-tissue-visual-hero),
+  .values-image-wrap img,
+  .service-art img,
+  .about-hero-image img,
+  .location-signage,
+  .map-embed-wrap .soul-balm-map,
+  .map-embed-wrap::before,
+  .site-footer .footer-logo-panel {
+    border-radius: 11px;
+  }
+}
+
+/* 🗂 Services index page — the destination for "Explore services". */
+.services-index-hero {
+  padding: 118px 0 86px;
+}
+.services-index-hero h1 {
+  max-width: 780px;
+}
+.services-index-hero p:not(.eyebrow) {
+  max-width: 540px;
+  color: #5F695F;
+  font-size: 17px;
+}
+.services-index-section {
+  padding-top: 0;
+}
+.services-index-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 46px;
+}
+@media (max-width: 900px) {
+  .services-index-hero {
+    padding: 84px 0 62px;
+  }
+}
+@media (max-width: 600px) {
+  .services-index-hero {
+    padding: 72px 0 50px;
+  }
+  .services-index-cta {
+    margin-top: 34px;
+  }
+}

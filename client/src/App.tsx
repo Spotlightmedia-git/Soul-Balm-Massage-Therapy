@@ -361,7 +361,7 @@ function Home() {
           <p className="hero-lede">Massage is a chance to pause, listen to your body, and make self-care part of your rhythm.</p>
           <div className="hero-actions">
             <BookingButton label="Book your session" />
-            <a className="button button-secondary rounded-btn" href="#services">Explore services</a>
+            <Link className="button button-secondary rounded-btn" href="/services">Explore services</Link>
           </div>
         </div>
         <div className="hero-note"><span>Scroll to settle in</span><i></i></div>
@@ -755,6 +755,37 @@ function LegalPage({ type }: { type: "privacy" | "terms" }) {
 function PrivacyCopy() { return <><h2>Overview</h2><p>This policy explains how Soul Balm Massage Therapy may handle information provided through this website. The website is intended to help visitors learn about massage services, find the studio, and access the online booking platform.</p><h2>Information provided through booking</h2><p>Online booking is provided through MassageBook. When you follow a booking link, information you provide there is governed by MassageBook’s applicable policies and the service policies presented during the booking process.</p><h2>Website communications</h2><p>If you contact Soul Balm by phone or through an approved communication channel, the information you provide may be used to respond to your question or help with your appointment. Please do not send sensitive health information through unprotected channels.</p><h2>Updates to this policy</h2><p>This policy may be updated as business practices or website tools change. The effective date above will be updated when material changes are made.</p><h2>Questions</h2><p>For questions about this policy, please contact Soul Balm Massage Therapy by phone at <a href={`tel:${PHONE}`}>(660) 341-2202</a>.</p></> }
 function TermsCopy() { return <><h2>Website use</h2><p>This website provides general information about Soul Balm Massage Therapy and its massage services. It is not medical advice and is not a substitute for consultation with a qualified healthcare professional.</p><h2>Appointments and booking</h2><p>Appointments are scheduled through MassageBook. Available services, appointment times, pricing, policies, and any applicable intake requirements are presented in the booking process and are subject to confirmation there.</p><h2>Health considerations</h2><p>Please discuss questions about health conditions, medications, pregnancy, or whether massage is appropriate for you with your healthcare provider. Share relevant information requested through the approved intake process before your session.</p><h2>Changes to availability</h2><p>Service availability, appointment options, and studio information may change. The online booking page is the most current source for available appointments.</p><h2>Questions</h2><p>For questions about a planned visit, please call Soul Balm Massage Therapy at <a href={`tel:${PHONE}`}>(660) 341-2202</a>.</p></> }
 
+function ServicesIndex() {
+  return (
+    <PageLayout>
+      <PageMeta fullTitle="Massage Services in Kansas City, MO | Soul Balm" description="Explore Soul Balm Massage Therapy's massage services in Kansas City, MO: Swedish, deep tissue, Ashiatsu, prenatal, and manual lymphatic drainage massage." />
+      <section className="page-hero services-index-hero">
+        <div className="container">
+          <p className="eyebrow"><span></span>Massage offerings</p>
+          <h1>Choose the attention<br /><em>your body is asking for.</em></h1>
+          <p>Every service at Soul Balm is shaped around where you are today and the pace that feels right. Explore the offerings below, then book the session that fits.</p>
+        </div>
+      </section>
+      <section className="services-section services-index-section">
+        <div className="container">
+          <div className="services-list">
+            {services.map((service) => (
+              <Link key={service.slug} href={`/services/${service.slug}`} className="service-row">
+                <div>
+                  <h3>{service.name}</h3>
+                  <p>{service.heroSummary}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="services-index-cta">
+            <BookingButton label="Book your session" />
+          </div>
+        </div>
+      </section>
+    </PageLayout>
+  );
+}
 function NotFound() { return <PageLayout><PageMeta title="Page Not Found" /><section className="not-found"><div className="container"><p className="eyebrow"><span></span>Page not found</p><h1>Let’s find your way<br /><em>back to calm.</em></h1><Link href="/" className="button button-primary rounded-btn">Return home</Link></div></section></PageLayout> }
 
 function Router() {
@@ -765,6 +796,7 @@ function Router() {
       <Route key={service.slug} path={`/services/${service.slug}`} component={() => <ServicePage service={service} />} />,
       <Route key={service.legacySlug} path={`/services/${service.legacySlug}`} component={() => <ServicePage service={service} />} />,
     ])}
+    <Route path="/services" component={ServicesIndex} />
     <Route path="/contact" component={Contact} />
     <Route path="/privacy-policy" component={() => <LegalPage type="privacy" />} />
     <Route path="/terms-and-conditions" component={() => <LegalPage type="terms" />} />
