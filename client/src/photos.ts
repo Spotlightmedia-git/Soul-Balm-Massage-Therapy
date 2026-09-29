@@ -20,7 +20,7 @@ export const PHOTOS: Record<string, Photo> = {
     alt: "Teresa massaging a client's neck and shoulders during a session at Soul Balm" },
 
   // 💪 DEEP TISSUE PAGE
-  "deep-tissue-massage-hero": { src: "/images/deep-tissue-massage-leg-stretch-kansas-city.webp", pos: "center 38%",
+  "deep-tissue-massage-hero": { src: "/images/deep-tissue-massage-leg-stretch-kansas-city.webp", pos: "center 36%",
     alt: "Teresa performing a deep tissue leg stretch on a client in Kansas City" },
   "deep-tissue-massage-room": { src: "/images/deep-tissue-neck-massage-kansas-city.webp", pos: "center 45%",
     alt: "Close-up of focused deep tissue work on a client's neck" },
@@ -52,7 +52,7 @@ export const PHOTOS: Record<string, Photo> = {
     alt: "Teresa Nerem of Soul Balm Massage Therapy standing under a willow tree" },
 
   // 🤰 PRENATAL PAGE
-  "prenatal-massage-hero": { src: "/images/teresa-nerem-lmt-kansas-city.webp", pos: "center 45%",
+  "prenatal-massage-hero": { src: "/images/teresa-nerem-lmt-kansas-city.webp", pos: "center 60%",
     alt: "Teresa Nerem, licensed massage therapist, seated in a grassy meadow at golden hour" },
   "prenatal-massage-room": { src: "/images/teresa-nerem-lmt-soul-balm-riverside.webp", pos: "65% 40%",
     alt: "Teresa Nerem by the river at golden hour" },
