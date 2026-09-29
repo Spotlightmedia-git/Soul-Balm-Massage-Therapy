@@ -5,6 +5,7 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  ChevronUp,
   Clock3,
   Gift,
   Leaf,
@@ -215,8 +216,38 @@ function Footer() {
   );
 }
 
+function BackToTop() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsVisible(window.scrollY > 420);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  };
+
+  return (
+    <button
+      type="button"
+      className={`back-to-top${isVisible ? " is-visible" : ""}`}
+      onClick={scrollToTop}
+      aria-label="Back to top"
+      aria-hidden={isVisible ? undefined : true}
+      tabIndex={isVisible ? 0 : -1}
+    >
+      <ChevronUp size={18} strokeWidth={2.4} aria-hidden="true" />
+      <span>Top</span>
+    </button>
+  );
+}
+
 function PageLayout({ children }: { children: React.ReactNode }) {
-  return <><Header /><main>{children}</main><Footer /><MobileActionBar /></>;
+  return <><Header /><main>{children}</main><Footer /><MobileActionBar /><BackToTop /></>;
 }
 
 function SectionHeading({ eyebrow, title, body, center = false }: { eyebrow: string; title: React.ReactNode; body?: string; center?: boolean }) {

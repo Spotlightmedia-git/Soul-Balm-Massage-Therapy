@@ -38,7 +38,7 @@ export const PHOTOS: Record<string, Photo> = {
   // 🦶 ASHIATSU PAGE
   "ashiatsu-massage-hero": { src: "/images/ashiatsu-barefoot-massage-kansas-city.webp", pos: "center 25%",
     alt: "Teresa using overhead bars to give a barefoot Ashiatsu massage in Kansas City" },
-  "ashiatsu-massage-room": { src: "/images/ashiatsu-massage-bars-soul-balm-studio.webp", pos: "center 35%",
+  "ashiatsu-massage-room": { src: "/images/ashiatsu-massage-bars-soul-balm-studio.webp", pos: "center 70%",
     alt: "Teresa holding the Ashiatsu support bars beside the Soul Balm sign" },
   "ashiatsu-massage-detail": { src: "/images/soul-balm-massage-therapy-studio-sign.webp",
     alt: "Soul Balm Massage Therapy sign on the studio wall" },
@@ -52,10 +52,10 @@ export const PHOTOS: Record<string, Photo> = {
     alt: "Teresa Nerem of Soul Balm Massage Therapy standing under a willow tree" },
 
   // 🤰 PRENATAL PAGE
-  "prenatal-massage-hero": { src: "/images/teresa-nerem-lmt-soul-balm-riverside.webp", pos: "65% 40%",
+  "prenatal-massage-hero": { src: "/images/teresa-nerem-lmt-kansas-city.webp", pos: "center 45%",
+    alt: "Teresa Nerem, licensed massage therapist, seated in a grassy meadow at golden hour" },
+  "prenatal-massage-room": { src: "/images/teresa-nerem-lmt-soul-balm-riverside.webp", pos: "65% 40%",
     alt: "Teresa Nerem by the river at golden hour" },
-  "prenatal-massage-room": { src: "/images/teresa-nerem-lmt-kansas-city.webp", pos: "center 55%",
-    alt: "Teresa Nerem, licensed massage therapist, sitting in a grassy meadow" },
   "prenatal-massage-detail": { src: "/images/teresa-nerem-soul-balm-owner.webp", pos: "center 30%",
     alt: "Smiling portrait of Teresa Nerem, owner of Soul Balm Massage Therapy" },
 };
