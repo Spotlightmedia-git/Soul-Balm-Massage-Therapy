@@ -40,8 +40,8 @@ export const PHOTOS: Record<string, Photo> = {
     alt: "Teresa using overhead bars to give a barefoot Ashiatsu massage in Kansas City" },
   "ashiatsu-massage-room": { src: "/images/ashiatsu-massage-bars-soul-balm-studio.webp", pos: "center 70%",
     alt: "Teresa holding the Ashiatsu support bars beside the Soul Balm sign" },
-  "ashiatsu-massage-detail": { src: "/images/soul-balm-massage-therapy-studio-sign.webp",
-    alt: "Soul Balm Massage Therapy sign on the studio wall" },
+  "ashiatsu-massage-detail": { src: "/images/foot-massage-soul-balm-kansas-city.webp", pos: "50% 55%",
+    alt: "Close-up of foot and ankle massage work during a barefoot-focused session at Soul Balm Massage Therapy" },
 
   // 💧 LYMPHATIC PAGE
   "lymphatic-massage-hero": { src: "/images/deep-tissue-neck-massage-kansas-city.webp", pos: "center 45%",
