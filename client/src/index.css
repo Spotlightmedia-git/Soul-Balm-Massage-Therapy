@@ -1070,3 +1070,34 @@ p,
     margin-top: 34px;
   }
 }
+
+/* ⭕ Cards — the review card, testimonial carousel, and the remaining panel-style
+   blocks. Same 14px curve as the framed photos so the whole site reads consistently.
+   These carry offset "print" shadows, so overflow is clipped to keep the photo and
+   fill inside the new corners. */
+.reviews-card,
+.testimonial-carousel,
+.about-background-card,
+.belief-grid article,
+.contact-card,
+.deep-tissue-visual-card,
+.legal-notice {
+  border-radius: 14px;
+}
+
+.reviews-card,
+.testimonial-carousel {
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .reviews-card,
+  .testimonial-carousel,
+  .about-background-card,
+  .belief-grid article,
+  .contact-card,
+  .deep-tissue-visual-card,
+  .legal-notice {
+    border-radius: 11px;
+  }
+}
