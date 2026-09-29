@@ -20,7 +20,7 @@ export const PHOTOS: Record<string, Photo> = {
     alt: "Teresa massaging a client's neck and shoulders during a session at Soul Balm" },
 
   // 💪 DEEP TISSUE PAGE
-  "deep-tissue-massage-hero": { src: "/images/deep-tissue-massage-leg-stretch-kansas-city.webp", pos: "center 30%",
+  "deep-tissue-massage-hero": { src: "/images/deep-tissue-massage-leg-stretch-kansas-city.webp", pos: "center 38%",
     alt: "Teresa performing a deep tissue leg stretch on a client in Kansas City" },
   "deep-tissue-massage-room": { src: "/images/deep-tissue-neck-massage-kansas-city.webp", pos: "center 45%",
     alt: "Close-up of focused deep tissue work on a client's neck" },

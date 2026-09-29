@@ -587,15 +587,16 @@ function DeepTissuePage() {
         description="Deep tissue massage in Kansas City, MO, customized to your comfort, pressure preferences, and priority areas. Book your session with Soul Balm."
       />
       <section className="deep-tissue-hero">
-        <DeepTissueVisual variant="hero" label="Calm, professional massage therapy atmosphere" src={photoFor("deep-tissue-massage-hero")} position={positionFor("deep-tissue-massage-hero")} alt={altFor("deep-tissue-massage-hero")} />
-        <div className="deep-tissue-hero-scrim" />
-        <div className="container deep-tissue-hero-content">
+        <div className="container deep-tissue-hero-split">
           <div className="deep-tissue-hero-copy">
             <p className="eyebrow"><span></span>Intentional, focused care</p>
             <h1>Deep Tissue Massage in Kansas City, MO</h1>
             <p>Targeted, therapeutic massage customized to your comfort, wellness goals, and pressure preferences.</p>
             <BookingButton label="Book Your Session" />
           </div>
+          <figure className="deep-tissue-hero-photo">
+            <img src={photoFor("deep-tissue-massage-hero")} alt={altFor("deep-tissue-massage-hero")} style={{ objectPosition: positionFor("deep-tissue-massage-hero") }} />
+          </figure>
         </div>
       </section>
 
