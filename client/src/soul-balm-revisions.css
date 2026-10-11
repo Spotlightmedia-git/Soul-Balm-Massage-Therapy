@@ -2690,3 +2690,33 @@ a.reviews-card-link:hover { transform: translateY(-2px); }
 .contact-simple-map .soul-balm-map {
   border: 1px solid #E6C681;
 }
+
+/* Keep every client-review surface centered across Home and About. */
+.reviews-card,
+.testimonial-carousel,
+.testimonial-carousel-topline,
+.testimonial-slide,
+.testimonial-slide blockquote,
+.testimonial-slide footer {
+  text-align: center;
+}
+
+.reviews-card,
+.testimonial-slide {
+  align-items: center;
+}
+
+.reviews-card dl {
+  text-align: center;
+}
+
+.testimonial-carousel-topline,
+.testimonial-slide footer {
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .testimonial-slide footer {
+    align-items: center;
+  }
+}
