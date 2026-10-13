@@ -789,6 +789,33 @@ function ServicesIndex() {
 }
 function NotFound() { return <PageLayout><PageMeta title="Page Not Found" /><section className="not-found"><div className="container"><p className="eyebrow"><span></span>Page not found</p><h1>Let’s find your way<br /><em>back to calm.</em></h1><Link href="/" className="button button-primary rounded-btn">Return home</Link></div></section></PageLayout> }
 
+function ScrollToTop() {
+  useEffect(() => {
+    const resetScrollPosition = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+    const scheduleScrollReset = () => {
+      resetScrollPosition();
+      window.setTimeout(resetScrollPosition, 0);
+      window.requestAnimationFrame(resetScrollPosition);
+      window.setTimeout(resetScrollPosition, 100);
+    };
+    const handleInternalNavigation = (event: MouseEvent) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest<HTMLAnchorElement>("a[href]");
+      if (!link || link.target || link.hasAttribute("download")) return;
+      const destination = new URL(link.href, window.location.href);
+      if (destination.origin === window.location.origin && destination.pathname !== window.location.pathname) scheduleScrollReset();
+    };
+    document.addEventListener("click", handleInternalNavigation, true);
+    window.addEventListener("popstate", scheduleScrollReset);
+    return () => {
+      document.removeEventListener("click", handleInternalNavigation, true);
+      window.removeEventListener("popstate", scheduleScrollReset);
+    };
+  }, []);
+  return null;
+}
+
 function Router() {
   return <Switch>
     <Route path="/" component={Home} />
@@ -806,5 +833,5 @@ function Router() {
 }
 
 export default function App() {
-  return <ErrorBoundary><ThemeProvider defaultTheme="light"><TooltipProvider><Toaster /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>;
+  return <ErrorBoundary><ThemeProvider defaultTheme="light"><TooltipProvider><Toaster /><ScrollToTop /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>;
 }
