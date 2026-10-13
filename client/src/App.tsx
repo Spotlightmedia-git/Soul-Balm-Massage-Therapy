@@ -24,7 +24,7 @@ import { standardServiceContent, type StandardServiceContent } from "./standard-
 import { photoFor, positionFor, altFor } from "./photos";
 
 const BOOKING_URL = "https://www.massagebook.com/business/21948933/select-product/services";
-const GIFT_CERTIFICATE_URL = "https://www.massagebook.com/business/21948933/select-product/gift-certificates";
+const GIFT_CERTIFICATE_URL = "https://www.massagebook.com/therapists/SoulBalmMassageTherapy/gift-certificates";
 const GOOGLE_REVIEWS_URL = "https://share.google/aUmBJQzV8F1xphb8B";
 const FACEBOOK_URL = "https://www.facebook.com/soulbalmmassagetherapy";
 const PHONE = "6603412202";
