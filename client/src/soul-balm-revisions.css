@@ -2837,3 +2837,51 @@ a.reviews-card-link:hover { transform: translateY(-2px); }
     align-items: center;
   }
 }
+
+@media (max-width: 600px) {
+  .values-content > .section-heading {
+    text-align: center;
+  }
+
+  .values-content > .section-heading .eyebrow {
+    justify-content: center;
+  }
+
+  .values-content > .button {
+    display: flex;
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .site-footer .footer-top,
+  .site-footer .footer-visit,
+  .site-footer .footer-bottom {
+    text-align: center;
+  }
+
+  .site-footer .footer-brand {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .site-footer .footer-brand > p {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .site-footer .footer-phone,
+  .site-footer .footer-bottom div {
+    justify-content: center;
+  }
+
+  .site-footer .footer-links,
+  .site-footer .footer-visit .footer-social-links {
+    align-items: center;
+  }
+
+  .site-footer .footer-bottom {
+    align-items: center;
+  }
+}
