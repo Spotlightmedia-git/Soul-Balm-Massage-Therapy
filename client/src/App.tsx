@@ -220,8 +220,8 @@ function Footer() {
             {ADDRESS}
           </a>
           <div className="footer-social-links">
-            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">Facebook page</a>
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer"><Facebook size={14} aria-hidden="true" /> Facebook</a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={14} aria-hidden="true" /> Instagram</a>
           </div>
         </div>
       </div>

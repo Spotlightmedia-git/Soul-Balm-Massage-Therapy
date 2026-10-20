@@ -430,6 +430,9 @@
 }
 
 .footer-visit .footer-social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   color: #BAC9C6;
   font-size: 13px;
 }
