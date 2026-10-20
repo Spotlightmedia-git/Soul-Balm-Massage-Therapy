@@ -1250,4 +1250,8 @@ p,
   .site-footer .footer-bottom {
     align-items: center;
   }
+
+  .location-grid .location-signage {
+    min-height: 280px;
+  }
 }
