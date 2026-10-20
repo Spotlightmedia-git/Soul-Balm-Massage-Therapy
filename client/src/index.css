@@ -1101,3 +1101,148 @@ p,
     border-radius: 11px;
   }
 }
+
+/* Social link rows stay centered wherever they appear. */
+.social-links,
+.location-details .social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-inline: auto;
+}
+
+.site-footer .footer-visit .footer-social-links {
+  align-items: center;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* Mobile content alignment; navigation, sticky actions, list items, and pricing cells retain their existing layout. */
+@media (max-width: 768px) {
+  main :is(h1, h2, h3, p) {
+    text-align: center;
+  }
+
+  main :is(ul, ol) :is(h1, h2, h3, p),
+  .legal-content > p {
+    text-align: left;
+  }
+
+  main .eyebrow,
+  main .hero-kicker {
+    justify-content: center;
+  }
+
+  .home-page .hero-actions {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-page .intro-band h2,
+  .home-page .intro-band .intro-copy,
+  .home-page .intro-band .intro-copy p {
+    text-align: center !important;
+  }
+
+  .home-page .intro-band .intro-copy {
+    align-items: center !important;
+  }
+
+  .home-page .intro-band .intro-copy .eyebrow {
+    justify-content: center !important;
+  }
+
+  .home-page .intro-band .intro-copy .button {
+    align-self: center !important;
+    margin-inline: auto !important;
+  }
+
+  .home-page .values-content > .button,
+  .about-story .story-copy > .button,
+  .deep-tissue-hero-copy > .button,
+  .standard-service-hero-copy > .button,
+  .services-index-cta > .button,
+  .not-found .button {
+    display: flex;
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  .home-page .value-list > div {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .location-info,
+  .location-details,
+  .map-embed-wrap,
+  .contact-phone-block,
+  .contact-hours-block,
+  .contact-simple-map,
+  .about-portrait-caption,
+  .about-background-card {
+    text-align: center;
+  }
+
+  .location-details p {
+    padding-left: 0;
+  }
+
+  .location-details p svg {
+    position: static;
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .location-details .social-links {
+    justify-content: center;
+  }
+
+  .location-grid .map-embed-wrap .map-open-link {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .contact-hours-list span {
+    text-align: center;
+  }
+
+  .about-background-card > div,
+  .about-background-card span {
+    text-align: center;
+  }
+
+  .site-footer .footer-top,
+  .site-footer .footer-visit,
+  .site-footer .footer-bottom {
+    text-align: center;
+  }
+
+  .site-footer .footer-brand {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .site-footer .footer-brand > p {
+    margin-inline: auto;
+  }
+
+  .site-footer .footer-phone,
+  .site-footer .footer-bottom,
+  .site-footer .footer-bottom div {
+    justify-content: center;
+  }
+
+  .site-footer .footer-links,
+  .site-footer .footer-visit .footer-social-links {
+    align-items: center;
+  }
+
+  .site-footer .footer-bottom {
+    align-items: center;
+  }
+}
