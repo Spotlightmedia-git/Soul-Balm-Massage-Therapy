@@ -7,6 +7,7 @@ import {
   ChevronRight,
   ChevronUp,
   Clock3,
+  Facebook,
   Gift,
   Instagram,
   Leaf,
@@ -453,7 +454,7 @@ function Home() {
               <p><Phone size={18} /> <strong>Call or text:</strong><br /><a className="phone-number-link" href={`tel:${PHONE}`}>(660) 341-2202</a></p>
               <div className="social-links">
                 <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="button button-primary button-small rounded-btn">
-                  Follow on Facebook
+                  <Facebook size={16} aria-hidden="true" /> Follow on Facebook
                 </a>
                 <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="button button-primary button-small rounded-btn">
                   <Instagram size={16} aria-hidden="true" /> Follow on Instagram

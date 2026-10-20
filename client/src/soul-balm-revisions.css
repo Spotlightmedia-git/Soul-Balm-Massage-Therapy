@@ -868,6 +868,10 @@
   justify-content: flex-end;
 }
 
+.location-details .social-links .button {
+  justify-content: center;
+}
+
 .location-signage,
 .location-grid .map-embed-wrap,
 .location-grid .map-embed-wrap .soul-balm-map {
