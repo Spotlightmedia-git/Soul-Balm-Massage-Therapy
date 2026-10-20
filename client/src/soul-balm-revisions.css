@@ -422,6 +422,22 @@
   line-height: 1.6;
 }
 
+.footer-visit .footer-social-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.footer-visit .footer-social-links a {
+  color: #BAC9C6;
+  font-size: 13px;
+}
+
+.footer-visit .footer-social-links a:hover {
+  color: #FFFFFF;
+}
+
 /* Final Alignment Lock for Intro Band */
 .intro-band {
   width: 100%;

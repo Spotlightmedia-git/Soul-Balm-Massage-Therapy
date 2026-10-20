@@ -208,8 +208,6 @@ function Footer() {
           <a href={BOOKING_URL} target="_blank" rel="noreferrer">Book online</a>
           <a href={GIFT_CERTIFICATE_URL} target="_blank" rel="noreferrer">Gift certificates</a>
           <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer">Google reviews</a>
-          <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">Facebook page</a>
-          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={14} aria-hidden="true" /> Instagram</a>
         </div>
         <div className="footer-links">
           <p className="footer-kicker">Services</p>
@@ -221,6 +219,10 @@ function Footer() {
           <a href={MAPS_URL} target="_blank" rel="noreferrer" className="selectable-address">
             {ADDRESS}
           </a>
+          <div className="footer-social-links">
+            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">Facebook page</a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+          </div>
         </div>
       </div>
       <div className="container footer-bottom">
