@@ -181,6 +181,7 @@ export const services: Service[] = [
     ],
     pricing: [
       { duration: "60 minutes", price: "$85", detail: "A full-body introduction to Ashiatsu’s broad, deep compression." },
+      { duration: "75 minutes", price: "$100", detail: "Additional time for sustained compression and long, flowing strokes, allowing for a more thorough session at a comfortable pace." },
       { duration: "90 minutes", price: "$125", detail: "More time for sustained compression, gliding work, and assisted stretching." },
     ],
     accent: "ashiatsu",

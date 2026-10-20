@@ -564,11 +564,11 @@ const deepTissueFaqs = [
 ];
 
 const deepTissuePricing = [
-  { duration: "30 minutes", price: "$45", detail: "A focused option when you would like to prioritize one area or have limited time. It allows for a brief conversation about your preferences and targeted attention during the session." },
-  { duration: "45 minutes", price: "$60", detail: "Offers additional time for a more unhurried, focused session. This can be a good fit when you would like attention in one primary area with time to check in about pressure and comfort." },
-  { duration: "60 minutes", price: "$85", detail: "Provides time for a more balanced session, including discussion of your preferences and focused attention across the areas you would like to prioritize." },
-  { duration: "75 minutes", price: "$100", detail: "Allows for a slower pace and more flexibility in how the session is structured, particularly if you would like to include more than one priority area." },
-  { duration: "90 minutes", price: "$125", detail: "Gives the most time for a relaxed pace, ongoing pressure check-ins, and attention across multiple areas you would like to prioritize." },
+  { duration: "30 minutes", price: "$45", detail: "Ideal for focused therapeutic work on one specific area of muscle tension or discomfort." },
+  { duration: "45 minutes", price: "$60", detail: "Provides additional time for more detailed work on a primary area of concern, with flexibility to address surrounding or related muscle groups." },
+  { duration: "60 minutes", price: "$85", detail: "Allows time for a full-body massage or more concentrated therapeutic work on specific areas, depending on your individual needs." },
+  { duration: "75 minutes", price: "$100", detail: "Offers additional time for a more thorough full-body massage while allowing greater attention to areas of persistent tension or restricted mobility." },
+  { duration: "90 minutes", price: "$125", detail: "Provides time for comprehensive full-body work, with the opportunity to address multiple areas of concern through slower, more detailed therapeutic techniques." },
 ];
 
 function DeepTissueVisual({ variant, label, src, position, alt }: { variant: "hero" | "room" | "detail"; label: string; src?: string; position?: string; alt?: string }) {
@@ -619,7 +619,7 @@ function DeepTissuePage() {
             <p className="eyebrow"><span></span>Focused care, your way</p>
             <h2>What Is Deep Tissue Massage?</h2>
             <p>Deep tissue massage is a massage modality that uses slower, more focused strokes and intentional pressure to work with deeper layers of muscle and connective tissue, often called fascia. It is commonly chosen by people who prefer focused attention in areas that feel tight, overworked, or especially tense—such as the back, neck, and shoulders.</p>
-            <p>Your deep tissue massage can be tailored around the areas you would like to prioritize, your comfort level, and your preferred pressure. Deep pressure does not have to mean unbearable pressure. Open communication is encouraged throughout the session, so your therapist can adjust techniques and pressure based on your feedback.</p>
+            <p>Unlike the common misconception that deep tissue massage must be painful, effective deep tissue work is about precision and intention, not simply applying more pressure. Techniques are tailored to your individual needs to help ease muscular tension, improve flexibility, and encourage greater freedom of movement.</p>
           </div>
           <DeepTissueVisual variant="room" label="Warm treatment room setting" src={photoFor("deep-tissue-massage-room")} position={positionFor("deep-tissue-massage-room")} alt={altFor("deep-tissue-massage-room")} />
         </div>
@@ -634,10 +634,10 @@ function DeepTissuePage() {
             <p>A deep tissue massage may be a good option if you prefer a more focused, therapeutic-style massage experience. Before the session begins, you can discuss your wellness goals, the areas you would like to address, and the pressure that feels right for you.</p>
             <p>People often choose deep tissue massage when they want extra attention for areas affected by long periods of sitting, repetitive movement, workouts, or everyday physical demands. Your session is designed around your feedback and comfort, with techniques and pressure adjusted as needed.</p>
             <div className="deep-tissue-points">
-              <div><Check size={18} aria-hidden="true" /><div><strong>Focused attention</strong><span>Spend more time on the areas you want to prioritize, including the back, neck, shoulders, or other areas of concern.</span></div></div>
-              <div><Check size={18} aria-hidden="true" /><div><strong>Pressure tailored to you</strong><span>Share your preferred pressure level and communicate throughout the session if you would like an adjustment.</span></div></div>
-              <div><Check size={18} aria-hidden="true" /><div><strong>Support for active and everyday routines</strong><span>A deep tissue session can be a thoughtful addition to your self-care routine, whether you work at a desk, exercise regularly, or carry physical tension from daily activities.</span></div></div>
-              <div><Check size={18} aria-hidden="true" /><div><strong>A personalized massage experience</strong><span>Begin with a conversation about your goals, preferences, and comfort so the session can be shaped around you.</span></div></div>
+              <div><Check size={18} aria-hidden="true" /><div><strong>Focused Relief for Muscle Tension</strong><span>Targets areas of persistent muscle tightness and discomfort through focused, therapeutic techniques.</span></div></div>
+              <div><Check size={18} aria-hidden="true" /><div><strong>Improved Flexibility and Mobility</strong><span>Helps reduce muscular restrictions that may limit your range of motion, allowing for greater ease of movement.</span></div></div>
+              <div><Check size={18} aria-hidden="true" /><div><strong>Support for Active Lifestyles</strong><span>Beneficial for individuals who exercise regularly, perform repetitive movements, or experience muscle fatigue from physically demanding activities.</span></div></div>
+              <div><Check size={18} aria-hidden="true" /><div><strong>A Personalized Therapeutic Approach</strong><span>Focused techniques are adapted to your specific areas of concern, helping address muscular tension while respecting your body’s individual needs.</span></div></div>
             </div>
           </div>
         </div>
@@ -648,7 +648,10 @@ function DeepTissuePage() {
           <div className="service-pricing-heading">
             <p className="eyebrow"><span></span>Session lengths & pricing</p>
             <h2>Choosing Your Deep Tissue<br /><em>Massage Session Length</em></h2>
-            <p>The amount of time you book helps shape the pace and focus of your session. A shorter appointment can allow for a focused conversation and attention to one priority area, while a longer appointment gives more time to discuss your preferences, move through more of the body, or spend additional time on the areas you would like to prioritize.</p>
+            <p>The length of your session determines how much hands-on massage time you’ll receive.</p>
+            <p>For those seeking focused therapeutic work on specific areas of tension or discomfort, a 30- to 60-minute session may be ideal.</p>
+            <p>A 75-minute session offers a balance between full-body massage and focused therapeutic work, allowing additional attention to areas of concern.</p>
+            <p>If you’re looking for a full-body massage with additional attention to areas of persistent tension, a 90-minute session is often the sweet spot. It allows time for a more comprehensive experience without sacrificing the focused therapeutic work your body needs.</p>
           </div>
           <div className="pricing-table" role="table" aria-label="Deep Tissue Massage session lengths and prices">
             <div className="pricing-header" role="row"><span role="columnheader">Session length</span><span role="columnheader">Displayed price</span><span role="columnheader">Why the time matters</span></div>
@@ -705,15 +708,19 @@ function ServicePage({ service }: { service: Service }) {
   );
 }
 
+function renderServiceParagraph(paragraph: string) {
+  return paragraph.split(/(\*[^*]+\*)/g).map((part, index) => part.startsWith("*") && part.endsWith("*") ? <em key={`${part}-${index}`}>{part.slice(1, -1)}</em> : part);
+}
+
 function StandardServiceInformation({ content, variant, serviceSlug }: { content: StandardServiceContent; variant: "definition" | "why"; serviceSlug: string }) {
   const isWhy = variant === "why";
   const section = isWhy ? content.why : content.definition;
   return (
     <section className={`standard-service-info-section ${isWhy ? "standard-service-info-section-tint" : ""}`}>
       <div className={`container standard-service-info-grid ${isWhy ? "standard-service-info-grid-reverse" : ""}`}>
-        {!isWhy && <div className="standard-service-info-copy"><p className="eyebrow"><span></span>{section.eyebrow}</p><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>}
+        {!isWhy && <div className="standard-service-info-copy"><p className="eyebrow"><span></span>{section.eyebrow}</p><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{renderServiceParagraph(paragraph)}</p>)}</div>}
         <DeepTissueVisual variant={isWhy ? "detail" : "room"} label={isWhy ? "Calm, focused massage treatment setting" : "Warm treatment room setting"} src={photoFor(`${serviceSlug}-${isWhy ? "detail" : "room"}`)} position={positionFor(`${serviceSlug}-${isWhy ? "detail" : "room"}`)} alt={altFor(`${serviceSlug}-${isWhy ? "detail" : "room"}`)} />
-        {isWhy && <div className="standard-service-info-copy"><p className="eyebrow"><span></span>{section.eyebrow}</p><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<div className="standard-service-points">{content.why.points.map((point) => <div key={point.title}><Check size={18} aria-hidden="true" /><div><strong>{point.title}</strong><span>{point.body}</span></div></div>)}</div></div>}
+        {isWhy && <div className="standard-service-info-copy"><p className="eyebrow"><span></span>{section.eyebrow}</p><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{renderServiceParagraph(paragraph)}</p>)}<div className="standard-service-points">{content.why.points.map((point) => <div key={point.title}><Check size={18} aria-hidden="true" /><div><strong>{point.title}</strong><span>{point.body}</span></div></div>)}</div></div>}
       </div>
     </section>
   );
@@ -725,6 +732,7 @@ function StandardServicePricing({ service, content }: { service: Service; conten
       <div className="container">
         <div className="service-pricing-heading"><p className="eyebrow"><span></span>Session lengths & pricing</p><h2>{content.pricing.titleLine1}<br /><em>{content.pricing.titleLine2}</em></h2>{(Array.isArray(content.pricing.introduction) ? content.pricing.introduction : [content.pricing.introduction]).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
         <div className="pricing-table" role="table" aria-label={`${service.name} session lengths and prices`}><div className="pricing-header" role="row"><span role="columnheader">Session length</span><span role="columnheader">Displayed price</span><span role="columnheader">Why the time matters</span></div>{service.pricing.map((option) => <div className="pricing-row" role="row" key={option.duration}><strong role="cell">{option.duration}</strong><b role="cell">{option.price}</b><span role="cell">{content.pricing.details[option.duration] ?? option.detail}</span></div>)}</div>
+        {content.pricing.closing && <p className="deep-tissue-pricing-note">{content.pricing.closing}</p>}
         <p className="deep-tissue-pricing-note">{content.pricing.note}</p>
         <BookingButton label={`Book ${service.name} on MassageBook`} className="service-pricing-cta" />
       </div>
