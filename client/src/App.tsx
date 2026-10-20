@@ -506,6 +506,12 @@ function About() {
           <div className="about-hero-image about-practitioner-image"><img src={TERESA_PORTRAIT} alt="Teresa Nerem, LMT, CLT of Soul Balm Massage Therapy" /><div className="about-portrait-caption">Teresa Nerem, LMT, CLT<span>License: MO 2021007307</span></div></div>
         </div>
       </section>
+      <section className="about-story">
+        <div className="container about-story-grid">
+          <div className="story-side"><p>Kindness, intuition,<br />and dedicated care.</p><p className="about-signature">Massage therapist—because<br /><em>“bad ass miracle worker”</em><br />isn’t an official job title.</p></div>
+          <div className="story-copy"><p className="story-large">Teresa believes self-care begins by giving yourself permission to pause.</p><p>Life is full of ups and downs, and everyday activity, overuse, and emotional demands can leave us carrying tension in our bodies. Soul Balm is an invitation to step out of the hurry, share what you are looking for, and make room for yourself.</p><p>Before your session, Teresa will visit with you about your goals. She has created a relaxing ambience for your reservation at a table for one—dedicated to tending to the back, neck, shoulders, arms, glutes, legs, hands, and feet that carry you through your days.</p><p>Teresa has long appreciated the value of thoughtful touch. She began her helping-profession path in social work, then followed her intuition to massage school. She is grateful for the trust clients place in her as part of their self-care journey.</p><a href={BOOKING_URL} target="_blank" rel="noreferrer" className="button button-primary rounded-btn">Begin your self-care time</a></div>
+        </div>
+      </section>
       <section className="about-story about-soul-balm-story">
         <div className="container">
           <div className="story-copy">
@@ -515,12 +521,6 @@ function About() {
             <p>In July 2026, I completed an additional 24 hours of specialized training in oncology massage. Along the way, I’ve pursued numerous other continuing education opportunities to deepen my knowledge and expand the ways I can support my clients.</p>
             <p>One of the things I love most about massage therapy is that there is always something new to learn. I believe continuing education is an important part of providing thoughtful, knowledgeable, and individualized care, and I look forward to a lifetime of learning and growing in this profession.</p>
           </div>
-        </div>
-      </section>
-      <section className="about-story">
-        <div className="container about-story-grid">
-          <div className="story-side"><p>Kindness, intuition,<br />and dedicated care.</p><p className="about-signature">Massage therapist—because<br /><em>“bad ass miracle worker”</em><br />isn’t an official job title.</p></div>
-          <div className="story-copy"><p className="story-large">Teresa believes self-care begins by giving yourself permission to pause.</p><p>Life is full of ups and downs, and everyday activity, overuse, and emotional demands can leave us carrying tension in our bodies. Soul Balm is an invitation to step out of the hurry, share what you are looking for, and make room for yourself.</p><p>Before your session, Teresa will visit with you about your goals. She has created a relaxing ambience for your reservation at a table for one—dedicated to tending to the back, neck, shoulders, arms, glutes, legs, hands, and feet that carry you through your days.</p><p>Teresa has long appreciated the value of thoughtful touch. She began her helping-profession path in social work, then followed her intuition to massage school. She is grateful for the trust clients place in her as part of their self-care journey.</p><a href={BOOKING_URL} target="_blank" rel="noreferrer" className="button button-primary rounded-btn">Begin your self-care time</a></div>
         </div>
       </section>
       <section className="about-background"><div className="container about-background-grid"><div><p className="eyebrow"><span></span>Professional background</p><h2>A career built around<br /><em>helping people.</em></h2></div><div className="about-background-card"><p className="about-background-kicker">Teresa’s confirmed experience</p><div><strong>Massage-school training</strong><span>Teresa followed her intuition into massage therapy after beginning her helping-profession journey in social work.</span></div><div><strong>Thoughtful, one-on-one care</strong><span>Every appointment begins with a conversation about your goals, comfort, and the kind of attention you are seeking that day.</span></div><div><strong>Modalities offered</strong><span>Swedish, Deep Tissue, Prenatal, Ashiatsu, Oncology Massage, and Lymphatic Massage.</span></div></div></div></section>
