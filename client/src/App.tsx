@@ -8,6 +8,7 @@ import {
   ChevronUp,
   Clock3,
   Gift,
+  Instagram,
   Leaf,
   MapPin,
   Menu,
@@ -27,8 +28,9 @@ const BOOKING_URL = "https://www.massagebook.com/business/21948933/select-produc
 const GIFT_CERTIFICATE_URL = "https://www.massagebook.com/therapists/SoulBalmMassageTherapy/gift-certificates";
 const GOOGLE_REVIEWS_URL = "https://share.google/aUmBJQzV8F1xphb8B";
 const FACEBOOK_URL = "https://www.facebook.com/soulbalmmassagetherapy";
+// Replace with Teresa's real Instagram link when it is available.
+const INSTAGRAM_URL = "https://www.instagram.com/";
 const PHONE = "6603412202";
-const SMS_PHONE = "+16603412202";
 const ADDRESS = "216 NE Barry Rd, Kansas City, MO 64155";
 const MAPS_URL = "https://www.google.com/maps/place/Soul+Balm+Massage+Therapy/@39.2471109,-94.57844,17z/data=!3m1!4b1!4m6!3m5!1s0x87e80f40f22f9b03:0x439fe7543d3708da!8m2!3d39.2471109!4d-94.57844!16s%2Fg%2F11vf97jvzt";
 const MAPS_SHARE_URL = "https://share.google/Rm6CNLfwqt1LrZTtQ";
@@ -183,7 +185,7 @@ function Header() {
 function MobileActionBar() {
   return (
     <div className="mobile-action-bar" role="region" aria-label="Quick booking">
-      <div className="mobile-action-contact"><a className="mobile-action-call" href={`tel:${PHONE}`}><Phone size={17} /> Call or text</a><a className="mobile-action-text" href={`sms:${SMS_PHONE}`}>Text</a></div>
+      <div className="mobile-action-contact"><a className="mobile-action-call" href={`tel:${PHONE}`}><Phone size={17} /> Call or text</a></div>
       <a className="mobile-action-book" href={BOOKING_URL} target="_blank" rel="noreferrer">Book Your Session</a>
     </div>
   );
@@ -196,7 +198,7 @@ function Footer() {
         <div className="footer-brand">
           <Link href="/" onClick={returnHomeToTop} className="footer-logo-panel" aria-label="Soul Balm Massage Therapy home"><img src={LOGO} alt="Soul Balm Massage Therapy" /></Link>
           <p>A dedicated table for one, with space to pause and reconnect with yourself.</p>
-          <div className="footer-phone"><span>Call or text</span><a className="footer-phone-number" href={`tel:${PHONE}`}><Phone size={15} /> (660) 341-2202</a><a className="phone-text-link" href={`sms:${SMS_PHONE}`}>Text</a></div>
+          <div className="footer-phone"><span>Call or text</span><a className="footer-phone-number" href={`tel:${PHONE}`}><Phone size={15} /> (660) 341-2202</a></div>
         </div>
         <div className="footer-links">
           <p className="footer-kicker">Explore</p>
@@ -206,6 +208,7 @@ function Footer() {
           <a href={GIFT_CERTIFICATE_URL} target="_blank" rel="noreferrer">Gift certificates</a>
           <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer">Google reviews</a>
           <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">Facebook page</a>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={14} aria-hidden="true" /> Instagram</a>
         </div>
         <div className="footer-links">
           <p className="footer-kicker">Services</p>
@@ -447,10 +450,13 @@ function Home() {
             />
             <div className="location-details">
               <p><MapPin size={18} /> <strong>Address:</strong><br /><a href={MAPS_URL} target="_blank" rel="noreferrer" className="selectable-address">{ADDRESS}</a></p>
-              <p><Phone size={18} /> <strong>Call or text:</strong><br /><a className="phone-number-link" href={`tel:${PHONE}`}>(660) 341-2202</a> <a className="phone-text-link" href={`sms:${SMS_PHONE}`}>Text</a></p>
+              <p><Phone size={18} /> <strong>Call or text:</strong><br /><a className="phone-number-link" href={`tel:${PHONE}`}>(660) 341-2202</a></p>
               <div className="social-links">
                 <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="button button-primary button-small rounded-btn">
                   Follow on Facebook
+                </a>
+                <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="button button-primary button-small rounded-btn">
+                  <Instagram size={16} aria-hidden="true" /> Follow on Instagram
                 </a>
               </div>
             </div>
@@ -495,7 +501,7 @@ function Home() {
             </details>
             <details>
               <summary>Who should I contact with a question?<ChevronDown size={18} /></summary>
-              <p>Call or text Soul Balm Massage Therapy at <a className="phone-number-link" href={`tel:${PHONE}`}>(660) 341-2202</a> or <a className="phone-text-link" href={`sms:${SMS_PHONE}`}>Text</a> with questions about your visit or scheduling.</p>
+              <p>Call or text Soul Balm Massage Therapy at <a className="phone-number-link" href={`tel:${PHONE}`}>(660) 341-2202</a> with questions about your visit or scheduling.</p>
             </details>
           </div>
         </div>
@@ -765,7 +771,7 @@ function Contact() {
   return (
     <PageLayout>
       <PageMeta fullTitle="Contact Soul Balm Massage Therapy | Kansas City, MO" description="Contact Soul Balm Massage Therapy in Kansas City, MO for appointment questions, directions, and online booking information." />
-      <section className="contact-simple-section"><div className="container contact-simple-grid"><div className="contact-phone-block"><p className="eyebrow"><span></span>Contact Soul Balm</p><h1>Call Soul<br /><em>Balm.</em></h1><p className="contact-phone-label">Call or text</p><div className="contact-simple-phone"><a className="contact-simple-phone-number" href={`tel:${PHONE}`}><Phone size={18} />(660) 341-2202</a><a className="phone-text-link" href={`sms:${SMS_PHONE}`}>Text</a></div></div><div className="contact-hours-block"><p className="eyebrow"><span></span>Appointment hours</p><h2>Time for<br /><em>your reset.</em></h2><div className="contact-hours-list"><div><strong>Monday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Tuesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Wednesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Thursday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Friday</strong><span>9:00 AM–4:00 PM</span><small>By appointment only</small></div><div><strong>Saturday</strong><span>Closed</span></div><div><strong>Sunday</strong><span>Closed</span></div></div></div><div className="map-embed-wrap contact-simple-map"><LocationMap /><a className="button button-primary button-small rounded-btn" href={MAPS_URL} target="_blank" rel="noreferrer"><MapPin size={15} /> Get directions</a></div></div></section>
+      <section className="contact-simple-section"><div className="container contact-simple-grid"><div className="contact-phone-block"><p className="eyebrow"><span></span>Contact Soul Balm</p><h1>Call Soul<br /><em>Balm.</em></h1><p className="contact-phone-label">Call or text</p><div className="contact-simple-phone"><a className="contact-simple-phone-number" href={`tel:${PHONE}`}><Phone size={18} />(660) 341-2202</a></div></div><div className="contact-hours-block"><p className="eyebrow"><span></span>Appointment hours</p><h2>Time for<br /><em>your reset.</em></h2><div className="contact-hours-list"><div><strong>Monday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Tuesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Wednesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Thursday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Friday</strong><span>9:00 AM–4:00 PM</span><small>By appointment only</small></div><div><strong>Saturday</strong><span>Closed</span></div><div><strong>Sunday</strong><span>Closed</span></div></div></div><div className="map-embed-wrap contact-simple-map"><LocationMap /><a className="button button-primary button-small rounded-btn" href={MAPS_URL} target="_blank" rel="noreferrer"><MapPin size={15} /> Get directions</a></div></div></section>
     </PageLayout>
   );
 }
@@ -784,8 +790,8 @@ function LegalPage({ type }: { type: "privacy" | "terms" }) {
   );
 }
 
- function PrivacyCopy() { return <><h2>Overview</h2><p>This policy explains how Soul Balm Massage Therapy may handle information provided through this website. The website is intended to help visitors learn about massage services, find the studio, and access the online booking platform.</p><h2>Information provided through booking</h2><p>Online booking is provided through MassageBook. When you follow a booking link, information you provide there is governed by MassageBook’s applicable policies and the service policies presented during the booking process.</p><h2>Website communications</h2><p>If you contact Soul Balm by phone or through an approved communication channel, the information you provide may be used to respond to your question or help with your appointment. Please do not send sensitive health information through unprotected channels.</p><h2>Updates to this policy</h2><p>This policy may be updated as business practices or website tools change. The effective date above will be updated when material changes are made.</p><h2>Questions</h2><p>For questions about this policy, please contact Soul Balm Massage Therapy by <span>Call or text</span> at <a className="phone-number-link" href={`tel:${PHONE}`}>(660) 341-2202</a> or <a className="phone-text-link" href={`sms:${SMS_PHONE}`}>Text</a>.</p></> }
- function TermsCopy() { return <><h2>Website use</h2><p>This website provides general information about Soul Balm Massage Therapy and its massage services. It is not medical advice and is not a substitute for consultation with a qualified healthcare professional.</p><h2>Appointments and booking</h2><p>Appointments are scheduled through MassageBook. Available services, appointment times, pricing, policies, and any applicable intake requirements are presented in the booking process and are subject to confirmation there.</p><h2>Health considerations</h2><p>Please discuss questions about health conditions, medications, pregnancy, or whether massage is appropriate for you with your healthcare provider. Share relevant information requested through the approved intake process before your session.</p><h2>Changes to availability</h2><p>Service availability, appointment options, and studio information may change. The online booking page is the most current source for available appointments.</p><h2>Questions</h2><p>For questions about a planned visit, please call or text Soul Balm Massage Therapy at <a className="phone-number-link" href={`tel:${PHONE}`}>(660) 341-2202</a> or <a className="phone-text-link" href={`sms:${SMS_PHONE}`}>Text</a>.</p></> }
+ function PrivacyCopy() { return <><h2>Overview</h2><p>This policy explains how Soul Balm Massage Therapy may handle information provided through this website. The website is intended to help visitors learn about massage services, find the studio, and access the online booking platform.</p><h2>Information provided through booking</h2><p>Online booking is provided through MassageBook. When you follow a booking link, information you provide there is governed by MassageBook’s applicable policies and the service policies presented during the booking process.</p><h2>Website communications</h2><p>If you contact Soul Balm by phone or through an approved communication channel, the information you provide may be used to respond to your question or help with your appointment. Please do not send sensitive health information through unprotected channels.</p><h2>Updates to this policy</h2><p>This policy may be updated as business practices or website tools change. The effective date above will be updated when material changes are made.</p><h2>Questions</h2><p>For questions about this policy, please contact Soul Balm Massage Therapy by <span>Call or text</span> at <a className="phone-number-link" href={`tel:${PHONE}`}>(660) 341-2202</a>.</p></> }
+ function TermsCopy() { return <><h2>Website use</h2><p>This website provides general information about Soul Balm Massage Therapy and its massage services. It is not medical advice and is not a substitute for consultation with a qualified healthcare professional.</p><h2>Appointments and booking</h2><p>Appointments are scheduled through MassageBook. Available services, appointment times, pricing, policies, and any applicable intake requirements are presented in the booking process and are subject to confirmation there.</p><h2>Health considerations</h2><p>Please discuss questions about health conditions, medications, pregnancy, or whether massage is appropriate for you with your healthcare provider. Share relevant information requested through the approved intake process before your session.</p><h2>Changes to availability</h2><p>Service availability, appointment options, and studio information may change. The online booking page is the most current source for available appointments.</p><h2>Questions</h2><p>For questions about a planned visit, please call or text Soul Balm Massage Therapy at <a className="phone-number-link" href={`tel:${PHONE}`}>(660) 341-2202</a>.</p></> }
 
 function ServicesIndex() {
   return (

@@ -864,6 +864,7 @@
 
 .location-details .social-links {
   display: flex;
+  gap: 10px;
   justify-content: flex-end;
 }
 
@@ -2684,7 +2685,7 @@ a.reviews-card-link:hover { transform: translateY(-2px); }
     border-top: 1px solid #DDD5C7;
     box-shadow: 0 -8px 24px rgba(63, 77, 66, .12);
   }
-  .mobile-action-contact { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px; }
+  .mobile-action-contact { display: grid; grid-template-columns: minmax(0, 1fr); }
   .mobile-action-bar a {
     display: flex; align-items: center; justify-content: center; gap: 7px;
     min-height: 48px; border-radius: 6px;
