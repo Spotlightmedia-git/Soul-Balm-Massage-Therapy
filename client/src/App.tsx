@@ -118,15 +118,25 @@ function Wordmark({ compact = false }: { compact?: boolean }) {
   return <img className={compact ? "wordmark wordmark-compact" : "wordmark"} src={LOGO} alt="Soul Balm Massage Therapy" />;
 }
 
+function returnHomeToTop() {
+  const scrollToTop = () => window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  scrollToTop();
+  window.requestAnimationFrame(scrollToTop);
+}
+
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const closeMenu = () => setIsOpen(false);
+  const handleBrandClick = () => {
+    closeMenu();
+    returnHomeToTop();
+  };
 
   return (
     <header className="site-header">
       <div className="container nav-shell">
-        <Link href="/" onClick={closeMenu} className="brand-link" aria-label="Soul Balm Massage Therapy home">
+        <Link href="/" onClick={handleBrandClick} className="brand-link" aria-label="Soul Balm Massage Therapy home">
           <Wordmark compact />
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
@@ -184,7 +194,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="container footer-top">
         <div className="footer-brand">
-          <Link href="/" className="footer-logo-panel" aria-label="Soul Balm Massage Therapy home"><img src={LOGO} alt="Soul Balm Massage Therapy" /></Link>
+          <Link href="/" onClick={returnHomeToTop} className="footer-logo-panel" aria-label="Soul Balm Massage Therapy home"><img src={LOGO} alt="Soul Balm Massage Therapy" /></Link>
           <p>A dedicated table for one, with space to pause and reconnect with yourself.</p>
           <div className="footer-phone"><span>Call or text</span><a className="footer-phone-number" href={`tel:${PHONE}`}><Phone size={15} /> (660) 341-2202</a><a className="phone-text-link" href={`sms:${SMS_PHONE}`}>Text</a></div>
         </div>
