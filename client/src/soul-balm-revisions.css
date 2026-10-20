@@ -2399,6 +2399,41 @@
   font-size: clamp(42px, 5vw, 65px);
 }
 
+.about-certification-placeholder {
+  display: grid;
+  width: min(100%, 480px);
+  aspect-ratio: 4 / 3;
+  margin: 32px auto;
+  overflow: hidden;
+  place-items: center;
+  background: #F3EDE3;
+  border: 1px solid #DDD5C7;
+  border-radius: 4px;
+  box-shadow: 0 8px 18px rgba(63, 77, 66, .14);
+}
+
+.about-certification-placeholder > div {
+  display: grid;
+  gap: 5px;
+  place-items: center;
+  color: #5F695F;
+  text-align: center;
+}
+
+.about-certification-placeholder strong {
+  color: #3F4D42;
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.about-certification-placeholder span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
 /* Simplified Contact page: phone, map, directions, and appointment hours only. */
 .contact-simple-section {
   padding: 112px 0;
