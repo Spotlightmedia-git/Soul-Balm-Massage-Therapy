@@ -2389,6 +2389,16 @@
   justify-content: center;
 }
 
+.about-soul-balm-story .story-copy {
+  margin: 0 auto;
+}
+
+.about-soul-balm-story h2 {
+  margin: 0 0 28px;
+  color: #3F4D42;
+  font-size: clamp(42px, 5vw, 65px);
+}
+
 /* Simplified Contact page: phone, map, directions, and appointment hours only. */
 .contact-simple-section {
   padding: 112px 0;
@@ -2425,6 +2435,15 @@
   font-family: "DM Serif Display", Georgia, serif;
   font-size: clamp(28px, 3vw, 38px);
   line-height: 1.15;
+  white-space: nowrap;
+}
+
+.contact-simple-phone-number,
+.footer-phone-number {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: inherit;
 }
 
 .contact-simple-phone svg {
@@ -2566,6 +2585,15 @@
   font-size: 12px;
 }
 
+.phone-text-link {
+  color: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 @media (max-width: 600px) {
   .site-footer .footer-logo-panel {
     width: min(100%, 220px);
@@ -2608,18 +2636,20 @@ a.reviews-card-link:hover { transform: translateY(-2px); }
 @media (max-width: 900px) {
   .mobile-action-bar {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-    display: grid; grid-template-columns: 1fr 2fr; gap: 10px;
+    display: grid; grid-template-columns: minmax(0, 1.17fr) minmax(0, 1fr); gap: 10px;
     padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
     background: rgba(243, 237, 227, .97);
     border-top: 1px solid #DDD5C7;
     box-shadow: 0 -8px 24px rgba(63, 77, 66, .12);
   }
+  .mobile-action-contact { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px; }
   .mobile-action-bar a {
     display: flex; align-items: center; justify-content: center; gap: 7px;
     min-height: 48px; border-radius: 6px;
     font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
   }
-  .mobile-action-call { border: 1px solid #3F4D42; color: #3F4D42; background: transparent; }
+  .mobile-action-call { border: 1px solid #3F4D42; color: #3F4D42; background: transparent; font-size: 11px !important; letter-spacing: .04em !important; white-space: nowrap; }
+  .mobile-action-text { color: #3F4D42; font-size: 11px !important; letter-spacing: .04em !important; white-space: nowrap; }
   .mobile-action-book { background: #7A4E2E; color: #F5F4EE; border: 1px solid #E6C681; }
   body { padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
 }

@@ -172,7 +172,7 @@ function Header() {
 function MobileActionBar() {
   return (
     <div className="mobile-action-bar" role="region" aria-label="Quick booking">
-      <a className="mobile-action-call" href={`tel:${PHONE}`}><Phone size={17} /> Call</a>
+      <div className="mobile-action-contact"><a className="mobile-action-call" href={`tel:${PHONE}`}><Phone size={17} /> Call or text</a><a className="mobile-action-text" href={`sms:${PHONE}`}>Text</a></div>
       <a className="mobile-action-book" href={BOOKING_URL} target="_blank" rel="noreferrer">Book Your Session</a>
     </div>
   );
@@ -185,7 +185,7 @@ function Footer() {
         <div className="footer-brand">
           <div className="footer-logo-panel"><img src={LOGO} alt="Soul Balm Massage Therapy" /></div>
           <p>A dedicated table for one, with space to pause and reconnect with yourself.</p>
-          <a className="footer-phone" href={`tel:${PHONE}`}><Phone size={15} /> (660) 341-2202</a>
+          <div className="footer-phone"><span>Call or text</span><a className="footer-phone-number" href={`tel:${PHONE}`}><Phone size={15} /> (660) 341-2202</a><a className="phone-text-link" href={`sms:${PHONE}`}>Text</a></div>
         </div>
         <div className="footer-links">
           <p className="footer-kicker">Explore</p>
@@ -202,7 +202,7 @@ function Footer() {
         </div>
         <div className="footer-visit">
           <p className="footer-kicker">Visit</p>
-          <p className="footer-hours"><strong>Mon &amp; Fri 9–4 · Tue–Thu 9–5</strong><span>By appointment only</span></p>
+          <p className="footer-hours"><strong>Mon–Thu 9–5 · Fri 9–4</strong><span>By appointment only</span></p>
           <a href={MAPS_URL} target="_blank" rel="noreferrer" className="selectable-address">
             {ADDRESS}
           </a>
@@ -436,7 +436,7 @@ function Home() {
             />
             <div className="location-details">
               <p><MapPin size={18} /> <strong>Address:</strong><br /><a href={MAPS_URL} target="_blank" rel="noreferrer" className="selectable-address">{ADDRESS}</a></p>
-              <p><Phone size={18} /> <strong>Phone:</strong><br /><a href={`tel:${PHONE}`}>(660) 341-2202</a></p>
+              <p><Phone size={18} /> <strong>Call or text:</strong><br /><a href={`tel:${PHONE}`}>(660) 341-2202</a> <a className="phone-text-link" href={`sms:${PHONE}`}>Text</a></p>
               <div className="social-links">
                 <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="button button-primary button-small rounded-btn">
                   Follow on Facebook
@@ -472,7 +472,7 @@ function Home() {
             </details>
             <details>
               <summary>What are your appointment hours?<ChevronDown size={18} /></summary>
-              <p>Soul Balm is open Monday and Friday 9:00 AM–4:00 PM and Tuesday through Thursday 9:00 AM–5:00 PM, by appointment only. Closed Saturday and Sunday.</p>
+              <p>Soul Balm is open Monday through Thursday 9:00 AM–5:00 PM and Friday 9:00 AM–4:00 PM, by appointment only. Closed Saturday and Sunday.</p>
             </details>
             <details>
               <summary>What massage services do you offer?<ChevronDown size={18} /></summary>
@@ -484,7 +484,7 @@ function Home() {
             </details>
             <details>
               <summary>Who should I contact with a question?<ChevronDown size={18} /></summary>
-              <p>Call Soul Balm Massage Therapy at (660) 341-2202 with questions about your visit or scheduling.</p>
+              <p>Call or text Soul Balm Massage Therapy at <a href={`tel:${PHONE}`}>(660) 341-2202</a> or <a className="phone-text-link" href={`sms:${PHONE}`}>Text</a> with questions about your visit or scheduling.</p>
             </details>
           </div>
         </div>
@@ -501,8 +501,19 @@ function About() {
       <PageMeta fullTitle="About Soul Balm Massage Therapy | Kansas City, MO" description="Meet Teresa Nerem and learn about Soul Balm Massage Therapy's thoughtful, one-on-one approach in Kansas City, Missouri." />
       <section className="page-hero about-hero">
         <div className="container page-hero-grid">
-          <div><p className="eyebrow"><span></span>Meet Teresa</p><h1>Care that honors<br /><em>the whole of you.</em></h1><p>At Soul Balm, massage is more than a scheduled appointment. It is permission to pause.</p></div>
-          <div className="about-hero-image about-practitioner-image"><img src={TERESA_PORTRAIT} alt="Teresa Nerem of Soul Balm Massage Therapy" /><div className="about-portrait-caption">Teresa Nerem<span>License: MO 2021007307</span></div></div>
+          <div><p className="eyebrow"><span></span>Meet Teresa Nerem, LMT, CLT</p><h1>Care that honors<br /><em>the whole of you.</em></h1><p>At Soul Balm, massage is more than a scheduled appointment. It is permission to pause.</p></div>
+          <div className="about-hero-image about-practitioner-image"><img src={TERESA_PORTRAIT} alt="Teresa Nerem, LMT, CLT of Soul Balm Massage Therapy" /><div className="about-portrait-caption">Teresa Nerem, LMT, CLT<span>License: MO 2021007307</span></div></div>
+        </div>
+      </section>
+      <section className="about-story about-soul-balm-story">
+        <div className="container">
+          <div className="story-copy">
+            <h2>The Story Behind Soul Balm</h2>
+            <p>The name Soul Balm Massage Therapy came to me during my time in massage school. While completing my clinical training, a client left a review describing my massage as “balm to her soul.” Those words deeply resonated with me and have stayed with me ever since. They captured exactly what I hoped to offer through my work—not just relief from physical tension, but a soothing, nurturing experience that reaches beyond the body. My intention has always been to create a space where people can pause, feel cared for, and leave feeling restored in both body and spirit. That is the heart behind Soul Balm Massage Therapy.</p>
+            <p>I graduated from Wellspring School of Allied Health in May 2021, completing 750 hours of massage therapy education. The following year, I expanded my training to include Ashiatsu massage, and in 2023, I earned my certification in Manual Lymphatic Drainage (MLD) using the Vodder Technique and Complete Decongestive Therapy (CDT).</p>
+            <p>In July 2026, I completed an additional 24 hours of specialized training in oncology massage. Along the way, I’ve pursued numerous other continuing education opportunities to deepen my knowledge and expand the ways I can support my clients.</p>
+            <p>One of the things I love most about massage therapy is that there is always something new to learn. I believe continuing education is an important part of providing thoughtful, knowledgeable, and individualized care, and I look forward to a lifetime of learning and growing in this profession.</p>
+          </div>
         </div>
       </section>
       <section className="about-story">
@@ -511,7 +522,7 @@ function About() {
           <div className="story-copy"><p className="story-large">Teresa believes self-care begins by giving yourself permission to pause.</p><p>Life is full of ups and downs, and everyday activity, overuse, and emotional demands can leave us carrying tension in our bodies. Soul Balm is an invitation to step out of the hurry, share what you are looking for, and make room for yourself.</p><p>Before your session, Teresa will visit with you about your goals. She has created a relaxing ambience for your reservation at a table for one—dedicated to tending to the back, neck, shoulders, arms, glutes, legs, hands, and feet that carry you through your days.</p><p>Teresa has long appreciated the value of thoughtful touch. She began her helping-profession path in social work, then followed her intuition to massage school. She is grateful for the trust clients place in her as part of their self-care journey.</p><a href={BOOKING_URL} target="_blank" rel="noreferrer" className="button button-primary rounded-btn">Begin your self-care time</a></div>
         </div>
       </section>
-      <section className="about-background"><div className="container about-background-grid"><div><p className="eyebrow"><span></span>Professional background</p><h2>A career built around<br /><em>helping people.</em></h2></div><div className="about-background-card"><p className="about-background-kicker">Teresa’s confirmed experience</p><div><strong>Massage-school training</strong><span>Teresa followed her intuition into massage therapy after beginning her helping-profession journey in social work.</span></div><div><strong>Thoughtful, one-on-one care</strong><span>Every appointment begins with a conversation about your goals, comfort, and the kind of attention you are seeking that day.</span></div><div><strong>Modalities offered</strong><span>Swedish, Deep Tissue, Prenatal, Ashiatsu, Ashi/Thai, and Lymphatic Massage.</span></div></div></div></section>
+      <section className="about-background"><div className="container about-background-grid"><div><p className="eyebrow"><span></span>Professional background</p><h2>A career built around<br /><em>helping people.</em></h2></div><div className="about-background-card"><p className="about-background-kicker">Teresa’s confirmed experience</p><div><strong>Massage-school training</strong><span>Teresa followed her intuition into massage therapy after beginning her helping-profession journey in social work.</span></div><div><strong>Thoughtful, one-on-one care</strong><span>Every appointment begins with a conversation about your goals, comfort, and the kind of attention you are seeking that day.</span></div><div><strong>Modalities offered</strong><span>Swedish, Deep Tissue, Prenatal, Ashiatsu, Oncology massage, and Lymphatic Massage.</span></div></div></div></section>
       <section className="about-beliefs"><div className="container"><SectionHeading center eyebrow="What to expect from Teresa" title={<>A session shaped by<br /><em>your needs.</em></>} body="Her philosophy is simple: slow down, listen first, and make the time at the table feel dedicated to you." /><div className="belief-grid"><article><h3>Your goals guide the session</h3><p>Teresa begins by asking what you would like to focus on and welcomes feedback throughout your appointment.</p></article><article><h3>A calm table for one</h3><p>Your time is reserved in a relaxing, private setting designed to help you step out of the hurry.</p></article><article><h3>Care without the rush</h3><p>Each visit is an opportunity to pause, reconnect with yourself, and receive thoughtful attention at a comfortable pace.</p></article></div></div></section>
       <section className="reviews-section client-reviews-section about-client-reviews"><div className="container reviews-grid"><div><p className="eyebrow"><span></span>Client Reviews</p><h2>Kind words from the<br /><em>people Teresa serves.</em></h2></div><GoogleRatingCard /><TestimonialCarousel /></div></section>
       <section className="soft-cta about-soft-cta"><div className="container"><div><p className="eyebrow"><span></span>Make time for you</p><h2>Your table is<br /><em>waiting.</em></h2></div><BookingButton label="Reserve your session" /></div></section>
@@ -734,7 +745,7 @@ function Contact() {
   return (
     <PageLayout>
       <PageMeta fullTitle="Contact Soul Balm Massage Therapy | Kansas City, MO" description="Contact Soul Balm Massage Therapy in Kansas City, MO for appointment questions, directions, and online booking information." />
-      <section className="contact-simple-section"><div className="container contact-simple-grid"><div className="contact-phone-block"><p className="eyebrow"><span></span>Contact Soul Balm</p><h1>Call Soul<br /><em>Balm.</em></h1><p className="contact-phone-label">Phone</p><a className="contact-simple-phone" href={`tel:${PHONE}`}><Phone size={18} />(660) 341-2202</a></div><div className="contact-hours-block"><p className="eyebrow"><span></span>Appointment hours</p><h2>Time for<br /><em>your reset.</em></h2><div className="contact-hours-list"><div><strong>Monday</strong><span>9:00 AM–4:00 PM</span><small>By appointment only</small></div><div><strong>Tuesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Wednesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Thursday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Friday</strong><span>9:00 AM–4:00 PM</span><small>By appointment only</small></div><div><strong>Saturday</strong><span>Closed</span></div><div><strong>Sunday</strong><span>Closed</span></div></div></div><div className="map-embed-wrap contact-simple-map"><LocationMap /><a className="button button-primary button-small rounded-btn" href={MAPS_URL} target="_blank" rel="noreferrer"><MapPin size={15} /> Get directions</a></div></div></section>
+      <section className="contact-simple-section"><div className="container contact-simple-grid"><div className="contact-phone-block"><p className="eyebrow"><span></span>Contact Soul Balm</p><h1>Call Soul<br /><em>Balm.</em></h1><p className="contact-phone-label">Call or text</p><div className="contact-simple-phone"><a className="contact-simple-phone-number" href={`tel:${PHONE}`}><Phone size={18} />(660) 341-2202</a><a className="phone-text-link" href={`sms:${PHONE}`}>Text</a></div></div><div className="contact-hours-block"><p className="eyebrow"><span></span>Appointment hours</p><h2>Time for<br /><em>your reset.</em></h2><div className="contact-hours-list"><div><strong>Monday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Tuesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Wednesday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Thursday</strong><span>9:00 AM–5:00 PM</span><small>By appointment only</small></div><div><strong>Friday</strong><span>9:00 AM–4:00 PM</span><small>By appointment only</small></div><div><strong>Saturday</strong><span>Closed</span></div><div><strong>Sunday</strong><span>Closed</span></div></div></div><div className="map-embed-wrap contact-simple-map"><LocationMap /><a className="button button-primary button-small rounded-btn" href={MAPS_URL} target="_blank" rel="noreferrer"><MapPin size={15} /> Get directions</a></div></div></section>
     </PageLayout>
   );
 }
@@ -753,8 +764,8 @@ function LegalPage({ type }: { type: "privacy" | "terms" }) {
   );
 }
 
-function PrivacyCopy() { return <><h2>Overview</h2><p>This policy explains how Soul Balm Massage Therapy may handle information provided through this website. The website is intended to help visitors learn about massage services, find the studio, and access the online booking platform.</p><h2>Information provided through booking</h2><p>Online booking is provided through MassageBook. When you follow a booking link, information you provide there is governed by MassageBook’s applicable policies and the service policies presented during the booking process.</p><h2>Website communications</h2><p>If you contact Soul Balm by phone or through an approved communication channel, the information you provide may be used to respond to your question or help with your appointment. Please do not send sensitive health information through unprotected channels.</p><h2>Updates to this policy</h2><p>This policy may be updated as business practices or website tools change. The effective date above will be updated when material changes are made.</p><h2>Questions</h2><p>For questions about this policy, please contact Soul Balm Massage Therapy by phone at <a href={`tel:${PHONE}`}>(660) 341-2202</a>.</p></> }
-function TermsCopy() { return <><h2>Website use</h2><p>This website provides general information about Soul Balm Massage Therapy and its massage services. It is not medical advice and is not a substitute for consultation with a qualified healthcare professional.</p><h2>Appointments and booking</h2><p>Appointments are scheduled through MassageBook. Available services, appointment times, pricing, policies, and any applicable intake requirements are presented in the booking process and are subject to confirmation there.</p><h2>Health considerations</h2><p>Please discuss questions about health conditions, medications, pregnancy, or whether massage is appropriate for you with your healthcare provider. Share relevant information requested through the approved intake process before your session.</p><h2>Changes to availability</h2><p>Service availability, appointment options, and studio information may change. The online booking page is the most current source for available appointments.</p><h2>Questions</h2><p>For questions about a planned visit, please call Soul Balm Massage Therapy at <a href={`tel:${PHONE}`}>(660) 341-2202</a>.</p></> }
+ function PrivacyCopy() { return <><h2>Overview</h2><p>This policy explains how Soul Balm Massage Therapy may handle information provided through this website. The website is intended to help visitors learn about massage services, find the studio, and access the online booking platform.</p><h2>Information provided through booking</h2><p>Online booking is provided through MassageBook. When you follow a booking link, information you provide there is governed by MassageBook’s applicable policies and the service policies presented during the booking process.</p><h2>Website communications</h2><p>If you contact Soul Balm by phone or through an approved communication channel, the information you provide may be used to respond to your question or help with your appointment. Please do not send sensitive health information through unprotected channels.</p><h2>Updates to this policy</h2><p>This policy may be updated as business practices or website tools change. The effective date above will be updated when material changes are made.</p><h2>Questions</h2><p>For questions about this policy, please contact Soul Balm Massage Therapy by <span>Call or text</span> at <a href={`tel:${PHONE}`}>(660) 341-2202</a> or <a className="phone-text-link" href={`sms:${PHONE}`}>Text</a>.</p></> }
+ function TermsCopy() { return <><h2>Website use</h2><p>This website provides general information about Soul Balm Massage Therapy and its massage services. It is not medical advice and is not a substitute for consultation with a qualified healthcare professional.</p><h2>Appointments and booking</h2><p>Appointments are scheduled through MassageBook. Available services, appointment times, pricing, policies, and any applicable intake requirements are presented in the booking process and are subject to confirmation there.</p><h2>Health considerations</h2><p>Please discuss questions about health conditions, medications, pregnancy, or whether massage is appropriate for you with your healthcare provider. Share relevant information requested through the approved intake process before your session.</p><h2>Changes to availability</h2><p>Service availability, appointment options, and studio information may change. The online booking page is the most current source for available appointments.</p><h2>Questions</h2><p>For questions about a planned visit, please call or text Soul Balm Massage Therapy at <a href={`tel:${PHONE}`}>(660) 341-2202</a> or <a className="phone-text-link" href={`sms:${PHONE}`}>Text</a>.</p></> }
 
 function ServicesIndex() {
   return (

@@ -7,8 +7,8 @@ This is a **private review build**, not a published site. It deliberately contai
 - Public business name: **Soul Balm Massage Therapy, LLC**
 - Booking location: **216 NE Barry Rd, Kansas City, MO 64155**
 - Phone: **(660) 341-2202**
-- Schedule display: Monday through Friday, by appointment only; Saturday and Sunday closed
-- Services named on the page: Swedish, Deep Tissue, Pre-natal, Ashiatsu, Ashi/Thai, and Lymphatic Massage
+- Schedule display: Monday through Thursday 9:00 AM–5:00 PM and Friday 9:00 AM–4:00 PM, by appointment only; Saturday and Sunday closed
+- Services named on the page: Swedish, Deep Tissue, Pre-natal, Ashiatsu, and Lymphatic Massage
 - Booking destination used throughout the draft: `https://www.massagebook.com/business/21948933/select-product/services`
 - Gift certificate, Google review, Facebook, and Google Maps destinations were supplied in the September 5, 2026 revision request.
 
@@ -38,5 +38,3 @@ The requested ten pages are implemented as client-side routes:
 - The homepage FAQ is a short draft limited to verified public booking, location, hours, service, gift-certificate, and contact facts. Replace or expand it only after Teresa supplies the real pre-booking questions and approved answers.
 
 ## Not included in the requested ten-page scope
-
-Ashi/Thai massage appears in the supplied MassageBook description but is not included as its own page because the requested scope specifies five service pages. Confirm whether that service should be active or represented before launch.
