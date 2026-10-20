@@ -184,7 +184,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="container footer-top">
         <div className="footer-brand">
-          <div className="footer-logo-panel"><img src={LOGO} alt="Soul Balm Massage Therapy" /></div>
+          <Link href="/" className="footer-logo-panel" aria-label="Soul Balm Massage Therapy home"><img src={LOGO} alt="Soul Balm Massage Therapy" /></Link>
           <p>A dedicated table for one, with space to pause and reconnect with yourself.</p>
           <div className="footer-phone"><span>Call or text</span><a className="footer-phone-number" href={`tel:${PHONE}`}><Phone size={15} /> (660) 341-2202</a><a className="phone-text-link" href={`sms:${SMS_PHONE}`}>Text</a></div>
         </div>
