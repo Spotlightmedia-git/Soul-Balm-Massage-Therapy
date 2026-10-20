@@ -28,7 +28,7 @@ export type StandardServiceContent = {
   pricing: {
     titleLine1: string;
     titleLine2: string;
-    introduction: string;
+    introduction: string | string[];
     note: string;
     details: Record<string, string>;
   };
@@ -47,7 +47,7 @@ export const standardServiceContent: Record<string, StandardServiceContent> = {
       title: "What Is Swedish Massage?",
       paragraphs: [
         "Swedish massage is a classic massage approach that uses flowing strokes, kneading, and adjustable pressure. Massage oil or cream supports smooth, gliding movements and an unhurried massage experience.",
-        "At Soul Balm Massage Therapy in Kansas City, your session begins with a conversation about how you are feeling, the areas you would like to prioritize, and the pressure that feels comfortable. The time can be shaped around a full-body experience or additional attention to areas such as the neck, shoulders, back, or legs.",
+        "At Soul Balm Massage Therapy in Kansas City, your Swedish massage experience is designed to encourage relaxation, ease everyday muscle tension, and promote an overall sense of well-being. Through rhythmic, flowing movements, this gentle yet effective approach helps calm the nervous system, reduce stress, and support the body’s natural ability to rest and restore.",
       ],
     },
     why: {
@@ -58,24 +58,30 @@ export const standardServiceContent: Record<string, StandardServiceContent> = {
         "Before your appointment begins, you can share your preferences and the areas you would like to include. Communication is welcome throughout the session, so pressure and the focus of the massage can be adjusted around your comfort.",
       ],
       points: [
-        { title: "A flowing full-body style", body: "Swedish massage uses smooth, connected strokes for a classic massage experience that can include balanced attention across the body." },
-        { title: "Pressure shaped around you", body: "Discuss whether you prefer gentle, moderate, lighter, or firmer pressure, and share feedback during the appointment." },
-        { title: "Time set aside for self-care", body: "Choose an appointment length that gives you room to slow down and make time for yourself in your Kansas City routine." },
-        { title: "Your priorities guide the session", body: "Start with a conversation about the areas you would like to include, such as the neck, shoulders, back, or legs." },
+        { title: "Promotes Deep Relaxation", body: "Gentle, rhythmic strokes help calm the nervous system, ease stress, and encourage a deeper sense of relaxation and well-being." },
+        { title: "Eases Everyday Muscle Tension", body: "Flowing movements and gentle kneading help relieve muscular tightness and discomfort associated with daily activities and stress." },
+        { title: "Supports Rest and Restoration", body: "Encourages your body to slow down and unwind, offering a restorative break from the demands of everyday life while promoting a sense of calm and overall well-being." },
+        { title: "A Personalized Relaxation Experience", body: "Each massage is tailored to your individual needs, combining flowing techniques and comfortable pressure to create a soothing, restorative experience." },
       ],
     },
     pricing: {
       titleLine1: "Choosing Your Swedish",
       titleLine2: "Massage Session Length",
-      introduction: "The session length you choose helps shape the pace and focus of your Swedish massage. A shorter appointment can center on a smaller set of priorities, while a longer appointment offers more time for a full-body experience, conversation, and a slower pace.",
+      introduction: [
+        "The length of your session determines how much hands-on massage time you’ll receive.",
+        "Sessions shorter than 60 minutes are best suited for focused attention on specific areas rather than a full-body massage.",
+        "While a 60-minute session allows for a full-body massage, longer sessions provide additional time to slow down, unwind, and experience deeper relaxation. It can take time for the nervous system to settle, making an unhurried massage especially beneficial.",
+        "A 75-minute session offers a more relaxed pace, while a 90-minute session is often the sweet spot for a truly restorative experience. It provides ample time for a full-body massage, allowing the body to unwind naturally while still offering additional attention to areas of tension.",
+        "For those seeking an extended relaxation experience, a 120-minute session provides the opportunity to fully immerse yourself in a slower, more nurturing massage.",
+      ],
       note: "Session duration does not guarantee a specific result. The best choice depends on your personal preferences, the areas you would like to discuss, your comfort with pressure, and the time you have available.",
       details: {
-        "30 minutes": "A shorter option when you would like a focused Swedish massage session or have limited time.",
-        "45 minutes": "Offers more time to include a few priority areas and check in about pressure and comfort.",
-        "60 minutes": "A balanced option for a classic full-body Swedish massage at an unhurried pace.",
-        "75 minutes": "Provides additional time for a full-body experience with room to spend longer where you would like attention.",
-        "90 minutes": "Gives more time for a relaxed full-body session, ongoing comfort check-ins, and your selected priorities.",
-        "120 minutes": "An extended option for clients who would like the most time to slow down and enjoy a longer session.",
+        "30 minutes": "Ideal for a brief, focused massage addressing one specific area of tension while providing an opportunity to relax and unwind.",
+        "45 minutes": "Allows additional time for focused relaxation and attention to a primary area of concern and surrounding muscle groups.",
+        "60 minutes": "Provides time for a full-body relaxation massage, although the pace may be more structured to accommodate the entire body.",
+        "75 minutes": "Offers a more leisurely full-body massage, allowing additional time to unwind and give attention to areas of tension.",
+        "90 minutes": "The sweet spot for a restorative full-body massage, providing ample time for relaxation along with additional attention to areas needing extra care.",
+        "120 minutes": "An extended, unhurried full-body experience designed for those seeking prolonged relaxation, nurturing touch, and a deeper sense of restoration.",
       },
     },
     faqs: [

@@ -723,7 +723,7 @@ function StandardServicePricing({ service, content }: { service: Service; conten
   return (
     <section className="service-pricing standard-service-pricing">
       <div className="container">
-        <div className="service-pricing-heading"><p className="eyebrow"><span></span>Session lengths & pricing</p><h2>{content.pricing.titleLine1}<br /><em>{content.pricing.titleLine2}</em></h2><p>{content.pricing.introduction}</p></div>
+        <div className="service-pricing-heading"><p className="eyebrow"><span></span>Session lengths & pricing</p><h2>{content.pricing.titleLine1}<br /><em>{content.pricing.titleLine2}</em></h2>{(Array.isArray(content.pricing.introduction) ? content.pricing.introduction : [content.pricing.introduction]).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
         <div className="pricing-table" role="table" aria-label={`${service.name} session lengths and prices`}><div className="pricing-header" role="row"><span role="columnheader">Session length</span><span role="columnheader">Displayed price</span><span role="columnheader">Why the time matters</span></div>{service.pricing.map((option) => <div className="pricing-row" role="row" key={option.duration}><strong role="cell">{option.duration}</strong><b role="cell">{option.price}</b><span role="cell">{content.pricing.details[option.duration] ?? option.detail}</span></div>)}</div>
         <p className="deep-tissue-pricing-note">{content.pricing.note}</p>
         <BookingButton label={`Book ${service.name} on MassageBook`} className="service-pricing-cta" />
