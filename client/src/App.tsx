@@ -36,7 +36,7 @@ const ADDRESS = "216 NE Barry Rd, Kansas City, MO 64155";
 const MAPS_URL = "https://www.google.com/maps/place/Soul+Balm+Massage+Therapy/@39.2471109,-94.57844,17z/data=!3m1!4b1!4m6!3m5!1s0x87e80f40f22f9b03:0x439fe7543d3708da!8m2!3d39.2471109!4d-94.57844!16s%2Fg%2F11vf97jvzt";
 const MAPS_SHARE_URL = "https://share.google/Rm6CNLfwqt1LrZTtQ";
 const MAPS_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d772.4533111817267!2d-94.57908507147035!3d39.247110898220804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e80f40f22f9b03%3A0x439fe7543d3708da!2sSoul%20Balm%20Massage%20Therapy!5e0!3m2!1sen!2sus!4v1791650553565!5m2!1sen!2sus";
-const LOGO = "/images/soul-balm-logo_9b444d79.png";
+const LOGO = "/images/soul-balm-logo-option-6.png";
 const STOREFRONT_IMAGE = "/images/soul-balm-storefront.jpg";
 const TERESA_PORTRAIT = "/images/teresa-nerem-licensed-massage-therapist-kansas-city.webp";
 

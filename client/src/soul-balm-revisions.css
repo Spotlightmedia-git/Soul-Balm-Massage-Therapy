@@ -2583,7 +2583,7 @@
 .site-footer .footer-logo-panel {
   display: flex;
   width: min(100%, 210px);
-  min-height: 102px;
+  min-height: 84px;
   align-items: center;
   justify-content: center;
   padding: 10px 13px;
@@ -2596,7 +2596,7 @@
 .site-footer .footer-logo-panel img {
   display: block;
   width: 100%;
-  height: 80px;
+  height: 64px;
   object-fit: contain;
 }
 
@@ -2641,7 +2641,28 @@
   vertical-align: middle;
 }
 
+.site-header .nav-shell {
+  min-height: 96px;
+}
+
+.site-header .wordmark,
+.site-header .wordmark-compact {
+  width: auto;
+  height: 76px;
+  object-fit: contain;
+  mix-blend-mode: normal;
+}
+
 @media (max-width: 600px) {
+  .site-header .nav-shell {
+    min-height: 76px;
+  }
+
+  .site-header .wordmark,
+  .site-header .wordmark-compact {
+    height: 60px;
+  }
+
   .site-footer .footer-logo-panel {
     width: min(100%, 220px);
   }
